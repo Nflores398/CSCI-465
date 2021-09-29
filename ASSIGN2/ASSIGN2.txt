@@ -1,0 +1,167 @@
+
+                   J E S 2  J O B  L O G  --  S Y S T E M  2 9 6 4  --  N O D E  S V S C J E S 2        
+
+ 
+19.35.39 JOB01614 ---- THURSDAY,  02 SEP 2021 ----
+19.35.39 JOB01614  IRR010I  USERID KC03BB6  IS ASSIGNED TO THIS JOB.
+19.35.39 JOB01614  ICH70001I KC03BB6  LAST ACCESS AT 19:32:04 ON THURSDAY, SEPTEMBER 2, 2021
+19.35.39 JOB01614  $HASP373 KC03BB6A STARTED - INIT 1    - CLASS A        - SYS 2964
+19.35.40 JOB01614  -                                      -----TIMINGS (MINS.)------                          -----PAGING COUNTS----
+19.35.40 JOB01614  -STEPNAME PROCSTEP    RC   EXCP   CONN       TCB       SRB  CLOCK          SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+19.35.40 JOB01614  -JSTEP01              00     62      0       .00       .00     .0             6  BATCH        0     0     0     0
+19.35.40 JOB01614  -JSTEP02              00     41      0       .00       .00     .0             3  BATCH        0     0     0     0
+19.35.40 JOB01614  -KC03BB6A ENDED.  NAME-N FLORES             TOTAL TCB CPU TIME=      .00 TOTAL ELAPSED TIME=    .0
+19.35.40 JOB01614  $HASP395 KC03BB6A ENDED - RC=0000
+
+------ JES2 JOB STATISTICS ------
+
+
+  02 SEP 2021 JOB EXECUTION DATE
+
+
+           66 CARDS READ
+
+
+          143 SYSOUT PRINT RECORDS
+
+
+            0 SYSOUT PUNCH RECORDS
+
+
+           14 SYSOUT SPOOL KBYTES
+
+
+         0.01 MINUTES EXECUTION TIME
+!! END OF JES SPOOL FILE !!
+       1 //KC03BB6A JOB ,'N FLORES',MSGCLASS=H                                   JOB01614
+         //*                                                                             
+         //*****************************************************************             
+         //*                                                               *             
+         //*  CSCI 465               ASSIGNMENT 2               FALL 2021  *             
+         //*                                                               *             
+         //*  DEVELOPER NAME: Noah Flores                                  *             
+         //*  DATE DUE: 09/3/2021                                          *             
+         //*                                                               *             
+         //*  Fetch a program to read a records then store data into a     *             
+         //*  temp data set and fetch another program to write record.     *             
+         //*                                                               *             
+         //*****************************************************************             
+         //*                                                                             
+       2 //JSTEP01  EXEC PGM=READRECS                                                    
+         //*                                                                             
+         //*****************************************************************             
+         //* JSTEP01 FETCHES READRECS AND SENDS IN DATASET AND SENDS OUT   *             
+         //* A TEMP DATA SET.                                              *             
+         //*                                                               *             
+         //* DDNAME             FILE DESCRIPTION                           *             
+         //*                                                               *             
+         //* RECSIN     INPUT:  DATA2 FROM DATAFA21 CONTAINS DATA FROM PGM *             
+         //*                                                               *             
+         //* RECSOUT    OUTPUT: TEMP DATASET(DATAOUT) RESULT FROM PGM      *             
+         //*                                                               *             
+         //*****************************************************************             
+         //*                                                                             
+       3 //STEPLIB  DD  DSN=KC02322.CSCI465.LOADLIB,                                     
+         //             DISP=SHR                                                         
+         //*                                                                             
+       4 //RECSIN   DD  DSN=KC02322.CSCI465.DATAFA21(DATA2),                             
+         //             DISP=SHR                                                         
+         //*                                                                             
+       5 //RECSOUT  DD  DSN=&&DATAOUT,DISP=(MOD,PASS),                                   
+         //             DCB=(LRECL=80)                                                   
+         //*                                                                             
+       6 //SYSUDUMP DD  SYSOUT=*                                                         
+         //*                                                                             
+         //* END OF JSTEP01                                                              
+         //*                                                                             
+       7 //JSTEP02  EXEC PGM=WRTERECS,COND=(0,LT)                                        
+         //*                                                                             
+         //*****************************************************************             
+         //* JSTEP02 FETCHES WRTERECS AND SENDS IN DATASET AND SENDS OUT   *             
+         //* A TEXT TO BE PRINTED                                          *             
+         //*                                                               *             
+         //* DDNAME             FILE DESCRIPTION                           *             
+         //*                                                               *             
+         //* RECSIN     INPUT: SENDS IN &&DATAOUT INTO WRTERECS            *             
+         //*                                                               *             
+         //* RECSOUT    OUTPUT: TEXT FROM WRTERECS AND PRINTED IN STDOUTPUT*             
+         //*                                                               *             
+         //*****************************************************************             
+         //*                                                                             
+       8 //STEPLIB  DD  DSN=KC02322.CSCI465.LOADLIB,                                     
+         //             DISP=SHR                                                         
+         //*                                                                             
+       9 //RECSIN   DD  DSN=&&DATAOUT,                                                   
+         //             DISP=(SHR,PASS),                                                 
+         //             DCB=(LRECL=80)                                                   
+         //*                                                                             
+      10 //RECSOUT  DD   SYSOUT=*                                                        
+         //*                                                                             
+         //* END OF JSTEP02                                                              
+         //*                                                                             
+!! END OF JES SPOOL FILE !!
+ICH70001I KC03BB6  LAST ACCESS AT 19:32:04 ON THURSDAY, SEPTEMBER 2, 2021
+IEFA111I KC03BB6A IS USING THE FOLLOWING JOB RELATED SETTINGS:
+         SWA=ABOVE,TIOT SIZE=32K,DSENQSHR=DISALLOW,GDGBIAS=JOB
+IEF236I ALLOC. FOR KC03BB6A JSTEP01
+IGD103I SMS ALLOCATED TO DDNAME STEPLIB
+IGD103I SMS ALLOCATED TO DDNAME RECSIN
+IGD101I SMS ALLOCATED TO DDNAME (RECSOUT )
+        DSN (SYS21245.T193539.RA000.KC03BB6A.DATAOUT.H01 )
+        STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+        VOL SER NOS= TEMP00                                                                
+IEF237I JES2 ALLOCATED TO SYSUDUMP
+IEF142I KC03BB6A JSTEP01 - STEP WAS EXECUTED - COND CODE 0000
+IGD104I KC02322.CSCI465.LOADLIB                      RETAINED,  DDNAME=STEPLIB 
+IGD104I KC02322.CSCI465.DATAFA21                     RETAINED,  DDNAME=RECSIN  
+IGD106I SYS21245.T193539.RA000.KC03BB6A.DATAOUT.H01  PASSED,    DDNAME=RECSOUT 
+IEF285I   KC03BB6.KC03BB6A.JOB01614.D0000101.?         SYSOUT        
+IEF373I STEP/JSTEP01 /START 2021245.1935
+IEF032I STEP/JSTEP01 /STOP  2021245.1935 
+        CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+        VIRT:    88K  SYS:   264K  EXT:     2788K  SYS:    11692K
+        ATB- REAL:                  1044K  SLOTS:                     0K
+             VIRT- ALLOC:      11M SHRD:       0M
+IEF236I ALLOC. FOR KC03BB6A JSTEP02
+IGD103I SMS ALLOCATED TO DDNAME STEPLIB
+IGD103I SMS ALLOCATED TO DDNAME RECSIN
+IEF237I JES2 ALLOCATED TO RECSOUT
+IEF142I KC03BB6A JSTEP02 - STEP WAS EXECUTED - COND CODE 0000
+IGD104I KC02322.CSCI465.LOADLIB                      RETAINED,  DDNAME=STEPLIB 
+IEF285I   KC03BB6.KC03BB6A.JOB01614.D0000102.?         SYSOUT        
+IEF373I STEP/JSTEP02 /START 2021245.1935
+IEF032I STEP/JSTEP02 /STOP  2021245.1935 
+        CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+        VIRT:    92K  SYS:   268K  EXT:     2788K  SYS:    11688K
+        ATB- REAL:                  1044K  SLOTS:                     0K
+             VIRT- ALLOC:      11M SHRD:       0M
+IGD103I SMS ALLOCATED TO DDNAME SYS00001
+IGD104I SYS21245.T193540.RA000.KC03BB6A.R0100235     RETAINED,  DDNAME=SYS00001
+IGD105I SYS21245.T193539.RA000.KC03BB6A.DATAOUT.H01  DELETED,   DDNAME=RECSIN  
+IEF375I  JOB/KC03BB6A/START 2021245.1935
+IEF033I  JOB/KC03BB6A/STOP  2021245.1935 
+        CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+!! END OF JES SPOOL FILE !!
+
+QUOTATIONS FROM TWO IMPORTANT AMERICAN HISTORICAL DOCUMENTS            FALL 2021                                                    
+
+"We hold these truths to be self-evident, that all men are created                                                                  
+
+equal, that they are endowed by their Creator with certain unalienable                                                              
+
+Rights, that among these are Life, Liberty and the pursuit of                                                                       
+
+Happiness." -- Declaration of Independence, 1776                                                                                    
+
+"We the People of the United States, in Order to form a more perfect                                                                
+
+Union, establish Justice, insure domestic Tranquility, provide for the                                                              
+
+common defence, promote the general Welfare, and secure the Blessings                                                               
+
+of Liberty to ourselves and our Posterity, do ordain and establish this                                                             
+
+Constitution of the United States of America." -- Preamble to the U.S.                                                              
+
+Constitution, 1789                                                                                                                  
+!! END OF JES SPOOL FILE !!
