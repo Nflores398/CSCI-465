@@ -1,0 +1,120 @@
+
+                    J E S 2  J O B  L O G  --  S Y S T E M  2 9 6 4  --  N O D E  S V S C J E S 2        
+
+  
+ 19.58.51 JOB06770 ---- WEDNESDAY, 25 AUG 2021 ----
+ 19.58.51 JOB06770  IRR010I  USERID KC03BB6  IS ASSIGNED TO THIS JOB.
+ 19.58.51 JOB06770  ICH70001I KC03BB6  LAST ACCESS AT 19:47:54 ON WEDNESDAY, AUGUST 25, 2021
+ 19.58.51 JOB06770  $HASP373 KC03BB6A STARTED - INIT 1    - CLASS A        - SYS 2964
+ 19.58.52 JOB06770  -                                      -----TIMINGS (MINS.)------                          -----PAGING COUNTS----
+ 19.58.52 JOB06770  -STEPNAME PROCSTEP    RC   EXCP   CONN       TCB       SRB  CLOCK          SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+ 19.58.52 JOB06770  -JSTEP01              00      4      0       .00       .00     .0                BATCH        0     0     0     0
+ 19.58.53 JOB06770  -JSTEP02              00      2      0       .00       .00     .0                BATCH        0     0     0     0
+ 19.58.53 JOB06770  -KC03BB6A ENDED.  NAME-N FLORES             TOTAL TCB CPU TIME=      .00 TOTAL ELAPSED TIME=    .0
+ 19.58.53 JOB06770  $HASP395 KC03BB6A ENDED - RC=0000
+
+ ------ JES2 JOB STATISTICS ------
+
+
+   25 AUG 2021 JOB EXECUTION DATE
+
+
+            52 CARDS READ
+
+
+           108 SYSOUT PRINT RECORDS
+
+
+             0 SYSOUT PUNCH RECORDS
+
+
+            11 SYSOUT SPOOL KBYTES
+
+
+          0.02 MINUTES EXECUTION TIME
+ !! END OF JES SPOOL FILE !!
+        1 //KC03BB6A JOB ,'N FLORES',MSGCLASS=H                                   JOB06770
+          //*                                                                             
+          //*****************************************************************             
+          //*                                                               *             
+          //*  CSCI 465               ASSIGNMENT 1               FALL 2021  *             
+          //*                                                               *             
+          //*  DEVELOPER NAME: Noah Flores                                  *             
+          //*  DATE DUE: 08/27/2021                                         *             
+          //*                                                               *             
+          //*  PURPOSE: The purpose of this job is to allocated a new PDSE, *             
+          //*  or partitioned data set extended, that holds load modules.   *             
+          //*  There are two job steps, both running IEFBR14.  The          *             
+          //*  first will delete any possible previous version of the       *             
+          //*  PDSE named KC03nnn.CSCI465.LOADLIB.  The second creates      *             
+          //*  a new PDSE of the same name.  IEFBR14 is one of the          *             
+          //*  most used of all the IBM utilities available.                *             
+          //*  IEFBR14's source module consists only of a CSECT with only   *             
+          //*  standard entry and exit linkage.  It accomplishes            *             
+          //*  really nothing as a stand-alone program BUT, as we           *             
+          //*  will soon find out, it has MANY uses for allocating          *             
+          //*  (creating), cataloging, deleting, and un-cataloging          *             
+          //*  data sets.  In this two-step job, you are simply             *             
+          //*  executing IEFBR14 twice.  The first step deletes any         *             
+          //*  previously-created PDSE that might exist from a prior        *             
+          //*  successful run of the job and the second allocates, or       *             
+          //*  creates a new one.  This PDSE is the second of the           *             
+          //*  three PDSEs that we will need this semester.                 *             
+          //*                                                               *             
+          //*****************************************************************             
+          //*                                                                             
+        2 //JSTEP01  EXEC PGM=IEFBR14                                                     
+          //*                                                                             
+          //*  The following DD card deletes an existing PDSE if it already               
+          //*  exists.  If it does not exist, the data set is first allocated             
+          //*  and then immediately deleted.                                              
+          //*                                                                             
+        3 //DD1      DD DSN=KC03BB6.CSCI465.LOADLIB,                                      
+          //            SPACE=(TRK,(1,1,1)),                                              
+          //            DISP=(MOD,DELETE,DELETE)                                          
+          //*                                                                             
+        4 //JSTEP02  EXEC PGM=IEFBR14                                                     
+          //*                                                                             
+          //*  The following DD card allocates a PDSE to hold your                        
+          //*  program load module files.                                                 
+          //*                                                                             
+        5 //DD1      DD DSN=KC03BB6.CSCI465.LOADLIB,                                      
+          //            DCB=(RECFM=U,LRECL=0,BLKSIZE=4096),                               
+          //            DSNTYPE=LIBRARY,                                                  
+          //            SPACE=(CYL,(9,5,6)),                                              
+          //            DISP=(NEW,KEEP,DELETE)                                            
+        6 //                                                                              
+ !! END OF JES SPOOL FILE !!
+ ICH70001I KC03BB6  LAST ACCESS AT 19:47:54 ON WEDNESDAY, AUGUST 25, 2021
+ IEFA111I KC03BB6A IS USING THE FOLLOWING JOB RELATED SETTINGS:
+          SWA=ABOVE,TIOT SIZE=32K,DSENQSHR=DISALLOW,GDGBIAS=JOB
+ IEF236I ALLOC. FOR KC03BB6A JSTEP01
+ IGD101I SMS ALLOCATED TO DDNAME (DD1     )
+         DSN (KC03BB6.CSCI465.LOADLIB                     )
+         STORCLAS (PRIM90) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= KCTR37                                                                
+ IEF142I KC03BB6A JSTEP01 - STEP WAS EXECUTED - COND CODE 0000
+ IGD105I KC03BB6.CSCI465.LOADLIB                      DELETED,   DDNAME=DD1     
+ IEF373I STEP/JSTEP01 /START 2021237.1958
+ IEF032I STEP/JSTEP01 /STOP  2021237.1958 
+         CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+         VIRT:     4K  SYS:   232K  EXT:        0K  SYS:    11492K
+         ATB- REAL:                  1056K  SLOTS:                     0K
+              VIRT- ALLOC:      13M SHRD:       0M
+ IEF236I ALLOC. FOR KC03BB6A JSTEP02
+ IGD101I SMS ALLOCATED TO DDNAME (DD1     )
+         DSN (KC03BB6.CSCI465.LOADLIB                     )
+         STORCLAS (PRIM90) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= KCTR36                                                                
+ IEF142I KC03BB6A JSTEP02 - STEP WAS EXECUTED - COND CODE 0000
+ IGD104I KC03BB6.CSCI465.LOADLIB                      RETAINED,  DDNAME=DD1     
+ IEF373I STEP/JSTEP02 /START 2021237.1958
+ IEF032I STEP/JSTEP02 /STOP  2021237.1958 
+         CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+         VIRT:     4K  SYS:   232K  EXT:        0K  SYS:    11520K
+         ATB- REAL:                  1056K  SLOTS:                     0K
+              VIRT- ALLOC:      13M SHRD:       0M
+ IEF375I  JOB/KC03BB6A/START 2021237.1958
+ IEF033I  JOB/KC03BB6A/STOP  2021237.1958 
+         CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+ !! END OF JES SPOOL FILE !!
