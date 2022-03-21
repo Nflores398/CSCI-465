@@ -1,0 +1,1860 @@
+
+                    J E S 2  J O B  L O G  --  S Y S T E M  2 9 6 4  --  N O D E  S V S C J E S 2        
+
+  
+ 02.38.54 JOB07035 ---- FRIDAY,    15 OCT 2021 ----
+ 02.38.54 JOB07035  IRR010I  USERID KC03BB6  IS ASSIGNED TO THIS JOB.
+ 02.38.54 JOB07035  IEF677I WARNING MESSAGE(S) FOR JOB KC03BB6A ISSUED
+ 02.38.56 JOB07035  ICH70001I KC03BB6  LAST ACCESS AT 02:37:33 ON FRIDAY, OCTOBER 15, 2021
+ 02.38.56 JOB07035  $HASP373 KC03BB6A STARTED - INIT 1    - CLASS A        - SYS 2964
+ 02.38.58 JOB07035  IEC331I 028-002(000C0010),KC03BB6A,JSTEP01 ,IGG0CLEG
+ 02.38.58 JOB07035  IEC331I CATALOG.IGY630
+ 02.38.58 JOB07035  IEC331I IGY630.SIGYCOMP
+ 02.38.58 JOB07035  IEC332I PUPD,ALNV,ALTR,IDVR,CDVR,ACD1
+ 02.38.58 JOB07035  IEC333I P016(000),10,CATALOG.IGY630,IGY630.SIGYCOMP
+ 02.38.59 JOB07035  -                                      -----TIMINGS (MINS.)------                          -----PAGING COUNTS----
+ 02.38.59 JOB07035  -STEPNAME PROCSTEP    RC   EXCP   CONN       TCB       SRB  CLOCK          SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+ 02.38.59 JOB07035  -JSTEP01              00  18012      0       .00       .00     .0            95  BATCH        0     0     0     0
+ 02.39.00 JOB07035  -JSTEP02              00    264      0       .00       .00     .0            61  BATCH        0     0     0     0
+ 02.39.00 JOB07035  -JSTEP03              00    186      0       .00       .00     .0            15  BATCH        0     0     0     0
+ 02.39.00 JOB07035  -KC03BB6A ENDED.  NAME-N FLORES             TOTAL TCB CPU TIME=      .00 TOTAL ELAPSED TIME=    .0
+ 02.39.00 JOB07035  $HASP395 KC03BB6A ENDED - RC=0000
+
+ ------ JES2 JOB STATISTICS ------
+
+
+   15 OCT 2021 JOB EXECUTION DATE
+
+
+           775 CARDS READ
+
+
+         1,615 SYSOUT PRINT RECORDS
+
+
+             0 SYSOUT PUNCH RECORDS
+
+
+           117 SYSOUT SPOOL KBYTES
+
+
+          0.11 MINUTES EXECUTION TIME
+ !! END OF JES SPOOL FILE !!
+        1 //KC03BB6A JOB ,'N FLORES',MSGCLASS=H                                   JOB07035
+          //*                                                                             
+          //*****************************************************************             
+          //*                                                               *             
+          //*  CSCI 465               ASSIGNMENT 5               FALL 2021  *             
+          //*                                                               *             
+          //*  DEVELOPER NAME: Noah Flores                                  *             
+          //*  DATE DUE: 10/15/2021                                         *             
+          //*                                                               *             
+          //* Use COBOL Complier the code that will read in data and        *             
+          //* print out the data in standerd output. Then write to data set *             
+          //* and read from data set. Then bind, fetch, and execute program *             
+          //* execute program.                                              *             
+          //*                                                               *             
+          //*****************************************************************             
+          //*                                                                             
+        2 //JSTEP01  EXEC PGM=IGYCRCTL,REGION=0M,PARM=APOST                               
+          //*                                                                             
+          //*****************************************************************             
+          //* JSTEP01  CALL COBOL COMPLIER AND COMPLIER PROGRAM             *             
+          //*                                                               *             
+          //* DDNAME             FILE DESCRIPTION                           *             
+          //*                                                               *             
+          //* SYSLIN    OUTPUT: TEMP DATASET TO PASS TO BINDER              *             
+          //*                                                               *             
+          //*****************************************************************             
+          //*                                                                             
+        3 //STEPLIB  DD  DSN=IGY630.SIGYCOMP,DISP=SHR                                     
+          //*                                                                             
+        4 //SYSLIB   DD  DSN=SYS1.MACLIB,DISP=SHR                                         
+          //*                                                                             
+        5 //SYSLIN   DD  DSN=&&OBJECT,DISP=(MOD,PASS),                                    
+          //             DCB=(LRECL=80)                                                   
+          //*                                                                             
+        6 //SYSPRINT DD  SYSOUT=*                                                         
+          //*                                                                             
+        7 //SYSUT1   DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+        8 //SYSUT2   DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+        9 //SYSUT3   DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       10 //SYSUT4   DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       11 //SYSUT5   DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       12 //SYSUT6   DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       13 //SYSUT7   DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       14 //SYSUT8   DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       15 //SYSUT9   DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       16 //SYSUT10  DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       17 //SYSUT11  DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       18 //SYSUT12  DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       19 //SYSUT13  DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       20 //SYSUT14  DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       21 //SYSUT15  DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       22 //SYSMDECK DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+       23 //SYSIN     DD *               GENERATED STATEMENT                              
+          //*                                                                             
+       24 //SYSUDUMP DD   SYSOUT=*                                                        
+          //*                                                                             
+       25 //JSTEP02  EXEC PGM=HEWL,COND=(0,LT)                                            
+          //*                                                                             
+          //*****************************************************************             
+          //* JSTEP02  CALL BINDER TO CREATE EXCUTABLE FOR OUR CODE         *             
+          //*                                                               *             
+          //* DDNAME             FILE DESCRIPTION                           *             
+          //*                                                               *             
+          //*****************************************************************             
+          //*                                                                             
+       26 //SYSLIN   DD  DSN=&&OBJECT,DISP=(OLD,DELETE)                                   
+          //*                                                                             
+       27 //SYSLIB   DD  DSN=CEE.SCEELKED,DISP=SHR                                        
+          //*                                                                             
+       28 //SYSLMOD  DD  DSN=KC03BB6.CSCI465.LOADLIB(SALESRPT),                           
+          //             SPACE=(1024,(50,20,1)),DSNTYPE=LIBRARY,                          
+          //             DISP=(MOD,KEEP,KEEP)                                             
+          //*                                                                             
+       29 //SYSPRINT DD  SYSOUT=*                                                         
+          //*                                                                             
+       30 //SYSTERM  DD  SYSOUT=*                                                         
+          //*                                                                             
+       31 //JSTEP03  EXEC PGM=SALESRPT,COND=(0,LT)                                        
+          //*                                                                             
+          //*****************************************************************             
+          //* JSTEP03  EXCUTE THE COBOL PROGRAM AND DISPLAY OUT             *             
+          //*                                                               *             
+          //* DDNAME             FILE DESCRIPTION                           *             
+          //*                                                               *             
+          //* SALESFLE   INPUT:  DATA5 FROM DATAFA21 CONTAINS DATA FROM PGM *             
+          //* HSSALE     INPUT:  TEMP DATA SET TO STORE HIGH SALES FOR I/O  *             
+          //* RPTFLE     OUTPUT: THE OUTPUT BROKER SALES/COMMISSIONS REPORT *             
+          //* HSRPT      OUTPUT: THE OUTPUT BROKER LARGE SALES REPORT       *             
+          //*                                                               *             
+          //*****************************************************************             
+          //*                                                                             
+       32 //STEPLIB  DD  DSN=KC03BB6.CSCI465.LOADLIB,                                     
+          //             DISP=SHR                                                         
+          //*                                                                             
+       33 //SALESFLE DD  DSN=KC02322.CSCI465.DATAFA21(DATA5),                             
+          //             DISP=SHR                                                         
+          //*                                                                             
+       34 //HSSALE   DD  DSN=&&HSALES,DISP=(NEW,KEEP),                                    
+          //             DCB=(LRECL=38)                                                   
+          //*                                                                             
+       35 //RPTFLE   DD  SYSOUT=*                                                         
+          //*                                                                             
+       36 //HSRPT    DD  SYSOUT=*                                                         
+          //*                                                                             
+       37 //SYSUDUMP DD  SYSOUT=*                                                         
+          //*                                                                             
+       38 //SYSIN     DD *               GENERATED STATEMENT                              
+ !! END OF JES SPOOL FILE !!
+  STMT NO. MESSAGE
+ -                
+        34 IEF648I INVALID DISP FIELD- PASS SUBSTITUTED 
+ ICH70001I KC03BB6  LAST ACCESS AT 02:37:33 ON FRIDAY, OCTOBER 15, 2021
+ IEFA111I KC03BB6A IS USING THE FOLLOWING JOB RELATED SETTINGS:
+          SWA=ABOVE,TIOT SIZE=32K,DSENQSHR=DISALLOW,GDGBIAS=JOB
+ IEF236I ALLOC. FOR KC03BB6A JSTEP01
+ IEF237I 1A76 ALLOCATED TO STEPLIB
+ IEF237I 1001 ALLOCATED TO SYSLIB
+ IGD101I SMS ALLOCATED TO DDNAME (SYSLIN  )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.OBJECT.H01  )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IEF237I JES2 ALLOCATED TO SYSPRINT
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT1  )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116670    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT2  )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116671    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT3  )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116672    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT4  )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116673    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT5  )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116674    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT6  )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116675    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT7  )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116676    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT8  )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116677    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT9  )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116678    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT10 )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116679    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT11 )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116680    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT12 )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116681    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT13 )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116682    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT14 )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116683    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT15 )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116684    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IGD101I SMS ALLOCATED TO DDNAME (SYSMDECK)
+         DSN (SYS21288.T023854.RA000.KC03BB6A.R0116685    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IEF237I JES2 ALLOCATED TO SYSIN
+ IEF237I JES2 ALLOCATED TO SYSUDUMP
+ IEF237I JES2 ALLOCATED TO SYS00001
+ IEF285I   KC03BB6.KC03BB6A.JOB07035.D0000110.?         SYSOUT        
+ IEF142I KC03BB6A JSTEP01 - STEP WAS EXECUTED - COND CODE 0000
+ IEF285I   IGY630.SIGYCOMP                              KEPT          
+ IEF285I   VOL SER NOS= VTIGYL.                            
+ IEF285I   SYS1.MACLIB                                  KEPT          
+ IEF285I   VOL SER NOS= VTMVSC.                            
+ IGD106I SYS21288.T023854.RA000.KC03BB6A.OBJECT.H01   PASSED,    DDNAME=SYSLIN  
+ IEF285I   KC03BB6.KC03BB6A.JOB07035.D0000103.?         SYSOUT        
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116670     DELETED,   DDNAME=SYSUT1  
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116671     DELETED,   DDNAME=SYSUT2  
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116672     DELETED,   DDNAME=SYSUT3  
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116673     DELETED,   DDNAME=SYSUT4  
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116674     DELETED,   DDNAME=SYSUT5  
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116675     DELETED,   DDNAME=SYSUT6  
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116676     DELETED,   DDNAME=SYSUT7  
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116677     DELETED,   DDNAME=SYSUT8  
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116678     DELETED,   DDNAME=SYSUT9  
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116679     DELETED,   DDNAME=SYSUT10 
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116680     DELETED,   DDNAME=SYSUT11 
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116681     DELETED,   DDNAME=SYSUT12 
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116682     DELETED,   DDNAME=SYSUT13 
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116683     DELETED,   DDNAME=SYSUT14 
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116684     DELETED,   DDNAME=SYSUT15 
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.R0116685     DELETED,   DDNAME=SYSMDECK
+ IEF285I   KC03BB6.KC03BB6A.JOB07035.D0000101.?         SYSIN         
+ IEF285I   KC03BB6.KC03BB6A.JOB07035.D0000104.?         SYSOUT        
+ IEF373I STEP/JSTEP01 /START 2021288.0238
+ IEF032I STEP/JSTEP01 /STOP  2021288.0238 
+         CPU:     0 HR  00 MIN  00.06 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+         VIRT:   500K  SYS:   312K  EXT:   135932K  SYS:    14072K
+         ATB- REAL:                 11804K  SLOTS:                     0K
+              VIRT- ALLOC:     529M SHRD:       0M
+ IEF236I ALLOC. FOR KC03BB6A JSTEP02
+ IGD103I SMS ALLOCATED TO DDNAME SYSLIN
+ IEF237I 1001 ALLOCATED TO SYSLIB
+ IGD103I SMS ALLOCATED TO DDNAME SYSLMOD
+ IEF237I JES2 ALLOCATED TO SYSPRINT
+ IEF237I JES2 ALLOCATED TO SYSTERM
+ IEF142I KC03BB6A JSTEP02 - STEP WAS EXECUTED - COND CODE 0000
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.OBJECT.H01   DELETED,   DDNAME=SYSLIN  
+ IEF285I   CEE.SCEELKED                                 KEPT          
+ IEF285I   VOL SER NOS= VTMVSC.                            
+ IGD104I KC03BB6.CSCI465.LOADLIB                      RETAINED,  DDNAME=SYSLMOD 
+ IEF285I   KC03BB6.KC03BB6A.JOB07035.D0000105.?         SYSOUT        
+ IEF285I   KC03BB6.KC03BB6A.JOB07035.D0000106.?         SYSOUT        
+ IEF373I STEP/JSTEP02 /START 2021288.0238
+ IEF032I STEP/JSTEP02 /STOP  2021288.0239 
+         CPU:     0 HR  00 MIN  00.01 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+         VIRT:    88K  SYS:   272K  EXT:     1768K  SYS:    11992K
+         ATB- REAL:                  4140K  SLOTS:                     0K
+              VIRT- ALLOC:      15M SHRD:       0M
+ IEF236I ALLOC. FOR KC03BB6A JSTEP03
+ IGD103I SMS ALLOCATED TO DDNAME STEPLIB
+ IGD103I SMS ALLOCATED TO DDNAME SALESFLE
+ IGD101I SMS ALLOCATED TO DDNAME (HSSALE  )
+         DSN (SYS21288.T023854.RA000.KC03BB6A.HSALES.H01  )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IEF237I JES2 ALLOCATED TO RPTFLE
+ IEF237I JES2 ALLOCATED TO HSRPT
+ IEF237I JES2 ALLOCATED TO SYSUDUMP
+ IEF237I JES2 ALLOCATED TO SYSIN
+ IEF142I KC03BB6A JSTEP03 - STEP WAS EXECUTED - COND CODE 0000
+ IGD104I KC03BB6.CSCI465.LOADLIB                      RETAINED,  DDNAME=STEPLIB 
+ IGD104I KC02322.CSCI465.DATAFA21                     RETAINED,  DDNAME=SALESFLE
+ IEF285I   KC03BB6.KC03BB6A.JOB07035.D0000107.?         SYSOUT        
+ IEF285I   KC03BB6.KC03BB6A.JOB07035.D0000108.?         SYSOUT        
+ IEF285I   KC03BB6.KC03BB6A.JOB07035.D0000109.?         SYSOUT        
+ IEF285I   KC03BB6.KC03BB6A.JOB07035.D0000102.?         SYSIN         
+ IEF373I STEP/JSTEP03 /START 2021288.0239
+ IEF032I STEP/JSTEP03 /STOP  2021288.0239 
+         CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+         VIRT:    92K  SYS:   288K  EXT:     2796K  SYS:    11980K
+         ATB- REAL:                  4140K  SLOTS:                     0K
+              VIRT- ALLOC:      15M SHRD:       0M
+ IGD103I SMS ALLOCATED TO DDNAME SYS00002
+ IGD104I SYS21288.T023900.RA000.KC03BB6A.R0116686     RETAINED,  DDNAME=SYS00002
+ IGD105I SYS21288.T023854.RA000.KC03BB6A.HSALES.H01   DELETED,   DDNAME=HSSALE  
+ IEF375I  JOB/KC03BB6A/START 2021288.0238
+ IEF033I  JOB/KC03BB6A/STOP  2021288.0239 
+         CPU:     0 HR  00 MIN  00.07 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+ !! END OF JES SPOOL FILE !!
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115                 Date 10/15/2021  Time 02:38:57   Page     1                
+
+ Invocation parameters:                                                                                                              
+  APOST                                                                                                                              
+
+ Options in effect:                                                                                                                  
+  NOADATA                                                                                                                            
+    ADV                                                                                                                              
+    AFP(NOVOLATILE)                                                                                                                  
+    APOST                                                                                                                            
+    ARCH(8)                                                                                                                          
+    ARITH(COMPAT)                                                                                                                    
+  NOAWO                                                                                                                              
+  NOBLOCK0                                                                                                                           
+    BUFSIZE(4096)                                                                                                                    
+  NOCICS                                                                                                                             
+    CODEPAGE(1140)                                                                                                                   
+  NOCOMPILE(S)                                                                                                                       
+  NOCOPYLOC                                                                                                                          
+  NOCOPYRIGHT                                                                                                                        
+  NOCURRENCY                                                                                                                         
+    DATA(31)                                                                                                                         
+    DBCS                                                                                                                             
+  NODECK                                                                                                                             
+  NODEFINE                                                                                                                           
+  NODIAGTRUNC                                                                                                                        
+    DISPSIGN(COMPAT)                                                                                                                 
+  NODLL                                                                                                                              
+  NODUMP                                                                                                                             
+  NODYNAM                                                                                                                            
+  NOEXIT                                                                                                                             
+  NOEXPORTALL                                                                                                                        
+  NOFASTSRT                                                                                                                          
+    FLAG(I,I)                                                                                                                        
+  NOFLAGSTD                                                                                                                          
+    HGPR(PRESERVE)                                                                                                                   
+  NOINITCHECK                                                                                                                        
+  NOINITIAL                                                                                                                          
+    INLINE                                                                                                                           
+    INTDATE(ANSI)                                                                                                                    
+  NOJTC                                                                                                                              
+    LANGUAGE(EN)                                                                                                                     
+    LINECOUNT(60)                                                                                                                    
+  NOLIST                                                                                                                             
+    LP(32)                                                                                                                           
+  NOMAP                                                                                                                              
+    MAXPCF(100000)                                                                                                                   
+  NOMDECK                                                                                                                            
+  NONAME                                                                                                                             
+    NSYMBOL(NATIONAL)                                                                                                                
+  NONUMBER                                                                                                                           
+  NONUMCHECK                                                                                                                         
+    NUMPROC(NOPFD)                                                                                                                   
+    OBJECT                                                                                                                           
+  NOOFFSET                                                                                                                           
+    OPTIMIZE(0)                                                                                                                      
+    OUTDD(SYSOUT)                                                                                                                    
+  NOPARMCHECK                                                                                                                        
+    PGMNAME(COMPAT)                                                                                                                  
+    QUALIFY(COMPAT)                                                                                                                  
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115                 Date 10/15/2021  Time 02:38:57   Page     2                
+
+    RENT                                                                                                                             
+    RMODE(AUTO)                                                                                                                      
+  NORULES                                                                                                                            
+  NOSERVICE                                                                                                                          
+    SEQUENCE                                                                                                                         
+    SOURCE                                                                                                                           
+    SPACE(1)                                                                                                                         
+  NOSQL                                                                                                                              
+    SQLCCSID                                                                                                                         
+  NOSQLIMS                                                                                                                           
+  NOSSRANGE                                                                                                                          
+  NOSTGOPT                                                                                                                           
+    SUPPRESS                                                                                                                         
+  NOTERM                                                                                                                             
+  NOTEST(NODWARF,NOSOURCE,NOSEPARATE)                                                                                                
+  NOTHREAD                                                                                                                           
+    TRUNC(STD)                                                                                                                       
+  NOVBREF                                                                                                                            
+    VLR(STANDARD)                                                                                                                    
+    VSAMOPENFS(COMPAT)                                                                                                               
+  NOWORD                                                                                                                             
+    XMLPARSE(XMLSS)                                                                                                                  
+    XREF(FULL)                                                                                                                       
+    ZONEDATA(PFD)                                                                                                                    
+    ZWB                                                                                                                              
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page     3                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+
+   000001               ****************************************************************                                             
+   000002               *                                                              *                                             
+   000003               * PROGRAM NAME:  SALESRPT.                                     *                                             
+   000004               *                                                              *                                             
+   000005               * FUNCTION:  THIS PROGRAM READS INPUT DATA RECORDS AND THEN    *                                             
+   000006               *            WRITES THEM TO STANDARD OUTPUT.                   *                                             
+   000007               *                                                              *                                             
+   000008               * INPUT:     SALESFLE - THE INPUT DATA RECORDS READ IN.        *                                             
+   000009               *            WHICH CONTAIN A BRACH NAME, BROKER NAME, AND      *                                             
+   000010               *            DEPOSIT AMOUT.                                    *                                             
+   000011               * INPUT:     HSSALE - TEMP DATA SET THAT STORES BROKERS THAT   *                                             
+   000012               *            HAVE MORE THAN 150000 SHARES.                     *                                             
+   000013               *                                                              *                                             
+   000014               * OUTPUT:    RPTFLE - THE OUTPUT BROKER SALES AND COMMISSIONS. *                                             
+   000015               * OUTPUT:    HSRPT - THE OUTPUT OF LARGE SALES REPORT.         *                                             
+   000016               *                                                              *                                             
+   000017               ****************************************************************                                             
+   000018                                                                                                                            
+   000019                IDENTIFICATION DIVISION.                                                                                    
+   000020                                                                                                                            
+   000021                PROGRAM-ID.    SALESRPT.                                                                                    
+   000022                AUTHOR.        NOAH L FLORES.                                                                               
+   000023                DATE-WRITTEN.  10/11/2021.                                                                                  
+   000024                DATE-COMPILED. 10/15/21.                                                                                    
+   000025                                                                                                                            
+   000026                ENVIRONMENT DIVISION.                                                                                       
+   000027                                                                                                                            
+   000028                INPUT-OUTPUT SECTION.                                                                                       
+   000029                                                                                                                            
+   000030                FILE-CONTROL.                                                                                               
+   000031                                                                                                                            
+   000032                    SELECT SALE-FILE ASSIGN TO SALESFLE.                                  46                                
+   000033                    SELECT REPORT-FILE ASSIGN TO RPTFLE.                                  77                                
+   000034                    SELECT HSSALE-FILE ASSIGN TO HSSALE.                                  68                                
+   000035                    SELECT HSRPT-FILE ASSIGN TO HSRPT.                                    85                                
+   000036                                                                                                                            
+   000037                DATA DIVISION.                                                                                              
+   000038                                                                                                                            
+   000039                FILE SECTION.                                                                                               
+   000040                                                                                                                            
+   000041               ****************************************************************                                             
+   000042               * SALE-FILE THE INPUT DATA RECORDS READ IN.                    *                                             
+   000043               * THE FIRST RECORD CONTAINS FUND-PRICE CONTENTS ONLY.          *                                             
+   000044               * WHICH CONTAIN A BRACH NAME, BROKER NAME, AND EPOSIT AMOUT.   *                                             
+   000045               ****************************************************************                                             
+   000046                FD  SALE-FILE                                                                                               
+   000047                    RECORDING MODE F.                                                                                       
+   000048                                                                                                                            
+   000049                01  FUND-PRICE.                                                                                             
+   000050                   05   IN-SHR-PRC              PIC 9(3)V99.                                                                
+   000051                   05   IN-FUND-NME             PIC X(35).                                                                  
+   000052                   05   IN-COMM-PCT-1           PIC S9V9(5).                                                                
+   000053                   05   IN-COMM-PCT-2           PIC S9V9(5).                                                                
+   000054                   05   IN-COMM-PCT-3           PIC S9V9(5).                                                                
+   000055                   05   FILLER                  PIC X(22).                                                                  
+   000056                                                                                                                            
+   000057                01  SALE-RECORD.                                                                                            
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page     4                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+
+   000058                   05   IN-BRANCH-NME           PIC X(25).                                                                  
+   000059                   05   IN-BROKER-NME           PIC X(25).                                                                  
+   000060                   05   IN-DEP-AMT              PIC S9(9)V99.                                                               
+   000061                   05   FILLER                  PIC X(3).                                                                   
+   000062                   05   IN-COMM-FLG             PIC 9(1).                                                                   
+   000063                   05   FILLER                  PIC X(15).                                                                  
+   000064               ****************************************************************                                             
+   000065               * HSSALE-FILE THE INPUT/OUTPUT OF LARGE SHARE BROKERS          *                                             
+   000066               * WHICH CONTAIN A BROKER NAME, AND SHARE AMOUNT                *                                             
+   000067               ****************************************************************                                             
+   000068                FD  HSSALE-FILE                                                                                             
+   000069                    RECORDING MODE F.                                                                                       
+   000070                                                                                                                            
+   000071                01  HSSALE-INRECORD.                                                                                        
+   000072                   05 HS-BROKER-NME             PIC X(25).                                                                  
+   000073                   05 HS-SHR-AMT                PIC S9(9)V9(4).                                                             
+   000074               ****************************************************************                                             
+   000075               * REPORT-FILE THE OUTPUT IS PRINTED HERE WITH ALL DETAILS      *                                             
+   000076               ****************************************************************                                             
+   000077                FD  REPORT-FILE                                                                                             
+   000078                    RECORDING MODE F                                                                                        
+   000079                    BLOCK CONTAINS 20 RECORDS.                                                                              
+   000080                                                                                                                            
+   000081                01  REPORT-RECORD               PIC X(132).                                                                 
+   000082               ****************************************************************                                             
+   000083               * HSRPT-FILE THE OUTPUT OF THE LARGE SHARE REPORT              *                                             
+   000084               ****************************************************************                                             
+   000085                FD  HSRPT-FILE                                                                                              
+   000086                    RECORDING MODE F                                                                                        
+   000087                    BLOCK CONTAINS 20 RECORDS.                                                                              
+   000088                                                                                                                            
+   000089                01  HSRPT-RECORD                PIC X(132).                                                                 
+   000090                                                                                                                            
+   000091                WORKING-STORAGE SECTION.                                                                                    
+   000092               ****************************************************************                                             
+   000093               * VARIABLES:                                                   *                                             
+   000094               * EOFFLAG              CHANGES TO 'Y' WHEN END OF FILE OCCURS. *                                             
+   000095               *                                                              *                                             
+   000096               * TIMEFLAG             USED TO STORE AM/PM.                    *                                             
+   000097               *                                                              *                                             
+   000098               * HOUR                 CURRENT HOUR.                           *                                             
+   000099               *                                                              *                                             
+   000100               * SALE-CTR             KEEPS TRACK OF RECORDS.                 *                                             
+   000101               *                                                              *                                             
+   000102               * LINE-CTR             LINE COUNTER.                           *                                             
+   000103               *                                                              *                                             
+   000104               * PAGE-CTR             PAGE COUNTER.                           *                                             
+   000105               *                                                              *                                             
+   000106               * SHR-PRC              SHARE PRICE.                            *                                             
+   000107               *                                                              *                                             
+   000108               * COMM-PCT-1           COMMISSION PERCENT FOR FLAG 1           *                                             
+   000109               *                                                              *                                             
+   000110               * COMM-PCT-2           COMMISSION PERCENT FOR FLAG 2           *                                             
+   000111               *                                                              *                                             
+   000112               * COMM-PCT-3           COMMISSION PERCENT FOR FLAG 3           *                                             
+   000113               *                                                              *                                             
+   000114               * TEMP-COMM-PCT        TEMP VALUE TO STORE COMM PERCENT        *                                             
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page     5                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+
+   000115               *                                                              *                                             
+   000116               * SHR-AMT              SHARE AMOUNT                            *                                             
+   000117               *                                                              *                                             
+   000118               * TOT-SHR-AMT          TOTAL SHARE AMOUNT                      *                                             
+   000119               *                                                              *                                             
+   000120               * DEP-AMT              DEPOSITE AMOUNT                         *                                             
+   000121               *                                                              *                                             
+   000122               * COMM-AMT             COMMISSION AMOUNT                       *                                             
+   000123               *                                                              *                                             
+   000124               * TOT-DEP-AMT          IS THE TOTAL DEPOSITE BALACE.           *                                             
+   000125               *                                                              *                                             
+   000126               * TOT-COMM-AMT         TOTAL COMMISSION AMOUNT.                *                                             
+   000127               *                                                              *                                             
+   000128               * DETAIL-1             USED TO PRINT OUT BRANCH NAME. BROKER   *                                             
+   000129               *                       AME, DEPOSITE AMOUNT, AND COM AMOUNT.  *                                             
+   000130               *                                                              *                                             
+   000131               * DETAIL-2             USED TO PRINT OUT LARGE SALE BROKERS    *                                             
+   000132               *                       AND THE AMOUNT OF SHARES THEY HAVE.    *                                             
+   000133               *                                                              *                                             
+   000134               * TOTAL-LINE           USED TO PRINT OUT THE TOTALS AT THE END *                                             
+   000135               *                      OF THE REPORT.                          *                                             
+   000136               *                                                              *                                             
+   000137               * HS-TOTAL-LINE        USED TO PRINT OUT THE TOTALS OF THE     *                                             
+   000138               *                       LARGE SALE REPORT.                     *                                             
+   000139               ****************************************************************                                             
+   000140                                                                                                                            
+   000141                01  VARIABLES.                                                                                              
+   000142                    05  EOFFLAG                 PIC X     VALUE 'N'.                                                        
+   000143                    05  TIMEFLAG                PIC X(2)  VALUE 'AM'.                                                       
+   000144                    05  TOT-DEP-AMT             PIC S9(11)V99 VALUE 0.                                                      
+   000145                    05  HOUR                    PIC 9(2) VALUE 0.                                                           
+   000146                    05  SALE-CTR                PIC S9(3) PACKED-DECIMAL                                                    
+   000147                                                          VALUE 0.                                                          
+   000148                    05  LINE-CTR                PIC S9(2) BINARY SYNC                                                       
+   000149                                                          VALUE 99.                                                         
+   000150                    05  PAGE-CTR                PIC 9(2)  PACKED-DECIMAL                                                    
+   000151                                                          VALUE 0.                                                          
+   000152                    05  SHR-PRC                 PIC S9(3)V99 BINARY SYNC                                                    
+   000153                                                          VALUE 0.                                                          
+   000154                    05  COMM-PCT-1              PIC S9V9(6) BINARY SYNC                                                     
+   000155                                                          VALUE 0.                                                          
+   000156                    05  COMM-PCT-2              PIC S9V9(6) BINARY SYNC                                                     
+   000157                                                          VALUE 0.                                                          
+   000158                    05  COMM-PCT-3              PIC S9V9(6) BINARY SYNC                                                     
+   000159                                                          VALUE 0.                                                          
+   000160                    05  TEMP-COMM-PCT           PIC S9V9(6) BINARY SYNC                                                     
+   000161                                                          VALUE 0.                                                          
+   000162                    05  SHR-AMT                 PIC S9(7)V9(3)  PACKED-DECIMAL                                              
+   000163                                                                VALUE 0.                                                    
+   000164                    05  TOT-SHR-AMT             PIC S9(11)V9(3) PACKED-DECIMAL                                              
+   000165                                                                VALUE 0.                                                    
+   000166                    05  DEP-AMT                 PIC S9(6) PACKED-DECIMAL                                                    
+   000167                                                          VALUE 0.                                                          
+   000168                    05  COMM-AMT                PIC S9(6)V99 PACKED-DECIMAL                                                 
+   000169                                                          VALUE 0.                                                          
+   000170                    05  TOT-COMM-AMT            PIC S9(6)V99 PACKED-DECIMAL                                                 
+   000171                                                          VALUE 0.                                                          
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page     6                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+
+   000172                                                                                                                            
+   000173                01  HEADER-1.                                                                                               
+   000174                   05   OUT-DATE.                                                                                           
+   000175                        10  CURRENT-MONTH        PIC  9(2).                                                                 
+   000176                        10  FILLER               PIC  X    VALUE '/'.                                                       
+   000177                        10  CURRENT-DAY          PIC  9(2).                                                                 
+   000178                        10  FILLER               PIC  X    VALUE '/'.                                                       
+   000179                        10  CURRENT-YEAR         PIC  9(4).                                                                 
+   000180                        10  FILLER               PIC X(40) VALUE SPACE.                   IMP                               
+   000181                        10  OUT-FUND-NME         PIC X(35).                                                                 
+   000182                        10  FILLER               PIC X(38) VALUE SPACE.                   IMP                               
+   000183                        10  FILLER               PIC X(6)  VALUE 'PAGE: '.                                                  
+   000184                        10  OUT-PAGE-CTR         PIC ZZ9.                                                                   
+   000185                   05   OUT-DATE-SPACES REDEFINES OUT-DATE                                174                               
+   000186                                               PIC X(132).                                                                  
+   000187                01  HEADER-2.                                                                                               
+   000188                   05   OUT-TIME.                                                                                           
+   000189                        10  OUT-HOUR-1               PIC  9(2).                                                             
+   000190                        10  FILLER                   PIC  X    VALUE ':'.                                                   
+   000191                        10  CURRENT-MINUTE           PIC  9(2).                                                             
+   000192                        10  FILLER                   PIC  X    VALUE SPACE.               IMP                               
+   000193                        10  OUT-TIMEFLAG-1           PIC  X(2).                                                             
+   000194                        10  FILLER                   PIC  X(37) VALUE SPACES.             IMP                               
+   000195                        10  REPORT-NME               PIC  X(45)                                                             
+   000196                                                     VALUE                                                                  
+   000197                           '     BROKER SALES AND COMMISSIONS REPORT'.                                                      
+   000198                        10  FILLER                   PIC  X(42) VALUE SPACES.             IMP                               
+   000199                   05    OUT-TIME-SPACES REDEFINES OUT-TIME                               188                               
+   000200                                                PIC X(132).                                                                 
+   000201                01  HEADER-3.                                                                                               
+   000202                   05   OUT-SHR.                                                                                            
+   000203                        10   FILLER        PIC X(56) VALUE SPACE.                         IMP                               
+   000204                        10   LABELSHR      PIC X(14) VALUE 'SHARE PRICE:  '.                                                
+   000205                        10   OUT-SHR-PRC   PIC $$$9.99.                                                                     
+   000206                        10   FILLER        PIC X(55) VALUE SPACE.                         IMP                               
+   000207                   05   OUT-SHR-SPACES REDEFINES OUT-SHR                                  202                               
+   000208                                                PIC X(132).                                                                 
+   000209                01  HEADER-4.                                                                                               
+   000210                   05   OUT-LABELS-1.                                                                                       
+   000211                        10   LABELBN       PIC X(11) VALUE 'BRANCH NAME'.                                                   
+   000212                        10   FILLER        PIC X(22) VALUE SPACE.                         IMP                               
+   000213                        10   LABKEBRN      PIC X(11) VALUE 'BROKER NAME'.                                                   
+   000214                        10   FILLER        PIC X(25) VALUE SPACE.                         IMP                               
+   000215                        10   LABELSM       PIC X(12) VALUE 'SALES AMOUNT'.                                                  
+   000216                        10   FILLER        PIC X(15) VALUE SPACE.                         IMP                               
+   000217                        10   LABELSR       PIC X(12) VALUE 'SHARE AMOUNT'.                                                  
+   000218                        10   FILLER        PIC X(14) VALUE SPACE.                         IMP                               
+   000219                        10   LABELCM       PIC X(10) VALUE 'COMMISSION'.                                                    
+   000220                   05   OUT-LABELS-1-SPACES REDEFINES OUT-LABELS-1                        210                               
+   000221                                                PIC X(132).                                                                 
+   000222                01  HEADER-5.                                                                                               
+   000223                   05   OUT-LABELS-2.                                                                                       
+   000224                        10   FILLER        PIC X(39) VALUE SPACE.                         IMP                               
+   000225                        10   LABELNS       PIC X(15) VALUE 'NUMBER OF SALES'.                                               
+   000226                        10   FILLER        PIC X(9)  VALUE SPACE.                         IMP                               
+   000227                        10   LABELNS       PIC X(18) VALUE 'TOTAL SALES AMOUNT'.                                            
+   000228                        10   FILLER        PIC X(9)  VALUE SPACE.                         IMP                               
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page     7                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+
+   000229                        10   LABELNS       PIC X(18) VALUE 'TOTAL SHARE AMOUNT'.                                            
+   000230                        10   FILLER        PIC X(8)  VALUE SPACE.                         IMP                               
+   000231                        10   LABELNS       PIC X(16) VALUE 'TOTAL COMMISSION'.                                              
+   000232                   05   OUT-LABELS-2-SPACES REDEFINES OUT-LABELS-2                        223                               
+   000233                                                PIC X(132).                                                                 
+   000234                01  HS-HEADER-1.                                                                                            
+   000235                   05   OUT-HS-LABELS-1.                                                                                    
+   000236                        10   FILLER        PIC X(40) VALUE SPACE.                         IMP                               
+   000237                        10   LABELHB       PIC X(22)                                                                        
+   000238                                                VALUE 'HIGH SALES BROKER NAME'.                                             
+   000239                        10   FILLER        PIC X(10) VALUE SPACE.                         IMP                               
+   000240                        10   LABELHS       PIC X(23)                                                                        
+   000241                                                VALUE 'HIGH SALES SHARE AMOUNT'.                                            
+   000242                        10   FILLER        PIC X(37) VALUE SPACE.                         IMP                               
+   000243                   05   OUT-HS-LABELS-1-SPACES REDEFINES OUT-HS-LABELS-1                  235                               
+   000244                                                PIC X(132).                                                                 
+   000245                01  HS-HEADER-2.                                                                                            
+   000246                   05   OUT-HS-LABELS-2.                                                                                    
+   000247                        10   FILLER        PIC X(34) VALUE SPACE.                         IMP                               
+   000248                        10   LABELNB       PIC X(28)                                                                        
+   000249                                           VALUE 'NUMBER OF HIGH SALES BROKERS'.                                            
+   000250                        10   FILLER        PIC X(4) VALUE SPACE.                          IMP                               
+   000251                        10   LABELST       PIC X(29)                                                                        
+   000252                                           VALUE 'TOTAL HIGH SALES SHARE AMOUNT'.                                           
+   000253                        10   FILLER        PIC X(37) VALUE SPACE.                         IMP                               
+   000254                   05   OUT-HS-LABELS-2-SPACES REDEFINES OUT-HS-LABELS-2                  246                               
+   000255                                                PIC X(132).                                                                 
+   000256                01  HYPHENS-1.                                                                                              
+   000257                   05   OUT-HYPHENS-1.                                                                                      
+   000258                        10   FILLER        PIC X(25) VALUE ALL '-'.                                                         
+   000259                        10   FILLER        PIC X(8)  VALUE SPACE.                         IMP                               
+   000260                        10   FILLER        PIC X(25) VALUE ALL '-'.                                                         
+   000261                        10   FILLER        PIC X(8)  VALUE SPACE.                         IMP                               
+   000262                        10   FILLER        PIC X(15) VALUE ALL '-'.                                                         
+   000263                        10   FILLER        PIC X(8)  VALUE SPACE.                         IMP                               
+   000264                        10   FILLER        PIC X(19) VALUE ALL '-'.                                                         
+   000265                        10   FILLER        PIC X(9)  VALUE SPACE.                         IMP                               
+   000266                        10   FILLER        PIC X(15) VALUE ALL '-'.                                                         
+   000267                   05   OUT-HYPHENS-1-SPACES REDEFINES OUT-HYPHENS-1                      257                               
+   000268                                                PIC X(132).                                                                 
+   000269                 01  HYPHENS-2.                                                                                             
+   000270                   05   OUT-HYPHENS-2.                                                                                      
+   000271                        10   FILLER        PIC X(40) VALUE SPACE.                         IMP                               
+   000272                        10   FILLER        PIC X(15) VALUE ALL '-'.                                                         
+   000273                        10   FILLER        PIC X(9)  VALUE SPACE.                         IMP                               
+   000274                        10   FILLER        PIC X(18) VALUE ALL '-'.                                                         
+   000275                        10   FILLER        PIC X(5)  VALUE SPACE.                         IMP                               
+   000276                        10   FILLER        PIC X(22) VALUE ALL '-'.                                                         
+   000277                        10   FILLER        PIC X(5)  VALUE SPACE.                         IMP                               
+   000278                        10   FILLER        PIC X(18) VALUE ALL '-'.                                                         
+   000279                   05   OUT-HYPHENS-2-SPACES REDEFINES OUT-HYPHENS-2                      270                               
+   000280                                                PIC X(132).                                                                 
+   000281                01  HS-HYPHENS-1.                                                                                           
+   000282                   05   OUT-HS-HYPHENS-1.                                                                                   
+   000283                        10   FILLER        PIC X(37) VALUE SPACE.                         IMP                               
+   000284                        10   FILLER        PIC X(25) VALUE ALL '-'.                                                         
+   000285                        10   FILLER        PIC X(10) VALUE SPACE.                         IMP                               
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page     8                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+
+   000286                        10   FILLER        PIC X(23) VALUE ALL '-'.                                                         
+   000287                        10   FILLER        PIC X(37) VALUE SPACE.                         IMP                               
+   000288                   05   OUT-HS-HYPHENS-1-SPACES REDEFINES OUT-HS-HYPHENS-1                282                               
+   000289                                                PIC X(132).                                                                 
+   000290                01  HS-HYPHENS-2.                                                                                           
+   000291                   05   OUT-HS-HYPHENS-2.                                                                                   
+   000292                        10   FILLER        PIC X(34) VALUE SPACE.                         IMP                               
+   000293                        10   FILLER        PIC X(28) VALUE ALL '-'.                                                         
+   000294                        10   FILLER        PIC X(4)  VALUE SPACE.                         IMP                               
+   000295                        10   FILLER        PIC X(29) VALUE ALL '-'.                                                         
+   000296                        10   FILLER        PIC X(37) VALUE SPACE.                         IMP                               
+   000297                   05   OUT-HS-HYPHENS-2-SPACES REDEFINES OUT-HS-HYPHENS-2                291                               
+   000298                                                PIC X(132).                                                                 
+   000299                01  DETAIL-1.                                                                                               
+   000300                   05   DETAIL-LINE.                                                                                        
+   000301                        10  OUT-BRANCH-NME      PIC X(25).                                                                  
+   000302                        10  FILLER              PIC X(8) VALUE SPACE.                     IMP                               
+   000303                        10  OUT-BROKER-NME      PIC X(25).                                                                  
+   000304                        10  FILLER              PIC X(8) VALUE SPACE.                     IMP                               
+   000305                        10  OUT-DEP-AMT         PIC $$$$,$$$,$$9.99.                                                        
+   000306                        10  FILLER              PIC X(8) VALUE SPACE.                     IMP                               
+   000307                        10  OUT-SHR-AMT         PIC ZZ,ZZZ,ZZZ,ZZ9.9999.                                                    
+   000308                        10  FILLER              PIC X(9) VALUE SPACE.                     IMP                               
+   000309                        10  OUT-COMM-AMT        PIC $$$$,$$$,$$9.99.                                                        
+   000310                   05   DETAIL-LINE-SPACES REDEFINES DETAIL-LINE                          300                               
+   000311                                                PIC X(132).                                                                 
+   000312                01  DETAIL-2.                                                                                               
+   000313                   05   DETAIL-LINE-2.                                                                                      
+   000314                        10  FILLER              PIC X(37) VALUE SPACE.                    IMP                               
+   000315                        10  OUT-HS-BROKER-NME   PIC X(25).                                                                  
+   000316                        10  FILLER              PIC X(14) VALUE SPACE.                    IMP                               
+   000317                        10  OUT-HS-SHR-AMT      PIC ZZ,ZZZ,ZZZ,ZZ9.9999.                                                    
+   000318                        10  FILLER              PIC X(37) VALUE SPACE.                    IMP                               
+   000319                   05   DETAIL-LINE-2-SPACES REDEFINES DETAIL-LINE-2                      313                               
+   000320                                                PIC X(132).                                                                 
+   000321                01  TOTAL-LINE.                                                                                             
+   000322                    05  TOTAL-LINE-1.                                                                                       
+   000323                        10  FILLER                  PIC X(52) VALUE SPACES.               IMP                               
+   000324                        10  OUT-SALES-CTR           PIC ZZ9.                                                                
+   000325                        10  FILLER                  PIC X(12) VALUE SPACES.               IMP                               
+   000326                        10  OUT-TOT-DEP-AMT         PIC $$$$,$$$,$$9.99.                                                    
+   000327                        10  FILLER                  PIC X(7) VALUE SPACES.                IMP                               
+   000328                        10  OUT-TOT-SHR-AMT         PIC ZZZ,ZZZ,ZZZ,ZZ9.9999.                                               
+   000329                        10  FILLER                  PIC X(12) VALUE SPACES.               IMP                               
+   000330                        10  OUT-TOT-COMM-AMT             PIC $$$$,$$9.99.                                                   
+   000331                    05  TOTAL-LINE-1 REDEFINES TOTAL-LINE-1                               322                               
+   000332                                                PIC X(132).                                                                 
+   000333                                                                                                                            
+   000334                01  HS-TOTAL-LINE.                                                                                          
+   000335                    05  HS-TOTAL-LINE-1.                                                                                    
+   000336                        10  FILLER              PIC X(59) VALUE SPACE.                    IMP                               
+   000337                        10  OUT-HS-SALES-CTR    PIC ZZ9.                                                                    
+   000338                        10  FILLER              PIC X(14) VALUE SPACE.                    IMP                               
+   000339                        10  OUT-HS-TOT-SHR-AMT  PIC ZZ,ZZZ,ZZZ,ZZ9.9999.                                                    
+   000340                        10  FILLER              PIC X(37) VALUE SPACE.                    IMP                               
+   000341                    05  HS-TOTAL-LINE-1-SPACES REDEFINES HS-TOTAL-LINE-1                  335                               
+   000342                                                PIC X(132).                                                                 
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page     9                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+
+   000343                01  CURRENT-DATE-FIELDS.                                                                                    
+   000344                    05  CURRENT-DATE.                                                                                       
+   000345                        10  CURRENT-YEAR             PIC  9(4).                                                             
+   000346                        10  CURRENT-MONTH            PIC  9(2).                                                             
+   000347                        10  CURRENT-DAY              PIC  9(2).                                                             
+   000348                    05  CURRENT-TIME.                                                                                       
+   000349                        10  CURRENT-HOUR             PIC  9(2).                                                             
+   000350                        10  CURRENT-MINUTE           PIC  9(2).                                                             
+   000351                        10  CURRENT-SECOND           PIC  9(2).                                                             
+   000352                        10  CURRENT-MS               PIC  9(2).                                                             
+   000353                    05  DIFF-FROM-GMT                PIC S9(4).                                                             
+   000354                                                                                                                            
+   000355                                                                                                                            
+   000356                PROCEDURE DIVISION.                                                                                         
+   000357               ****************************************************************                                             
+   000358               *0000-MAIN THIS ROUTINE CONTROLS THE FLOW OF THE PROGRAM. FIRST*                                             
+   000359               *MAIN WILL GET THE CURRENT TIME AND READ THE FIRST RECORD TO   *                                             
+   000360               *GET COMM PERCENT AND SHARE PRICE.SECOND THE MAIN WILL         *                                             
+   000361               *READ IN DATA FROM INPUT AND MOVES IT TO OUTPUT AND INTO A     *                                             
+   000362               *TEMP DATA. SET THEN REOPEN THAT TEMP DATA SET AS INPUT AND    *                                             
+   000363               *PROCRESS A SECOND OUTPUT REPORT FOR TEMP DATA SET             *                                             
+   000364               ****************************************************************                                             
+   000365                0000-MAIN.                                                                                                  
+   000366                                                                                                                            
+   000367                    OPEN INPUT SALE-FILE                                                  46                                
+   000368                        OUTPUT HSSALE-FILE                                                68                                
+   000369                        OUTPUT REPORT-FILE.                                               77                                
+   000370                                                                                                                            
+   000371                    PERFORM 0400-CURRENT-DATE.                                            522                               
+   000372                                                                                                                            
+   000373                    IF EOFFLAG = 'N'                                                      142                               
+   000374                                                                                                                            
+   000375      1             READ SALE-FILE                                                        46                                
+   000376      2              AT END MOVE 'Y' TO EOFFLAG                                           142                               
+   000377      1             END-READ                                                                                                
+   000378      1             PERFORM 0300-PROCESS-SHARE                                            510                               
+   000379                    END-IF.                                                                                                 
+   000380                                                                                                                            
+   000381                    PERFORM 0500-PRINT-HEADERS.                                           556                               
+   000382                                                                                                                            
+   000383                    IF EOFFLAG = 'N'                                                      142                               
+   000384                                                                                                                            
+   000385      1             READ SALE-FILE                                                        46                                
+   000386      2              AT END MOVE 'Y' TO EOFFLAG                                           142                               
+   000387      1             END-READ                                                                                                
+   000388                                                                                                                            
+   000389      1             PERFORM 0100-PROCESS-RECORD                                           427                               
+   000390      1                 UNTIL EOFFLAG = 'Y'                                               142                               
+   000391                                                                                                                            
+   000392      1             PERFORM 0200-PROCESS-TOTALS                                           485                               
+   000393                                                                                                                            
+   000394                    END-IF.                                                                                                 
+   000395                                                                                                                            
+   000396                    CLOSE SALE-FILE                                                       46                                
+   000397                         REPORT-FILE                                                      77                                
+   000398                         HSSALE-FILE.                                                     68                                
+   000399                                                                                                                            
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page    10                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+
+   000400                    PERFORM 0900-COUNTER-RESET.                                           643                               
+   000401                                                                                                                            
+   000402                    OPEN INPUT HSSALE-FILE                                                68                                
+   000403                        OUTPUT HSRPT-FILE.                                                85                                
+   000404                                                                                                                            
+   000405                    PERFORM 0700-PRINT-HS-HEADERS.                                        599                               
+   000406                    IF EOFFLAG = 'N'                                                      142                               
+   000407                                                                                                                            
+   000408      1             READ HSSALE-FILE                                                      68                                
+   000409      2              AT END MOVE 'Y' TO EOFFLAG                                           142                               
+   000410      1             END-READ                                                                                                
+   000411      1             PERFORM 0600-PROCESS-HS-SHARE                                         572                               
+   000412      1                 UNTIL EOFFLAG = 'Y'                                               142                               
+   000413                    END-IF.                                                                                                 
+   000414                    PERFORM 0800-PROCESS-TOT-HS-SHARE.                                    619                               
+   000415                                                                                                                            
+   000416                    MOVE 0 TO RETURN-CODE.                                                IMP IMP                           
+   000417                                                                                                                            
+   000418                    GOBACK.                                                                                                 
+   000419                                                                                                                            
+   000420                0000-EXIT. EXIT.                                                                                            
+   000421                                                                                                                            
+   000422               ****************************************************************                                             
+   000423               *0100-PROCESS-RECORD THIS ROUTINE MOVE INPUT IN TO OUTPUT      *                                             
+   000424               *THEN READ NEXT FILE UNTIL END OF FILE. IT WILL ALSO ADD       *                                             
+   000425               *IN-DEP-AMT INTO TOT-DEP-AMT TO GET A GRAND TOTAL.             *                                             
+   000426               ****************************************************************                                             
+   000427                0100-PROCESS-RECORD.                                                                                        
+   000428                                                                                                                            
+   000429                    ADD 1 TO LINE-CTR.                                                    148                               
+   000430                    ADD 1 TO SALE-CTR.                                                    146                               
+   000431                                                                                                                            
+   000432                    IF LINE-CTR = 18                                                      148                               
+   000433                                                                                                                            
+   000434      1             PERFORM 0500-PRINT-HEADERS                                            556                               
+   000435                                                                                                                            
+   000436      1             MOVE 0 TO LINE-CTR                                                    148                               
+   000437                                                                                                                            
+   000438                    END-IF.                                                                                                 
+   000439                                                                                                                            
+   000440                    EVALUATE IN-COMM-FLG                                                  62                                
+   000441                      WHEN 1                                                                                                
+   000442      1                 MOVE COMM-PCT-1 TO TEMP-COMM-PCT                                  154 160                           
+   000443                      WHEN 2                                                                                                
+   000444      1                 MOVE COMM-PCT-2 TO TEMP-COMM-PCT                                  156 160                           
+   000445                      WHEN 3                                                                                                
+   000446      1                 MOVE COMM-PCT-3 TO TEMP-COMM-PCT                                  158 160                           
+   000447                    END-EVALUATE.                                                                                           
+   000448                                                                                                                            
+   000449                    COMPUTE SHR-AMT ROUNDED = IN-DEP-AMT / SHR-PRC.                       162 60 152                        
+   000450                    COMPUTE TOT-SHR-AMT ROUNDED =                                         164                               
+   000451                            TOT-SHR-AMT + SHR-AMT.                                        164 162                           
+   000452                    COMPUTE COMM-AMT ROUNDED = TEMP-COMM-PCT * IN-DEP-AMT.                168 160 60                        
+   000453                    MOVE SHR-AMT TO OUT-SHR-AMT.                                          162 307                           
+   000454                                                                                                                            
+   000455                    COMPUTE TOT-DEP-AMT ROUNDED =                                         144                               
+   000456                            TOT-DEP-AMT + IN-DEP-AMT.                                     144 60                            
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page    11                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+
+   000457                                                                                                                            
+   000458                    MOVE IN-BRANCH-NME TO OUT-BRANCH-NME.                                 58 301                            
+   000459                    MOVE IN-BROKER-NME TO OUT-BROKER-NME.                                 59 303                            
+   000460                    MOVE IN-DEP-AMT TO OUT-DEP-AMT.                                       60 305                            
+   000461                    MOVE COMM-AMT TO OUT-COMM-AMT.                                        168 309                           
+   000462                                                                                                                            
+   000463                    WRITE REPORT-RECORD FROM DETAIL-LINE AFTER 2.                         81 300                            
+   000464                                                                                                                            
+   000465                                                                                                                            
+   000466                    COMPUTE TOT-COMM-AMT ROUNDED =                                        170                               
+   000467                            TOT-COMM-AMT + COMM-AMT.                                      170 168                           
+   000468                                                                                                                            
+   000469                    IF SHR-AMT > 150000                                                   162                               
+   000470      1                 MOVE IN-BROKER-NME TO HS-BROKER-NME                               59 72                             
+   000471      1                 MOVE SHR-AMT TO HS-SHR-AMT                                        162 73                            
+   000472      1                 WRITE HSSALE-INRECORD                                             71                                
+   000473                    END-IF.                                                                                                 
+   000474                                                                                                                            
+   000475                    READ SALE-FILE                                                        46                                
+   000476      1             AT END MOVE 'Y' TO EOFFLAG                                            142                               
+   000477                    END-READ.                                                                                               
+   000478                                                                                                                            
+   000479                0100-EXIT. EXIT.                                                                                            
+   000480                                                                                                                            
+   000481               ****************************************************************                                             
+   000482               *0200-PROCESS-TOTALS THIS ROUNTINE IS USED TO MOVE             *                                             
+   000483               *TOT-DEP-BAL TO OUT-TOT-DEP-BAL SO IT CAN BE PRINTED           *                                             
+   000484               ****************************************************************                                             
+   000485                0200-PROCESS-TOTALS.                                                                                        
+   000486                                                                                                                            
+   000487                    MOVE TOT-DEP-AMT TO OUT-TOT-DEP-AMT.                                  144 326                           
+   000488                    MOVE SALE-CTR TO OUT-SALES-CTR.                                       146 324                           
+   000489                    MOVE TOT-COMM-AMT TO OUT-TOT-COMM-AMT.                                170 330                           
+   000490                    MOVE TOT-SHR-AMT TO OUT-TOT-SHR-AMT.                                  164 328                           
+   000491                                                                                                                            
+   000492                    ADD 1 TO PAGE-CTR                                                     150                               
+   000493                    .                                                                                                       
+   000494                    MOVE PAGE-CTR TO OUT-PAGE-CTR.                                        150 184                           
+   000495                    MOVE 'BROKER DEPOSITS AND COMMISSIONS REPORT TOTALS'                                                    
+   000496                        TO REPORT-NME.                                                    195                               
+   000497                                                                                                                            
+   000498                    WRITE REPORT-RECORD FROM HEADER-1 AFTER 2.                            81 173                            
+   000499                    WRITE REPORT-RECORD FROM HEADER-2 AFTER 1.                            81 187                            
+   000500                    WRITE REPORT-RECORD FROM HEADER-3 AFTER 2                             81 201                            
+   000501                    WRITE REPORT-RECORD FROM HEADER-5.                                    81 222                            
+   000502                    WRITE REPORT-RECORD FROM HYPHENS-2.                                   81 269                            
+   000503                    WRITE REPORT-RECORD FROM TOTAL-LINE AFTER 1.                          81 321                            
+   000504                                                                                                                            
+   000505                0200-EXIT. EXIT.                                                                                            
+   000506               ****************************************************************                                             
+   000507               *0300-PROCESS-SHARE THIS ROUNTINE IS USED TO MOVE              *                                             
+   000508               *THE FIRST RECODRD THAT HAS COMM PERCENT/FUNDNAME/SHAREPRICE   *                                             
+   000509               ****************************************************************                                             
+   000510                0300-PROCESS-SHARE.                                                                                         
+   000511                                                                                                                            
+   000512                    MOVE IN-SHR-PRC TO SHR-PRC.                                           50 152                            
+   000513                    MOVE IN-FUND-NME TO OUT-FUND-NME.                                     51 181                            
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page    12                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+
+   000514                    MOVE IN-COMM-PCT-1 TO COMM-PCT-1.                                     52 154                            
+   000515                    MOVE IN-COMM-PCT-2 TO COMM-PCT-2.                                     53 156                            
+   000516                    MOVE IN-COMM-PCT-3 TO COMM-PCT-3.                                     54 158                            
+   000517                                                                                                                            
+   000518                0300-EXIT. EXIT.                                                                                            
+   000519               ****************************************************************                                             
+   000520               *0400-CURRENT-DATE GETS THE CURRENT TIME AND DATE              *                                             
+   000521               ****************************************************************                                             
+   000522                0400-CURRENT-DATE.                                                                                          
+   000523                                                                                                                            
+   000524                    MOVE FUNCTION CURRENT-DATE TO CURRENT-DATE-FIELDS.                    IFN 343                           
+   000525                                                                                                                            
+   000526                    MOVE CURRENT-HOUR TO HOUR.                                            349 145                           
+   000527                                                                                                                            
+   000528                    PERFORM 0410-CURRENT-DATE.                                            538                               
+   000529                                                                                                                            
+   000530                    MOVE CORR CURRENT-DATE TO OUT-DATE.                                   344 174                           
+   000531                    MOVE CORR CURRENT-TIME TO OUT-TIME.                                   348 188                           
+   000532                    MOVE HOUR TO OUT-HOUR-1.                                              145 189                           
+   000533                                                                                                                            
+   000534                0400-EXIT. EXIT.                                                                                            
+   000535               ****************************************************************                                             
+   000536               *0410-CURRENT-DATE CONVERTS HOUR TO AM/PM TIME                 *                                             
+   000537               ****************************************************************                                             
+   000538                0410-CURRENT-DATE.                                                                                          
+   000539                                                                                                                            
+   000540                    IF HOUR >= 12                                                         145                               
+   000541      1                 MOVE 'PM' TO TIMEFLAG                                             143                               
+   000542      1                 COMPUTE HOUR ROUNDED = HOUR - 12                                  145 145                           
+   000543                    END-IF.                                                                                                 
+   000544                                                                                                                            
+   000545                    IF HOUR = 0                                                           145                               
+   000546      1                 MOVE 12 TO HOUR                                                   145                               
+   000547                    END-IF.                                                                                                 
+   000548                                                                                                                            
+   000549                    MOVE TIMEFLAG TO OUT-TIMEFLAG-1.                                      143 193                           
+   000550                                                                                                                            
+   000551                                                                                                                            
+   000552                0410-EXIT. EXIT.                                                                                            
+   000553               ****************************************************************                                             
+   000554               *0500-PRINT-HEADERS PRINTS OUT HEADER FOR SALE/COMM REPORT     *                                             
+   000555               ****************************************************************                                             
+   000556                0500-PRINT-HEADERS.                                                                                         
+   000557                    ADD 1 TO PAGE-CTR.                                                    150                               
+   000558                                                                                                                            
+   000559                    MOVE PAGE-CTR TO OUT-PAGE-CTR.                                        150 184                           
+   000560                    MOVE SHR-PRC TO OUT-SHR-PRC.                                          152 205                           
+   000561                                                                                                                            
+   000562                    WRITE REPORT-RECORD FROM HEADER-1 AFTER 2.                            81 173                            
+   000563                    WRITE REPORT-RECORD FROM HEADER-2 AFTER 1.                            81 187                            
+   000564                    WRITE REPORT-RECORD FROM HEADER-3 AFTER 1.                            81 201                            
+   000565                    WRITE REPORT-RECORD FROM HEADER-4 AFTER 2.                            81 209                            
+   000566                    WRITE REPORT-RECORD FROM HYPHENS-1 AFTER 1.                           81 256                            
+   000567                                                                                                                            
+   000568                0500-EXIT. EXIT.                                                                                            
+   000569               ****************************************************************                                             
+   000570               *0600-PROCESS-HS-SHARE PROCRESS RECORDS FROM HSSALE DATASET    *                                             
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page    13                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+
+   000571               ****************************************************************                                             
+   000572                0600-PROCESS-HS-SHARE.                                                                                      
+   000573                    ADD 1 TO LINE-CTR.                                                    148                               
+   000574                    ADD 1 TO SALE-CTR.                                                    146                               
+   000575                                                                                                                            
+   000576                    IF LINE-CTR = 18                                                      148                               
+   000577                                                                                                                            
+   000578      1             PERFORM 0700-PRINT-HS-HEADERS                                         599                               
+   000579      1             MOVE 0 TO LINE-CTR                                                    148                               
+   000580                                                                                                                            
+   000581                    END-IF.                                                                                                 
+   000582                                                                                                                            
+   000583                    MOVE HS-BROKER-NME TO OUT-HS-BROKER-NME.                              72 315                            
+   000584                    MOVE HS-SHR-AMT TO OUT-HS-SHR-AMT.                                    73 317                            
+   000585                                                                                                                            
+   000586                    COMPUTE TOT-SHR-AMT ROUNDED =                                         164                               
+   000587                            TOT-SHR-AMT + HS-SHR-AMT.                                     164 73                            
+   000588                                                                                                                            
+   000589                    WRITE HSRPT-RECORD FROM DETAIL-2 AFTER 2.                             89 312                            
+   000590                                                                                                                            
+   000591                    READ HSSALE-FILE                                                      68                                
+   000592      1             AT END MOVE 'Y' TO EOFFLAG                                            142                               
+   000593                    END-READ.                                                                                               
+   000594                                                                                                                            
+   000595                0600-EXIT. EXIT.                                                                                            
+   000596               ****************************************************************                                             
+   000597               *700-PRINT-HS-HEADERS PRINT HEADERS FOR HS REPORT             *                                              
+   000598               ****************************************************************                                             
+   000599                0700-PRINT-HS-HEADERS.                                                                                      
+   000600                    ADD 1 TO PAGE-CTR.                                                    150                               
+   000601                                                                                                                            
+   000602                    MOVE PAGE-CTR TO OUT-PAGE-CTR.                                        150 184                           
+   000603                    MOVE SHR-PRC TO OUT-SHR-PRC.                                          152 205                           
+   000604                                                                                                                            
+   000605                    WRITE HSRPT-RECORD FROM HEADER-1 AFTER 2.                             89 173                            
+   000606                                                                                                                            
+   000607                    MOVE '         BROKER LARGE SALES REPORT'                                                               
+   000608                                   TO REPORT-NME.                                         195                               
+   000609                                                                                                                            
+   000610                    WRITE HSRPT-RECORD FROM HEADER-2 AFTER 1.                             89 187                            
+   000611                    WRITE HSRPT-RECORD FROM HEADER-3 AFTER 1.                             89 201                            
+   000612                    WRITE HSRPT-RECORD FROM HS-HEADER-1 AFTER 2.                          89 234                            
+   000613                    WRITE HSRPT-RECORD FROM HS-HYPHENS-1 AFTER 1.                         89 281                            
+   000614                                                                                                                            
+   000615                0700-EXIT. EXIT.                                                                                            
+   000616               ****************************************************************                                             
+   000617               *0800-PROCESS-TOT-HS-SHARE PRINT HEADERS FOR HS REPORT         *                                             
+   000618               ****************************************************************                                             
+   000619                0800-PROCESS-TOT-HS-SHARE.                                                                                  
+   000620                                                                                                                            
+   000621                    ADD 1 TO PAGE-CTR.                                                    150                               
+   000622                                                                                                                            
+   000623                    MOVE PAGE-CTR TO OUT-PAGE-CTR.                                        150 184                           
+   000624                    MOVE SHR-PRC TO OUT-SHR-PRC.                                          152 205                           
+   000625                    MOVE '      BROKER LARGE SALES REPORT TOTALS'                                                           
+   000626                                 TO REPORT-NME.                                           195                               
+   000627                                                                                                                            
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page    14                
+   LineID  PL SL  ----+-*A-1-B--+----2----+----3----+----4----+----5----+----6----+----7-|--+----8 Map and Cross Reference           
+
+   000628                    WRITE HSRPT-RECORD FROM HEADER-1 AFTER 2.                             89 173                            
+   000629                    WRITE HSRPT-RECORD FROM HEADER-2 AFTER 1.                             89 187                            
+   000630                    WRITE HSRPT-RECORD FROM HEADER-3 AFTER 2.                             89 201                            
+   000631                    WRITE HSRPT-RECORD FROM HS-HEADER-2 AFTER 2.                          89 245                            
+   000632                    WRITE HSRPT-RECORD FROM HS-HYPHENS-2 AFTER 1.                         89 290                            
+   000633                                                                                                                            
+   000634                    MOVE SALE-CTR TO OUT-HS-SALES-CTR.                                    146 337                           
+   000635                    MOVE TOT-SHR-AMT TO OUT-HS-TOT-SHR-AMT.                               164 339                           
+   000636                                                                                                                            
+   000637                    WRITE HSRPT-RECORD FROM HS-TOTAL-LINE.                                89 334                            
+   000638                                                                                                                            
+   000639                0800-EXIT. EXIT.                                                                                            
+   000640               ****************************************************************                                             
+   000641               *0900-COUNTER-RESET RESET ALL COUNTERS OR FLAGS                *                                             
+   000642               ****************************************************************                                             
+   000643                0900-COUNTER-RESET.                                                                                         
+   000644                                                                                                                            
+   000645                    MOVE 0 TO PAGE-CTR.                                                   150                               
+   000646                    MOVE 'N' TO EOFFLAG.                                                  142                               
+   000647                    MOVE 0 TO SALE-CTR.                                                   146                               
+   000648                    MOVE 0 TO LINE-CTR.                                                   148                               
+   000649                    MOVE 0 TO TOT-SHR-AMT.                                                164                               
+   000650                                                                                                                            
+   000651                0900-EXIT. EXIT.                                                                                            
+   000652                                                                                                                            
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page    15                
+
+ An "M" preceding a data-name reference indicates that the data-name is modified by this reference.                                  
+                                                                                                                                     
+  Defined   Cross-reference of data names   References                                                                               
+                                                                                                                                     
+      168   COMM-AMT . . . . . . . . . . .  M452 461 467                                                                             
+      154   COMM-PCT-1 . . . . . . . . . .  442 M514                                                                                 
+      156   COMM-PCT-2 . . . . . . . . . .  444 M515                                                                                 
+      158   COMM-PCT-3 . . . . . . . . . .  446 M516                                                                                 
+      344   CURRENT-DATE . . . . . . . . .  530                                                                                      
+      343   CURRENT-DATE-FIELDS. . . . . .  M524                                                                                     
+      177   CURRENT-DAY. . . . . . . . . .  M530                                                                                     
+      347   CURRENT-DAY. . . . . . . . . .  530                                                                                      
+      349   CURRENT-HOUR . . . . . . . . .  526                                                                                      
+      191   CURRENT-MINUTE . . . . . . . .  M531                                                                                     
+      350   CURRENT-MINUTE . . . . . . . .  531                                                                                      
+      175   CURRENT-MONTH. . . . . . . . .  M530                                                                                     
+      346   CURRENT-MONTH. . . . . . . . .  530                                                                                      
+      352   CURRENT-MS                                                                                                               
+      351   CURRENT-SECOND                                                                                                           
+      348   CURRENT-TIME . . . . . . . . .  531                                                                                      
+      179   CURRENT-YEAR . . . . . . . . .  M530                                                                                     
+      345   CURRENT-YEAR . . . . . . . . .  530                                                                                      
+      166   DEP-AMT                                                                                                                  
+      300   DETAIL-LINE. . . . . . . . . .  310 463                                                                                  
+      310   DETAIL-LINE-SPACES                                                                                                       
+      313   DETAIL-LINE-2. . . . . . . . .  319                                                                                      
+      319   DETAIL-LINE-2-SPACES                                                                                                     
+      299   DETAIL-1                                                                                                                 
+      312   DETAIL-2 . . . . . . . . . . .  589                                                                                      
+      353   DIFF-FROM-GMT                                                                                                            
+      142   EOFFLAG. . . . . . . . . . . .  373 M376 383 M386 390 406 M409 412 M476 M592 M646                                        
+       49   FUND-PRICE                                                                                                               
+      173   HEADER-1 . . . . . . . . . . .  498 562 605 628                                                                          
+      187   HEADER-2 . . . . . . . . . . .  499 563 610 629                                                                          
+      201   HEADER-3 . . . . . . . . . . .  500 564 611 630                                                                          
+      209   HEADER-4 . . . . . . . . . . .  565                                                                                      
+      222   HEADER-5 . . . . . . . . . . .  501                                                                                      
+      145   HOUR . . . . . . . . . . . . .  M526 532 540 M542 542 545 M546                                                           
+       72   HS-BROKER-NME. . . . . . . . .  M470 583                                                                                 
+      234   HS-HEADER-1. . . . . . . . . .  612                                                                                      
+      245   HS-HEADER-2. . . . . . . . . .  631                                                                                      
+      281   HS-HYPHENS-1 . . . . . . . . .  613                                                                                      
+      290   HS-HYPHENS-2 . . . . . . . . .  632                                                                                      
+       73   HS-SHR-AMT . . . . . . . . . .  M471 584 587                                                                             
+      334   HS-TOTAL-LINE. . . . . . . . .  637                                                                                      
+      335   HS-TOTAL-LINE-1. . . . . . . .  341                                                                                      
+      341   HS-TOTAL-LINE-1-SPACES                                                                                                   
+       85   HSRPT-FILE . . . . . . . . . .  35 403                                                                                   
+       89   HSRPT-RECORD . . . . . . . . .  M589 M605 M610 M611 M612 M613 M628 M629 M630 M631 M632 M637                              
+       68   HSSALE-FILE. . . . . . . . . .  34 368 398 402 408 591                                                                   
+       71   HSSALE-INRECORD. . . . . . . .  472                                                                                      
+      256   HYPHENS-1. . . . . . . . . . .  566                                                                                      
+      269   HYPHENS-2. . . . . . . . . . .  502                                                                                      
+       58   IN-BRANCH-NME. . . . . . . . .  458                                                                                      
+       59   IN-BROKER-NME. . . . . . . . .  459 470                                                                                  
+       62   IN-COMM-FLG. . . . . . . . . .  440                                                                                      
+       52   IN-COMM-PCT-1. . . . . . . . .  514                                                                                      
+       53   IN-COMM-PCT-2. . . . . . . . .  515                                                                                      
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page    16                
+
+  Defined   Cross-reference of data names   References                                                                               
+                                                                                                                                     
+
+       54   IN-COMM-PCT-3. . . . . . . . .  516                                                                                      
+       60   IN-DEP-AMT . . . . . . . . . .  449 452 456 460                                                                          
+       51   IN-FUND-NME. . . . . . . . . .  513                                                                                      
+       50   IN-SHR-PRC . . . . . . . . . .  512                                                                                      
+      211   LABELBN                                                                                                                  
+      219   LABELCM                                                                                                                  
+      237   LABELHB                                                                                                                  
+      240   LABELHS                                                                                                                  
+      248   LABELNB                                                                                                                  
+      225   LABELNS                                                                                                                  
+      227   LABELNS                                                                                                                  
+      229   LABELNS                                                                                                                  
+      231   LABELNS                                                                                                                  
+      204   LABELSHR                                                                                                                 
+      215   LABELSM                                                                                                                  
+      217   LABELSR                                                                                                                  
+      251   LABELST                                                                                                                  
+      213   LABKEBRN                                                                                                                 
+      148   LINE-CTR . . . . . . . . . . .  M429 432 M436 M573 576 M579 M648                                                         
+      301   OUT-BRANCH-NME . . . . . . . .  M458                                                                                     
+      303   OUT-BROKER-NME . . . . . . . .  M459                                                                                     
+      309   OUT-COMM-AMT . . . . . . . . .  M461                                                                                     
+      174   OUT-DATE . . . . . . . . . . .  185 M530                                                                                 
+      185   OUT-DATE-SPACES                                                                                                          
+      305   OUT-DEP-AMT. . . . . . . . . .  M460                                                                                     
+      181   OUT-FUND-NME . . . . . . . . .  M513                                                                                     
+      189   OUT-HOUR-1 . . . . . . . . . .  M532                                                                                     
+      315   OUT-HS-BROKER-NME. . . . . . .  M583                                                                                     
+      282   OUT-HS-HYPHENS-1 . . . . . . .  288                                                                                      
+      288   OUT-HS-HYPHENS-1-SPACES                                                                                                  
+      291   OUT-HS-HYPHENS-2 . . . . . . .  297                                                                                      
+      297   OUT-HS-HYPHENS-2-SPACES                                                                                                  
+      235   OUT-HS-LABELS-1. . . . . . . .  243                                                                                      
+      243   OUT-HS-LABELS-1-SPACES                                                                                                   
+      246   OUT-HS-LABELS-2. . . . . . . .  254                                                                                      
+      254   OUT-HS-LABELS-2-SPACES                                                                                                   
+      337   OUT-HS-SALES-CTR . . . . . . .  M634                                                                                     
+      317   OUT-HS-SHR-AMT . . . . . . . .  M584                                                                                     
+      339   OUT-HS-TOT-SHR-AMT . . . . . .  M635                                                                                     
+      257   OUT-HYPHENS-1. . . . . . . . .  267                                                                                      
+      267   OUT-HYPHENS-1-SPACES                                                                                                     
+      270   OUT-HYPHENS-2. . . . . . . . .  279                                                                                      
+      279   OUT-HYPHENS-2-SPACES                                                                                                     
+      210   OUT-LABELS-1 . . . . . . . . .  220                                                                                      
+      220   OUT-LABELS-1-SPACES                                                                                                      
+      223   OUT-LABELS-2 . . . . . . . . .  232                                                                                      
+      232   OUT-LABELS-2-SPACES                                                                                                      
+      184   OUT-PAGE-CTR . . . . . . . . .  M494 M559 M602 M623                                                                      
+      324   OUT-SALES-CTR. . . . . . . . .  M488                                                                                     
+      202   OUT-SHR. . . . . . . . . . . .  207                                                                                      
+      307   OUT-SHR-AMT. . . . . . . . . .  M453                                                                                     
+      205   OUT-SHR-PRC. . . . . . . . . .  M560 M603 M624                                                                           
+      207   OUT-SHR-SPACES                                                                                                           
+      188   OUT-TIME . . . . . . . . . . .  199 M531                                                                                 
+      199   OUT-TIME-SPACES                                                                                                          
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page    17                
+
+  Defined   Cross-reference of data names   References                                                                               
+                                                                                                                                     
+
+      193   OUT-TIMEFLAG-1 . . . . . . . .  M549                                                                                     
+      330   OUT-TOT-COMM-AMT . . . . . . .  M489                                                                                     
+      326   OUT-TOT-DEP-AMT. . . . . . . .  M487                                                                                     
+      328   OUT-TOT-SHR-AMT. . . . . . . .  M490                                                                                     
+      150   PAGE-CTR . . . . . . . . . . .  M492 494 M557 559 M600 602 M621 623 M645                                                 
+       77   REPORT-FILE. . . . . . . . . .  33 369 397                                                                               
+      195   REPORT-NME . . . . . . . . . .  M496 M608 M626                                                                           
+       81   REPORT-RECORD. . . . . . . . .  M463 M498 M499 M500 M501 M502 M503 M562 M563 M564 M565 M566                              
+        0   RETURN-CODE. . . . . . . . . .  416 M416                                                                                 
+      146   SALE-CTR . . . . . . . . . . .  M430 488 M574 634 M647                                                                   
+       46   SALE-FILE. . . . . . . . . . .  32 367 375 385 396 475                                                                   
+       57   SALE-RECORD                                                                                                              
+      162   SHR-AMT. . . . . . . . . . . .  M449 451 453 469 471                                                                     
+      152   SHR-PRC. . . . . . . . . . . .  449 M512 560 603 624                                                                     
+      160   TEMP-COMM-PCT. . . . . . . . .  M442 M444 M446 452                                                                       
+      143   TIMEFLAG . . . . . . . . . . .  M541 549                                                                                 
+      170   TOT-COMM-AMT . . . . . . . . .  M466 467 489                                                                             
+      144   TOT-DEP-AMT. . . . . . . . . .  M455 456 487                                                                             
+      164   TOT-SHR-AMT. . . . . . . . . .  M450 451 490 M586 587 635 M649                                                           
+      321   TOTAL-LINE . . . . . . . . . .  503                                                                                      
+      322   TOTAL-LINE-1 . . . . . . . . .  331                                                                                      
+      331   TOTAL-LINE-1                                                                                                             
+      141   VARIABLES                                                                                                                
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page    18                
+
+ Context usage is indicated by the letter preceding a procedure-name reference.                                                      
+ These letters and their meanings are:                                                                                               
+     A = ALTER (procedure-name)                                                                                                      
+     D = GO TO (procedure-name) DEPENDING ON                                                                                         
+     E = End of range of (PERFORM) through (procedure-name)                                                                          
+     G = GO TO (procedure-name)                                                                                                      
+     P = PERFORM (procedure-name)                                                                                                    
+     T = (ALTER) TO PROCEED TO (procedure-name)                                                                                      
+     U = USE FOR DEBUGGING (procedure-name)                                                                                          
+                                                                                                                                     
+  Defined   Cross-reference of procedures   References                                                                               
+                                                                                                                                     
+      420   0000-EXIT                                                                                                                
+      365   0000-MAIN                                                                                                                
+      479   0100-EXIT                                                                                                                
+      427   0100-PROCESS-RECORD. . . . . .  P389                                                                                     
+      505   0200-EXIT                                                                                                                
+      485   0200-PROCESS-TOTALS. . . . . .  P392                                                                                     
+      518   0300-EXIT                                                                                                                
+      510   0300-PROCESS-SHARE . . . . . .  P378                                                                                     
+      522   0400-CURRENT-DATE. . . . . . .  P371                                                                                     
+      534   0400-EXIT                                                                                                                
+      538   0410-CURRENT-DATE. . . . . . .  P528                                                                                     
+      552   0410-EXIT                                                                                                                
+      568   0500-EXIT                                                                                                                
+      556   0500-PRINT-HEADERS . . . . . .  P381 P434                                                                                
+      595   0600-EXIT                                                                                                                
+      572   0600-PROCESS-HS-SHARE. . . . .  P411                                                                                     
+      615   0700-EXIT                                                                                                                
+      599   0700-PRINT-HS-HEADERS. . . . .  P405 P578                                                                                
+      639   0800-EXIT                                                                                                                
+      619   0800-PROCESS-TOT-HS-SHARE. . .  P414                                                                                     
+      643   0900-COUNTER-RESET . . . . . .  P400                                                                                     
+      651   0900-EXIT                                                                                                                
+
+ PP 5655-EC6 IBM Enterprise COBOL for z/OS  6.3.0 P200115       SALESRPT  Date 10/15/2021  Time 02:38:57   Page    19                
+
+  Defined   Cross-reference of programs     References                                                                               
+                                                                                                                                     
+       21   SALESRPT                                                                                                                 
+
+
+ * Statistics for COBOL program SALESRPT:                                                                                            
+ *    Source records = 652                                                                                                           
+ *    Data Division statements = 127                                                                                                 
+ *    Procedure Division statements = 135                                                                                            
+ *    Generated COBOL statements = 0                                                                                                 
+ *    Program complexity factor = 140                                                                                                
+
+ End of compilation 1,  program SALESRPT,  no statements flagged.                                                                    
+
+ Return code 0                                                                                                                       
+ !! END OF JES SPOOL FILE !!
+
+ z/OS V2 R4 BINDER     02:38:59 FRIDAY OCTOBER 15, 2021                                                                  
+ BATCH EMULATOR  JOB(KC03BB6A) STEP(JSTEP02 ) PGM= HEWL                                                                  
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+                                 *** O P E R A T I O N   S U M M A R Y   R E P O R T ***                                 
+                                                                                                                         
+
+ PROCESSING OPTIONS:                                                                                                     
+                                                                                                                         
+    ALIASES             NO                                                                                               
+    ALIGN2              NO                                                                                               
+    AMODE               UNSPECIFIED                                                                                      
+    CALL                YES                                                                                              
+    CASE                UPPER                                                                                            
+    COMPAT              UNSPECIFIED                                                                                      
+    COMPRESS            AUTO                                                                                             
+    DCBS                NO                                                                                               
+    DYNAM               NO                                                                                               
+    EXTATTR             UNSPECIFIED                                                                                      
+    EXITS:              NONE                                                                                             
+    FILL                NONE                                                                                             
+    GID                 UNSPECIFIED                                                                                      
+    HOBSET              NO                                                                                               
+    INFO                NO                                                                                               
+    LET                 04                                                                                               
+    LINECT              060                                                                                              
+    LIST                SUMMARY                                                                                          
+    LISTPRIV            NO                                                                                               
+    LONGPARM            NO                                                                                               
+    MAP                 NO                                                                                               
+    MAXBLK              032760                                                                                           
+    MODMAP              NO                                                                                               
+    MSGLEVEL            00                                                                                               
+    OVLY                NO                                                                                               
+    PRINT               YES                                                                                              
+    RES                 NO                                                                                               
+    REUSABILITY         UNSPECIFIED                                                                                      
+    RMODE               UNSPECIFIED                                                                                      
+    RMODEX              NO                                                                                               
+    SIGN                NO                                                                                               
+    STORENX             NOREPLACE                                                                                        
+    STRIPCL             NO                                                                                               
+    STRIPSEC            NO                                                                                               
+    SYMTRACE                                                                                                             
+    TERM                NO                                                                                               
+    TRAP                ON                                                                                               
+    UID                 UNSPECIFIED                                                                                      
+    UPCASE              NO                                                                                               
+    WKSPACE             000000K,000000K                                                                                  
+    XCAL                NO                                                                                               
+    XREF                NO                                                                                               
+    ***END OF OPTIONS***                                                                                                 
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+
+ SAVE OPERATION SUMMARY:                                                                                                 
+                                                                                                                         
+    MEMBER NAME         SALESRPT                                                                                         
+    LOAD LIBRARY        KC03BB6.CSCI465.LOADLIB                                                                          
+    PROGRAM TYPE        PROGRAM OBJECT(FORMAT 3)                                                                         
+    VOLUME SERIAL       KCTR36                                                                                           
+    DISPOSITION         REPLACED                                                                                         
+    TIME OF SAVE        02.39.00  OCT 15, 2021                                                                           
+                                                                                                                         
+                                                                                                                         
+
+ SAVE MODULE ATTRIBUTES:                                                                                                 
+                                                                                                                         
+    AC                  000                                                                                              
+    AMODE                31                                                                                              
+    COMPRESSION         NONE                                                                                             
+    DC                  NO                                                                                               
+    EDITABLE            YES                                                                                              
+    EXCEEDS 16MB        NO                                                                                               
+    EXECUTABLE          YES                                                                                              
+    LONGPARM            NO                                                                                               
+    MIGRATABLE          NO                                                                                               
+    OL                  NO                                                                                               
+    OVLY                NO                                                                                               
+    PACK,PRIME          NO,NO                                                                                            
+    PAGE ALIGN          NO                                                                                               
+    REFR                NO                                                                                               
+    RENT                NO                                                                                               
+    REUS                NO                                                                                               
+    RMODE               ANY                                                                                              
+    SCTR                NO                                                                                               
+    SIGN                NO                                                                                               
+    SSI                                                                                                                  
+    SYM GENERATED       NO                                                                                               
+    TEST                NO                                                                                               
+    XPLINK              NO                                                                                               
+    MODULE SIZE (HEX)   00004030                                                                                         
+    DASD SIZE (HEX)     0000D000                                                                                         
+                                                                                                                         
+                                                                                                                         
+
+  ENTRY POINT AND ALIAS SUMMARY:                                                                                         
+                                                                                                                         
+  NAME:            ENTRY TYPE AMODE C_OFFSET CLASS NAME        STATUS                                                    
+                                                                                                                         
+  SALESRPT          MAIN_EP      31 00000000 C_CODE                                                                      
+                                                                                                                         
+                          *** E N D   O F   O P E R A T I O N   S U M M A R Y   R E P O R T ***                          
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+
+ z/OS V2 R4 BINDER     02:38:59 FRIDAY OCTOBER 15, 2021                                                                  
+ BATCH EMULATOR  JOB(KC03BB6A) STEP(JSTEP02 ) PGM= HEWL                                                                  
+ IEW2008I 0F03 PROCESSING COMPLETED.  RETURN CODE =  0.                                                                  
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+
+ ----------------------                                                                                                  
+ MESSAGE SUMMARY REPORT                                                                                                  
+ ----------------------                                                                                                  
+  TERMINAL MESSAGES      (SEVERITY = 16)                                                                                 
+  NONE                                                                                                                   
+                                                                                                                         
+  SEVERE MESSAGES        (SEVERITY = 12)                                                                                 
+  NONE                                                                                                                   
+                                                                                                                         
+  ERROR MESSAGES         (SEVERITY = 08)                                                                                 
+  NONE                                                                                                                   
+                                                                                                                         
+  WARNING MESSAGES       (SEVERITY = 04)                                                                                 
+  NONE                                                                                                                   
+                                                                                                                         
+  INFORMATIONAL MESSAGES (SEVERITY = 00)                                                                                 
+  2008                                                                                                                   
+                                                                                                                         
+                                                                                                                         
+  **** END OF MESSAGE SUMMARY REPORT ****                                                                                
+                                                                                                                         
+ !! END OF JES SPOOL FILE !!
+
+ 10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   1
+ 02:39 AM                                          BROKER SALES AND COMMISSIONS REPORT                                               
+                                                         SHARE PRICE:   $12.93                                                       
+
+ BRANCH NAME                      BROKER NAME                         SALES AMOUNT               SHARE AMOUNT              COMMISSION
+ -------------------------        -------------------------        ---------------        -------------------         ---------------
+
+ Athens, Greece                   George Schipodokas                    $11,247.10                   869.8450                   $9.11
+
+ Athens, Greece                   Boodra Makedonas                      $37,047.10                 2,865.2050                  $48.90
+
+ Athens, Greece                   Aristotle Onassis                    $141,731.30                10,961.4310                 $114.80
+
+ Athens, Greece                   Maria Callas                         $154,015.20                11,911.4620                 $124.75
+
+ Athens, Greece                   Kostas Dalaras                        $77,406.80                 5,986.6050                  $62.70
+
+ Athens, Greece                   Peter Bogdonas                        $23,347.20                 1,805.6610                  $30.82
+
+ Berlin, Germany                  Erich Kleiber                        $936,184.80                72,404.0840                 $758.31
+
+ Berlin, Germany                  Wilhelm Furtwaengler               $7,166,149.40               554,226.5580               $5,804.58
+
+ Berlin, Germany                  Adolph Dege                          $808,213.50                62,506.8450               $1,066.84
+
+ Berlin, Germany                  Johannes Klopp                     $4,008,702.00               310,031.0900               $3,247.05
+
+ Berlin, Germany                  Eugen Jochum                      $99,999,999.90             7,733,952.0420              $52,000.00
+
+ Bonn, Germany                    Ludwig van Beethoven                  $40,612.10                 3,140.9200                  $53.61
+
+ Bonn, Germany                    Uwe Schmidt                        $2,074,303.90               160,425.6690               $2,738.08
+
+ Bonn, Germany                    Helga Dernesch                         $8,415.20                   650.8280                  $11.11
+
+ Bonn, Germany                    Richard Strauss                    $3,108,140.21               240,382.0730               $4,102.75
+
+ Chicago, U.S.                    Maurizio Damilano                 $40,000,810.27             3,093,643.4860              $20,800.42
+
+ Chicago, U.S.                    Chi Yen Weh                        $4,310,810.06               333,395.9830               $3,491.76
+
+ Chicago, U.S.                    Steve Peplowski                    $2,410,012.15               186,389.1840               $3,181.22
+
+ 10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   2
+ 02:39 AM                                          BROKER SALES AND COMMISSIONS REPORT                                               
+                                                         SHARE PRICE:   $12.93                                                       
+
+ BRANCH NAME                      BROKER NAME                         SALES AMOUNT               SHARE AMOUNT              COMMISSION
+ -------------------------        -------------------------        ---------------        -------------------         ---------------
+
+ Chicago, U.S.                    Michael Smith                      $3,140,812.24               242,908.9130               $2,544.06
+
+ Chicago, U.S.                    Charles Medley                     $3,104,812.33               240,124.6970               $2,514.90
+
+ Chicago, U.S.                    Risa Rogan                         $3,108,412.42               240,403.1260               $4,103.10
+
+ Chicago, U.S.                    Theodore Thomas                    $3,108,142.56               240,382.2550               $2,517.60
+
+ Chicago, U.S.                    Frederick Stock                    $3,108,124.67               240,380.8720               $2,517.58
+
+ Dublin, Ireland                  Billy O'Leary                      $3,108,214.26               240,387.8000               $4,102.84
+
+ Dublin, Ireland                  Anna Owen                          $3,310,831.45               256,058.1170               $4,370.30
+
+ Belfast, N. Ireland              Chet Manassas                        $512,234.10                39,615.9400                 $676.15
+
+ Belfast, N. Ireland              Shelley Mann                       $3,300,005.24               255,220.8230               $4,356.01
+
+ Belfast, N. Ireland              Philip Battenberg                     $31,116.05                 2,406.5000                  $41.07
+
+ Edinburgh, U.K.                  Billy Connolly                     $3,103,817.26               240,047.7390               $4,097.04
+
+ Edinburgh, U.K.                  Omar Sharif                        $3,108,311.27               240,395.3030               $4,102.97
+
+ Edinburgh, U.K.                  Julie Christie                     $3,108,131.24               240,381.3800               $4,102.73
+
+ Edinburgh, U.K.                  James Oxfordshire                  $3,108,113.23               240,379.9870               $4,102.71
+
+ Frankfurt, Germany               Johannes Dundor                    $4,606,410.52               356,257.5810               $6,080.46
+
+ Frankfurt, Germany               Gretel Decker                      $1,807,640.81               139,802.0730               $2,386.09
+
+ Frankfurt, Germany               Adam Dieffenbach                   $6,068,254.17               469,315.8680               $4,915.29
+
+ Hong Kong, China                 Mao Zedong                         $6,086,271.26               470,709.3010               $4,929.88
+
+ 10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   3
+ 02:39 AM                                          BROKER SALES AND COMMISSIONS REPORT                                               
+                                                         SHARE PRICE:   $12.93                                                       
+
+ BRANCH NAME                      BROKER NAME                         SALES AMOUNT               SHARE AMOUNT              COMMISSION
+ -------------------------        -------------------------        ---------------        -------------------         ---------------
+
+ Hong Kong, China                 Zhou Enlai                         $6,082,661.25               470,430.1040               $4,926.96
+
+ Hong Kong, China                 Zhau Ziyang                        $6,982,761.24               540,043.4060               $9,217.24
+
+ Hong Kong, China                 Chiang Kai-shek                   $26,182,816.24             2,024,966.4530              $21,208.08
+
+ Hong Kong, China                 Gau-Yin Lau                          $608,291.23                47,044.9520                 $802.94
+
+ Hong Kong, China                 Stephanie Buckingham               $4,608,212.33               356,396.9320               $3,732.65
+
+ Hong Kong, China                 Simon Draper                       $6,408,212.32               495,608.0680               $8,458.84
+
+ Kansas City, U.S.                Geoffrey Decker                    $6,048,214.21               467,765.9870               $4,899.05
+
+ London, U.K.                     Elizabeth Windsor                  $7,144,923.58               552,584.9640               $9,431.30
+
+ London, U.K.                     Charles Windsor                    $2,179,162.07               168,535.3500               $1,765.12
+
+ London, U.K.                     Andrew Windsor                     $6,611,022.46               511,293.3070               $5,354.93
+
+ London, U.K.                     Michael Windsor                   $10,663,622.50               824,719.4510               $8,637.53
+
+ London, U.K.                     Phillip Windsor                    $1,166,416.19                90,210.0690               $1,539.67
+
+ London, U.K.                     William Windsor                    $2,216,617.29               171,432.1180               $2,925.93
+
+ Los Angeles, U.S.                William Mills                      $1,119,667.89                86,594.5780               $1,477.96
+
+ Los Angeles, U.S.                Catherine Monteiro                $99,999,999.95             7,733,952.0460             $132,000.00
+
+ Los Angeles, U.S.                Jason Landau                       $5,000,007.84               386,698.2090               $6,600.01
+
+ Los Angeles, U.S.                Trevor Pinnicle                    $1,500,000.03               116,009.2830               $1,980.00
+
+ Moscow, Russia                   Ivan Grozny                        $1,351,917.82               104,556.6760               $1,784.53
+
+ 10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   4
+ 02:39 AM                                          BROKER SALES AND COMMISSIONS REPORT                                               
+                                                         SHARE PRICE:   $12.93                                                       
+
+ BRANCH NAME                      BROKER NAME                         SALES AMOUNT               SHARE AMOUNT              COMMISSION
+ -------------------------        -------------------------        ---------------        -------------------         ---------------
+
+ Moscow, Russia                   Vladimir Ashkenazy                 $1,115,917.81                86,304.5480                 $903.89
+
+ Moscow, Russia                   Serge Rachmaninov                    $119,517.82                 9,243.4510                 $157.76
+
+ Moscow, Russia                   Vladimir Putin                     $1,019,157.72                78,821.1690               $1,345.29
+
+ Moscow, Russia                   Leonid Breshnev                      $113,336.34                 8,765.3780                  $91.80
+
+ Moscow, Russia                   Dmitri Shostakovich                $1,811,947.45               140,135.1470               $1,467.68
+
+ New York, U.S.                   Gary Graffman                      $1,181,917.86                91,408.9610                 $957.35
+
+ New York, U.S.                   Andre Previn                       $2,328,217.87               180,063.2540               $1,885.86
+
+ New York, U.S.                   Samuel Jefferson                     $999,899.98                77,331.7850               $1,319.87
+
+ New York, U.S.                   John Adams                         $1,119,787.84                86,603.8550                 $582.29
+
+ New York, U.S.                   Cheryl Studer                      $3,014,917.83               233,172.2990               $3,979.69
+
+ New York, U.S.                   Renee Fleming                      $3,311,217.86               256,088.0020               $2,682.09
+
+ New York, U.S.                   Birgit Nilsson                       $331,944.85                25,672.4560                 $438.17
+
+ New York, U.S.                   Christa Ludwig                     $1,133,917.44                87,696.6310                 $589.64
+
+ New York, U.S.                   James Conlon                         $999,399.98                77,293.1150               $1,319.21
+
+ New York, U.S.                   Leonard Bernstein                  $1,119,137.87                86,553.5860                 $906.50
+
+ Paris, France                    Napoleon Bonaparte                $10,073,093.06               779,048.1870              $13,296.48
+
+ Paris, France                    Claude Monet                      $30,012,518.65             2,321,153.8010              $39,616.52
+
+ Paris, France                    Olivier Messiaen                   $3,001,416.04               232,128.0770               $1,560.74
+
+ 10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   5
+ 02:39 AM                                          BROKER SALES AND COMMISSIONS REPORT                                               
+                                                         SHARE PRICE:   $12.93                                                       
+
+ BRANCH NAME                      BROKER NAME                         SALES AMOUNT               SHARE AMOUNT              COMMISSION
+ -------------------------        -------------------------        ---------------        -------------------         ---------------
+
+ Paris, France                    Claude Debussy                     $9,307,815.53               719,861.9900               $4,840.06
+
+ Paris, France                    Maurice Ravel                     $10,030,122.23               775,724.8440               $8,124.40
+
+ Paris, France                    Edith Piaf                         $2,633,403.34               203,666.1520               $2,133.06
+
+ Paris, France                    Coco Chanel                        $2,261,305.43               174,888.2780               $2,984.92
+
+ Rio de Janiero, Brazil           Joao Castagneto                       $31,035.55                 2,400.2750                  $40.97
+
+ Rio de Janiero, Brazil           Lasar Segall                          $61,053.74                 4,721.8670                  $31.75
+
+ Rio de Janiero, Brazil           Tarsila do Amaral                  $3,000,105.83               232,026.7460               $3,960.14
+
+ Rio de Janiero, Brazil           Eliseu Visconti                      $322,305.42                24,926.9470                 $261.07
+
+ Rome, Italy                      Julius Caesar                      $2,034,106.51               157,316.8220               $2,685.02
+
+ Rome, Italy                      Franco Sinatra                        $43,105.53                 3,333.7610                  $56.90
+
+ Rome, Italy                      Giacomo Puccini                      $304,604.55                23,557.9700                 $402.08
+
+ Rome, Italy                      Enrico Caruso                        $884,133.55                68,378.4650               $1,167.06
+
+ Rome, Italy                      Sofia Loren                        $9,004,152.56               696,376.8410              $11,885.48
+
+ Sydney, Australia                Milton Sheppard                      $904,606.57                69,961.8380                 $732.73
+
+ Sydney, Australia                Shelley Boughton                      $98,105.88                 7,587.4620                  $79.47
+
+ Sydney, Australia                Joan Sutherland                       $29,105.59                 2,251.0120                  $38.42
+
+ Sydney, Australia                Barry Tuckwell                        $91,905.40                 7,107.9200                  $74.44
+
+ Sydney, Australia                Cayla Smithe                          $21,095.90                 1,631.5470                  $10.97
+
+ 10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   6
+ 02:39 AM                                          BROKER SALES AND COMMISSIONS REPORT                                               
+                                                         SHARE PRICE:   $12.93                                                       
+
+ BRANCH NAME                      BROKER NAME                         SALES AMOUNT               SHARE AMOUNT              COMMISSION
+ -------------------------        -------------------------        ---------------        -------------------         ---------------
+
+ Sydney, Australia                Benjamin Britten                      $41,059.40                 3,175.5140                  $54.20
+
+ Sydney, Australia                Peter Pears                           $49,305.60                 3,813.2710                  $25.64
+
+ Sydney, Australia                Paul Gray                            $903,104.55                69,845.6730               $1,192.10
+
+ Vienna, Austria                  Herbert von Karajan                   $95,802.84                 7,409.3460                  $77.60
+
+ Vienna, Austria                  Franz Joseph Haydn                    $58,903.03                 4,555.5320                  $47.71
+
+ Vienna, Austria                  Josef Strauss                        $158,094.83                12,226.9780                 $128.06
+
+ Vienna, Austria                  Karl Boehm                         $5,058,089.64               391,190.2270               $4,097.05
+
+ Vienna, Austria                  Elisa Schwarzkopf                    $124,802.95                 9,652.2000                 $101.09
+
+ Vienna, Austria                  Franz Peter Schubert                  $98,310.56                 7,603.2920                  $79.63
+
+ Zurich, Switzerland              Earl Grey                          $4,000,580.17               309,402.9520               $5,280.77
+
+ Zurich, Switzerland              Diana Kensington                     $870,575.50                67,329.8920               $1,149.16
+
+ Zurich, Switzerland              Axel Vondenberg                      $307,590.19                23,788.8780                 $159.95
+
+ Zurich, Switzerland              Ute Schweitzer                     $1,470,580.08               113,733.9580               $1,941.17
+
+ Zurich, Switzerland              Rene Jacobs                          $725,580.07                56,116.0150                 $587.72
+
+ Zurich, Switzerland              Anton Bruckner                       $999,999.96                77,339.5170                 $520.00
+
+ 10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   7
+ 02:39 AM                                     BROKER DEPOSITS AND COMMISSIONS REPORT TOTALS                                          
+
+                                                         SHARE PRICE:   $12.93                                                       
+                                        NUMBER OF SALES         TOTAL SALES AMOUNT         TOTAL SHARE AMOUNT        TOTAL COMMISSION
+                                         ---------------         ------------------     ----------------------     ------------------
+                                                     105            $536,853,042.46            41,519,956.8830            $514,901.95
+ !! END OF JES SPOOL FILE !!
+
+ 10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   1
+ 02:39 AM                                              BROKER LARGE SALES REPORT                                                     
+                                                         SHARE PRICE:   $12.93                                                       
+
+                                         HIGH SALES BROKER NAME          HIGH SALES SHARE AMOUNT                                     
+                                      -------------------------          -----------------------                                     
+
+                                      Wilhelm Furtwaengler                          554,226.5580                                     
+
+                                      Johannes Klopp                                310,031.0900                                     
+
+                                      Eugen Jochum                                7,733,952.0420                                     
+
+                                      Uwe Schmidt                                   160,425.6690                                     
+
+                                      Richard Strauss                               240,382.0730                                     
+
+                                      Maurizio Damilano                           3,093,643.4860                                     
+
+                                      Chi Yen Weh                                   333,395.9830                                     
+
+                                      Steve Peplowski                               186,389.1840                                     
+
+                                      Michael Smith                                 242,908.9130                                     
+
+                                      Charles Medley                                240,124.6970                                     
+
+                                      Risa Rogan                                    240,403.1260                                     
+
+                                      Theodore Thomas                               240,382.2550                                     
+
+                                      Frederick Stock                               240,380.8720                                     
+
+                                      Billy O'Leary                                 240,387.8000                                     
+
+                                      Anna Owen                                     256,058.1170                                     
+
+                                      Shelley Mann                                  255,220.8230                                     
+
+                                      Billy Connolly                                240,047.7390                                     
+
+ 10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   2
+ 02:39 AM                                              BROKER LARGE SALES REPORT                                                     
+                                                         SHARE PRICE:   $12.93                                                       
+
+                                         HIGH SALES BROKER NAME          HIGH SALES SHARE AMOUNT                                     
+                                      -------------------------          -----------------------                                     
+
+                                      Omar Sharif                                   240,395.3030                                     
+
+                                      Julie Christie                                240,381.3800                                     
+
+                                      James Oxfordshire                             240,379.9870                                     
+
+                                      Johannes Dundor                               356,257.5810                                     
+
+                                      Adam Dieffenbach                              469,315.8680                                     
+
+                                      Mao Zedong                                    470,709.3010                                     
+
+                                      Zhou Enlai                                    470,430.1040                                     
+
+                                      Zhau Ziyang                                   540,043.4060                                     
+
+                                      Chiang Kai-shek                             2,024,966.4530                                     
+
+                                      Stephanie Buckingham                          356,396.9320                                     
+
+                                      Simon Draper                                  495,608.0680                                     
+
+                                      Geoffrey Decker                               467,765.9870                                     
+
+                                      Elizabeth Windsor                             552,584.9640                                     
+
+                                      Charles Windsor                               168,535.3500                                     
+
+                                      Andrew Windsor                                511,293.3070                                     
+
+                                      Michael Windsor                               824,719.4510                                     
+
+                                      William Windsor                               171,432.1180                                     
+
+                                      Catherine Monteiro                          7,733,952.0460                                     
+
+ 10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   3
+ 02:39 AM                                              BROKER LARGE SALES REPORT                                                     
+                                                         SHARE PRICE:   $12.93                                                       
+
+                                         HIGH SALES BROKER NAME          HIGH SALES SHARE AMOUNT                                     
+                                      -------------------------          -----------------------                                     
+
+                                      Jason Landau                                  386,698.2090                                     
+
+                                      Andre Previn                                  180,063.2540                                     
+
+                                      Cheryl Studer                                 233,172.2990                                     
+
+                                      Renee Fleming                                 256,088.0020                                     
+
+                                      Napoleon Bonaparte                            779,048.1870                                     
+
+                                      Claude Monet                                2,321,153.8010                                     
+
+                                      Olivier Messiaen                              232,128.0770                                     
+
+                                      Claude Debussy                                719,861.9900                                     
+
+                                      Maurice Ravel                                 775,724.8440                                     
+
+                                      Edith Piaf                                    203,666.1520                                     
+
+                                      Coco Chanel                                   174,888.2780                                     
+
+                                      Tarsila do Amaral                             232,026.7460                                     
+
+                                      Julius Caesar                                 157,316.8220                                     
+
+                                      Sofia Loren                                   696,376.8410                                     
+
+                                      Karl Boehm                                    391,190.2270                                     
+
+                                      Earl Grey                                     309,402.9520                                     
+
+ 10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   4
+ 02:39 AM                                           BROKER LARGE SALES REPORT TOTALS                                                 
+
+                                                         SHARE PRICE:   $12.93                                                       
+
+                                   NUMBER OF HIGH SALES BROKERS    TOTAL HIGH SALES SHARE AMOUNT                                     
+                                   ----------------------------    -----------------------------                                     
+                                                             51                  39,192,334.7140                                     
+ !! END OF JES SPOOL FILE !!

@@ -1,0 +1,88 @@
+0a1,2
+> 10/07/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   1
+> 05:39 PM                                        BROKER SALES AND COMMISSIONS REPORT                                                 
+2,3d3
+<  10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   1
+<  02:39 AM                                          BROKER SALES AND COMMISSIONS REPORT                                               
+45,46c45,47
+<  10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   2
+<  02:39 AM                                          BROKER SALES AND COMMISSIONS REPORT                                               
+---
+> 10/07/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   2
+> 05:39 PM                                        BROKER SALES AND COMMISSIONS REPORT                                                 
+> 
+88,89c89,91
+<  10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   3
+<  02:39 AM                                          BROKER SALES AND COMMISSIONS REPORT                                               
+---
+> 10/07/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   3
+> 05:39 PM                                        BROKER SALES AND COMMISSIONS REPORT                                                 
+> 
+131,132c133,135
+<  10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   4
+<  02:39 AM                                          BROKER SALES AND COMMISSIONS REPORT                                               
+---
+> 10/07/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   4
+> 05:39 PM                                        BROKER SALES AND COMMISSIONS REPORT                                                 
+> 
+174,175c177,179
+<  10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   5
+<  02:39 AM                                          BROKER SALES AND COMMISSIONS REPORT                                               
+---
+> 10/07/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   5
+> 05:39 PM                                        BROKER SALES AND COMMISSIONS REPORT                                                 
+> 
+217,218c221,223
+<  10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   6
+<  02:39 AM                                          BROKER SALES AND COMMISSIONS REPORT                                               
+---
+> 10/07/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   6
+> 05:39 PM                                        BROKER SALES AND COMMISSIONS REPORT                                                 
+> 
+254,256c259,260
+<  10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   7
+<  02:39 AM                                     BROKER DEPOSITS AND COMMISSIONS REPORT TOTALS                                          
+< 
+---
+> 10/07/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   7
+> 05:39 PM                                   BROKER DEPOSITS AND COMMISSIONS REPORT TOTALS                                            
+257a262
+> 
+259a265
+> 
+261d266
+<  !! END OF JES SPOOL FILE !!
+263,264c268,269
+<  10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   1
+<  02:39 AM                                              BROKER LARGE SALES REPORT                                                     
+---
+> 10/07/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   1
+> 05:39 PM                                            BROKER LARGE SALES REPORT                                                       
+304,305c309,312
+<  10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   2
+<  02:39 AM                                              BROKER LARGE SALES REPORT                                                     
+---
+>                                      Omar Sharif                                   240,395.3030                                     
+> 
+> 10/07/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   2
+> 05:39 PM                                            BROKER LARGE SALES REPORT                                                       
+311,312d317
+<                                       Omar Sharif                                   240,395.3030                                     
+< 
+347,348c352,355
+<  10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   3
+<  02:39 AM                                              BROKER LARGE SALES REPORT                                                     
+---
+>                                      Jason Landau                                  386,698.2090                                     
+> 
+> 10/07/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   3
+> 05:39 PM                                            BROKER LARGE SALES REPORT                                                       
+354,355d360
+<                                       Jason Landau                                  386,698.2090                                     
+< 
+386,387c391,392
+<  10/15/2021                                          INTERNATIONAL INVESTMENTS FUND                                         PAGE:   4
+<  02:39 AM                                           BROKER LARGE SALES REPORT TOTALS                                                 
+---
+> 10/07/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   4
+> 05:39 PM                                         BROKER LARGE SALES REPORT TOTALS                                                   

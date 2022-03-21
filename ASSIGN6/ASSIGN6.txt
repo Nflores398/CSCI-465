@@ -1,0 +1,1793 @@
+
+                    J E S 2  J O B  L O G  --  S Y S T E M  2 9 6 4  --  N O D E  S V S C J E S 2        
+
+  
+ 01.33.50 JOB04625 ---- FRIDAY,    05 NOV 2021 ----
+ 01.33.50 JOB04625  IRR010I  USERID KC03BB6  IS ASSIGNED TO THIS JOB.
+ 01.33.51 JOB04625  ICH70001I KC03BB6  LAST ACCESS AT 01:32:04 ON FRIDAY, NOVEMBER 5, 2021
+ 01.33.51 JOB04625  $HASP373 KC03BB6A STARTED - INIT 2    - CLASS A        - SYS 2964
+ 01.33.51 JOB04625  -                                      -----TIMINGS (MINS.)------                          -----PAGING COUNTS----
+ 01.33.51 JOB04625  -STEPNAME PROCSTEP    RC   EXCP   CONN       TCB       SRB  CLOCK          SERV  WORKLOAD  PAGE  SWAP   VIO SWAPS
+ 01.33.51 JOB04625  -JSTEP01              00     93      0       .00       .00     .0            15  BATCH        0     0     0     0
+ 01.33.51 JOB04625  -JSTEP02              00     66      0       .00       .00     .0             5  BATCH        0     0     0     0
+ 01.33.52 JOB04625  -JSTEP03              00     86      0       .00       .00     .0            11  BATCH        0     0     0     0
+ 01.33.52 JOB04625  -KC03BB6A ENDED.  NAME-N FLORES             TOTAL TCB CPU TIME=      .00 TOTAL ELAPSED TIME=    .0
+ 01.33.52 JOB04625  $HASP395 KC03BB6A ENDED - RC=0000
+
+ ------ JES2 JOB STATISTICS ------
+
+
+   05 NOV 2021 JOB EXECUTION DATE
+
+
+           683 CARDS READ
+
+
+         1,491 SYSOUT PRINT RECORDS
+
+
+             0 SYSOUT PUNCH RECORDS
+
+
+           124 SYSOUT SPOOL KBYTES
+
+
+          0.03 MINUTES EXECUTION TIME
+ !! END OF JES SPOOL FILE !!
+        1 //KC03BB6A JOB ,'N FLORES',MSGCLASS=H                                   JOB04625
+          //*                                                                             
+          //*****************************************************************             
+          //*                                                               *             
+          //*  CSCI 465               ASSIGNMENT 6               FALL 2021  *             
+          //*                                                               *             
+          //*  DEVELOPER NAME: Noah Flores                                  *             
+          //*  DATE DUE: 11/12/2021                                         *             
+          //*                                                               *             
+          //*  Assemble the code, bind and fetch and execute program        *             
+          //*                                                               *             
+          //*****************************************************************             
+          //*                                                                             
+        2 //JSTEP01  EXEC PGM=ASMA90,PARM=ASA                                             
+          //*                                                                             
+          //*****************************************************************             
+          //* JSTEP01  CALLS HIGH LEVEL ASSEMBER AND ASSEMBLE CODE          *             
+          //*                                                               *             
+          //* DDNAME             FILE DESCRIPTION                           *             
+          //*                                                               *             
+          //* SYSLIN    OUTPUT: TEMP DATASET TO PASS TO BINDER              *             
+          //*                                                               *             
+          //*****************************************************************             
+          //*                                                                             
+        3 //SYSLIB   DD  DSN=SYS1.MACLIB,DISP=SHR                                         
+          //*                                                                             
+        4 //SYSLIN   DD  DSN=&&OBJECT,SPACE=(CYL,(1,1)),DISP=(MOD,PASS)                   
+          //*                                                                             
+        5 //SYSPRINT DD  SYSOUT=*                                                         
+          //*                                                                             
+        6 //SYSUT1   DD  SPACE=(CYL,(1,1))                                                
+          //*                                                                             
+        7 //SYSIN     DD *               GENERATED STATEMENT                              
+          //*                                                                             
+        8 //SYSUDUMP DD   SYSOUT=*                                                        
+          //*                                                                             
+        9 //JSTEP02  EXEC PGM=HEWL,COND=(0,LT)                                            
+          //*                                                                             
+          //*****************************************************************             
+          //* JSTEP02  CALL BINDER TO CREATE EXCUTABLE FOR OUR CODE         *             
+          //*                                                               *             
+          //* DDNAME             FILE DESCRIPTION                           *             
+          //*                                                               *             
+          //*****************************************************************             
+          //*                                                                             
+       10 //SYSLIN   DD  DSN=&&OBJECT,DISP=(OLD,DELETE)                                   
+          //*                                                                             
+       11 //SYSLIB   DD  DSN=CEE.SCEELKED,DISP=SHR                                        
+          //*                                                                             
+       12 //SYSLMOD  DD  DSN=KC03BB6.CSCI465.LOADLIB(SALESRPT),                           
+          //             SPACE=(1024,(50,20,1)),DSNTYPE=LIBRARY,                          
+          //             DISP=(MOD,KEEP,KEEP)                                             
+          //*                                                                             
+       13 //SYSPRINT DD  SYSOUT=*                                                         
+          //*                                                                             
+       14 //SYSTERM  DD  SYSOUT=*                                                         
+          //*                                                                             
+       15 //JSTEP03  EXEC PGM=SALESRPT,COND=(0,LT)                                        
+          //*                                                                             
+          //*****************************************************************             
+          //* JSTEP03  EXCUTE THE COBOL PROGRAM AND DISPLAY OUT             *             
+          //*                                                               *             
+          //* DDNAME             FILE DESCRIPTION                           *             
+          //*                                                               *             
+          //* SALESFLE   INPUT:  DATA5 FROM DATAFA21 CONTAINS DATA FROM PGM *             
+          //* HSSALE     INPUT:  TEMP DATA SET TO STORE HIGH SALES FOR I/O  *             
+          //* RPTFLE     OUTPUT: THE OUTPUT BROKER SALES/COMMISSIONS REPORT *             
+          //* HSRPT      OUTPUT: THE OUTPUT BROKER LARGE SALES REPORT       *             
+          //*                                                               *             
+          //*****************************************************************             
+          //*                                                                             
+       16 //STEPLIB  DD  DSN=KC03BB6.CSCI465.LOADLIB,                                     
+          //             DISP=SHR                                                         
+          //*                                                                             
+       17 //SALERPT  DD  DSN=KC02322.CSCI465.DATAFA21(DATA5),                             
+          //             DISP=SHR                                                         
+          //*                                                                             
+       18 //HSSALE   DD  DSN=&&HSALES,DISP=(NEW,DELETE)                                   
+          //*                                                                             
+       19 //RPTDATA  DD  SYSOUT=*                                                         
+          //*                                                                             
+       20 //HSRPT    DD  SYSOUT=*                                                         
+          //*                                                                             
+       21 //SYSUDUMP DD  SYSOUT=*                                                         
+          //*                                                                             
+ !! END OF JES SPOOL FILE !!
+ ICH70001I KC03BB6  LAST ACCESS AT 01:32:04 ON FRIDAY, NOVEMBER 5, 2021
+ IEFA111I KC03BB6A IS USING THE FOLLOWING JOB RELATED SETTINGS:
+          SWA=ABOVE,TIOT SIZE=32K,DSENQSHR=DISALLOW,GDGBIAS=JOB
+ IEF236I ALLOC. FOR KC03BB6A JSTEP01
+ IEF237I 1001 ALLOCATED TO SYSLIB
+ IGD101I SMS ALLOCATED TO DDNAME (SYSLIN  )
+         DSN (SYS21309.T013350.RA000.KC03BB6A.OBJECT.H01  )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IEF237I JES2 ALLOCATED TO SYSPRINT
+ IGD101I SMS ALLOCATED TO DDNAME (SYSUT1  )
+         DSN (SYS21309.T013350.RA000.KC03BB6A.R0174198    )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IEF237I JES2 ALLOCATED TO SYSIN
+ IEF237I JES2 ALLOCATED TO SYSUDUMP
+ IEF142I KC03BB6A JSTEP01 - STEP WAS EXECUTED - COND CODE 0000
+ IEF285I   SYS1.MACLIB                                  KEPT          
+ IEF285I   VOL SER NOS= VTMVSC.                            
+ IGD106I SYS21309.T013350.RA000.KC03BB6A.OBJECT.H01   PASSED,    DDNAME=SYSLIN  
+ IEF285I   KC03BB6.KC03BB6A.JOB04625.D0000102.?         SYSOUT        
+ IGD105I SYS21309.T013350.RA000.KC03BB6A.R0174198     DELETED,   DDNAME=SYSUT1  
+ IEF285I   KC03BB6.KC03BB6A.JOB04625.D0000101.?         SYSIN         
+ IEF285I   KC03BB6.KC03BB6A.JOB04625.D0000103.?         SYSOUT        
+ IEF373I STEP/JSTEP01 /START 2021309.0133
+ IEF032I STEP/JSTEP01 /STOP  2021309.0133 
+         CPU:     0 HR  00 MIN  00.01 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+         VIRT:   248K  SYS:   252K  EXT:    32768K  SYS:    11336K
+         ATB- REAL:                  1068K  SLOTS:                     0K
+              VIRT- ALLOC:      16M SHRD:       0M
+ IEF236I ALLOC. FOR KC03BB6A JSTEP02
+ IGD103I SMS ALLOCATED TO DDNAME SYSLIN
+ IEF237I 1001 ALLOCATED TO SYSLIB
+ IGD103I SMS ALLOCATED TO DDNAME SYSLMOD
+ IEF237I JES2 ALLOCATED TO SYSPRINT
+ IEF237I JES2 ALLOCATED TO SYSTERM
+ IEF142I KC03BB6A JSTEP02 - STEP WAS EXECUTED - COND CODE 0000
+ IGD105I SYS21309.T013350.RA000.KC03BB6A.OBJECT.H01   DELETED,   DDNAME=SYSLIN  
+ IEF285I   CEE.SCEELKED                                 KEPT          
+ IEF285I   VOL SER NOS= VTMVSC.                            
+ IGD104I KC03BB6.CSCI465.LOADLIB                      RETAINED,  DDNAME=SYSLMOD 
+ IEF285I   KC03BB6.KC03BB6A.JOB04625.D0000104.?         SYSOUT        
+ IEF285I   KC03BB6.KC03BB6A.JOB04625.D0000105.?         SYSOUT        
+ IEF373I STEP/JSTEP02 /START 2021309.0133
+ IEF032I STEP/JSTEP02 /STOP  2021309.0133 
+         CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+         VIRT:   144K  SYS:   252K  EXT:     1640K  SYS:    11288K
+         ATB- REAL:                  1068K  SLOTS:                     0K
+              VIRT- ALLOC:      15M SHRD:       0M
+ IEF236I ALLOC. FOR KC03BB6A JSTEP03
+ IGD103I SMS ALLOCATED TO DDNAME STEPLIB
+ IGD103I SMS ALLOCATED TO DDNAME SALERPT
+ IGD101I SMS ALLOCATED TO DDNAME (HSSALE  )
+         DSN (SYS21309.T013350.RA000.KC03BB6A.HSALES.H01  )
+         STORCLAS (TEMPSC) MGMTCLAS (        ) DATACLAS (        )
+         VOL SER NOS= TEMP00                                                                
+ IEF237I JES2 ALLOCATED TO RPTDATA
+ IEF237I JES2 ALLOCATED TO HSRPT
+ IEF237I JES2 ALLOCATED TO SYSUDUMP
+ IEF142I KC03BB6A JSTEP03 - STEP WAS EXECUTED - COND CODE 0000
+ IGD104I KC03BB6.CSCI465.LOADLIB                      RETAINED,  DDNAME=STEPLIB 
+ IGD104I KC02322.CSCI465.DATAFA21                     RETAINED,  DDNAME=SALERPT 
+ IGD105I SYS21309.T013350.RA000.KC03BB6A.HSALES.H01   DELETED,   DDNAME=HSSALE  
+ IEF285I   KC03BB6.KC03BB6A.JOB04625.D0000106.?         SYSOUT        
+ IEF285I   KC03BB6.KC03BB6A.JOB04625.D0000107.?         SYSOUT        
+ IEF285I   KC03BB6.KC03BB6A.JOB04625.D0000108.?         SYSOUT        
+ IEF373I STEP/JSTEP03 /START 2021309.0133
+ IEF032I STEP/JSTEP03 /STOP  2021309.0133 
+         CPU:     0 HR  00 MIN  00.00 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+         VIRT:   156K  SYS:   264K  EXT:        0K  SYS:    11472K
+         ATB- REAL:                  1068K  SLOTS:                     0K
+              VIRT- ALLOC:      15M SHRD:       0M
+ IEF375I  JOB/KC03BB6A/START 2021309.0133
+ IEF033I  JOB/KC03BB6A/STOP  2021309.0133 
+         CPU:     0 HR  00 MIN  00.01 SEC    SRB:     0 HR  00 MIN  00.00 SEC    
+ !! END OF JES SPOOL FILE !!
+
+                                          High Level Assembler Option Summary                   (PTF UI68060)   Page    1            
+
+
+                                                                                             HLASM R6.0  2021/11/05 01.33            
+
+   No Overriding ASMAOPT Parameters                                                                                                  
+   Overriding Parameters-  ASA                                                                                                       
+   No Process Statements                                                                                                             
+                                                                                                                                     
+                                                                                                                                     
+   Options for this Assembly                                                                                                         
+
+                     NOADATA                                                                                                         
+                       ALIGN                                                                                                         
+ 3 PARM/OPTION         ASA                                                                                                           
+                       BATCH                                                                                                         
+                       CODEPAGE(047C)                                                                                                
+                     NOCOMPAT                                                                                                        
+                     NODATAMAP                                                                                                       
+                     NODBCS                                                                                                          
+                     NODECK                                                                                                          
+                       DXREF                                                                                                         
+                       ESD                                                                                                           
+                     NOEXIT                                                                                                          
+                       FAIL(NOMSG,NOMNOTE,MAXERRS(500))                                                                              
+                       FLAG(0,ALIGN,CONT,EXLITW,NOIMPLEN,NOLONGER,NOPAGE0,PUSH,RECORD,NOSIGNED,NOSUBSTR,NOTRUNC,USING0)              
+                     NOFOLD                                                                                                          
+                     NOGOFF                                                                                                          
+                     NOINFO                                                                                                          
+                       ILMA                                                                                                          
+                       LANGUAGE(EN)                                                                                                  
+                     NOLIBMAC                                                                                                        
+                       LINECOUNT(60)                                                                                                 
+                       LIST(121)                                                                                                     
+                       MACHINE(,NOLIST)                                                                                              
+                       MXREF(SOURCE)                                                                                                 
+                       OBJECT                                                                                                        
+                       OPTABLE(UNI,NOLIST)                                                                                           
+                     NOPCONTROL                                                                                                      
+                     NOPESTOP                                                                                                        
+                     NOPROFILE                                                                                                       
+                     NORA2                                                                                                           
+                     NORENT                                                                                                          
+                       RLD                                                                                                           
+                       RXREF                                                                                                         
+                       SECTALGN(8)                                                                                                   
+                       SIZE(MAX)                                                                                                     
+                     NOSUPRWARN                                                                                                      
+                       SYSPARM()                                                                                                     
+                     NOTERM                                                                                                          
+                     NOTEST                                                                                                          
+                       THREAD                                                                                                        
+                     NOTRANSLATE                                                                                                     
+                       TYPECHECK(MAGNITUDE,REGISTER)                                                                                 
+                       USING(NOLIMIT,MAP,WARN(15))                                                                                   
+                     NOWORKFILE                                                                                                      
+                       XREF(SHORT,UNREFS)                                                                                            
+                                                                                                                                     
+   No Overriding DD Names                                                                                                            
+
+                                               External Symbol Dictionary                                       Page    2            
+
+
+ Symbol   Type   Id     Address  Length   Owner Id Flags Alias-of                            HLASM R6.0  2021/11/05 01.33            
+
+ SALESRPT  SD 00000001 00000000 000011D4             00                                                                              
+
+                                                                                                                Page    3            
+   Active Usings: None                                                                                                               
+
+   Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2021/11/05 01.33            
+
+                                       1          PRINT  NOGEN                MACRO CALL SUPPRESSION                                 
+                                       2 **********************************************************************                      
+                                       3 *                                                                    *                      
+                                       4 * PROGRAM:    SALESRPT                                               *                      
+                                       5 * AUTHOR:     Noah Flores                                            *                      
+                                       6 * DATE:       11/4/2021                                              *                      
+                                       7 *                                                                    *                      
+                                       8 * FUNCTION:  THIS PROGRAM READS INPUT DATA RECORDS, PROCRESS THE     *                      
+                                       9 *  RECORDS. AND PRINT TO OUTPUT. IF THE SHARE AMOUNT IS GREATER THAN *                      
+                                      10 *  15,000.0000 THEN THAT PERSON WILL BE PUT INTO A TEMP DATA SET.    *                      
+                                      11 *  THEN OPENED FOR INPUT, PROECESSED, AND PRINTED TO A OUTPUT        *                      
+                                      12 *                                                                    *                      
+                                      13 * INPUT:     SALERPT - THE INPUT DATA RECORDS READ IN.               *                      
+                                      14 * INPUT:     HSSALE  - THE INPUT DATA RECORDS READ IN.               *                      
+                                      15 *                                                                    *                      
+                                      16 * OUTPUT:    RPTDATA - THE SALERPT PROCRESSED AND WRITTEN OUT.       *                      
+                                      17 * OUTPUT:    HSRPT   -  DATA FROM HSSALE PROCRESSED AND WRITTEN OUT. *                      
+                                      18 * OUTPUT:    HSSALE  - DATA MOVED TO DATASET OF HIGH SALES           *                      
+                                      19 *                                                                    *                      
+                                      20 **********************************************************************                      
+ 000000                00000 0003A    21 $INPUTFR  DSECT              SALERPT FIRST RECORD                                           
+ 000000                               22 $ISHRPRC  DS     ZL5                                                                        
+ 000005                               23 $IFNDNME  DS     CL35                                                                       
+ 000028                               24 $ICOMPT1  DS     ZL6                                                                        
+ 00002E                               25 $ICOMPT2  DS     ZL6                                                                        
+ 000034                               26 $ICOMPT3  DS     ZL6                                                                        
+                                      27 *                                                                                           
+ 000000                00000 00041    28 $INPUTSR  DSECT              SALERPT SECOND TO N REORD                                      
+ 000000                               29 $IBRNNME  DS     CL25                                                                       
+ 000019                               30 $IBRKNME  DS     CL25                                                                       
+ 000032                               31 $IDEPAMT  DS     ZL11                                                                       
+ 00003D                               32 $UNUSED   DS     ZL3                                                                        
+ 000040                               33 $ICOMFLG  DS     ZL1                                                                        
+                                      34 *                                                                                           
+ 000000                00000 00021    35 $INHSSR   DSECT              HSSALE RECORDS DSECT                                           
+ 000000                               36 $IHSBKNME DS     CL25                                                                       
+ 000019                               37 $IHSSHAR  DS     PL8                                                                        
+                                      38 *                                                                                           
+ 000000                00000 011D4    39 SALESRPT CSECT                       BEGIN SALESRPT                                         
+                                      40 *                                                                                           
+ 000000 90EC D00C            0000C    41           STM   14,12,12(13)          SAVE CALLER'S REGS                                    
+ 000004 18CF                          42           LR    12,15                 SET R12 TO R15                                        
+                  R:C  00000          43           USING SALESRPT,12           ESTABLISH R12 AS 1ST BASE REG                         
+ 000006 41E0 C6C0            006C0    44           LA    14,REGS               R14 -> CURRENT SAVE AREA                              
+ 00000A 50D0 E004            00004    45           ST    13,4(,14)             SAVE CALLER'S SAVE AREA ADDR                          
+ 00000E 50E0 E008            00008    46           ST    14,8(,14)             SAVE CURRENT SAVE AREA ADDR                           
+ 000012 18DE                          47           LR    13,14                 R13 -> CURRENT SAVE AREA                              
+ 000014 1877                          48           LR    7,7                   CLEAR REG 7 FOR LINE COUNT                            
+ 000016 41B0 CFFF            00FFF    49           LA  11,4095(,12)            GIVE OUR PROGRAM MORE STORAGE                         
+ 00001A 41B0 B001            00001    50           LA  11,1(,11)                                                                     
+                  R:B  01000          51           USING SALESRPT+4096,11                                                            
+                                      52 *                                                                                           
+ 00001E 5110 0000            00000    53           TIME  DEC,DATETIME,LINKAGE=SYSTEM,DATETYPE=MMDDYYYY                               
+                                      77 *                                                                                           
+ 00006A D201 C708 B034 00708 01034    78           MVC  TIME(2),DATETIME        GET THE TIME FROM MACRO                              
+
+                                                                                                                Page    4            
+   Active Usings: SALESRPT+X'1000',R11  SALESRPT,R12                                                                                 
+
+   Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2021/11/05 01.33            
+
+ 000070 5860 C708            00708    79           L    6,TIME                  LOAD TIME HH:MM INTO REG 6                           
+ 000074 5960 C618            00618    80           C    6,=X'12999999'          COMPARE TO CHECK IF AM OR PM                         
+ 000078 4720 C080            00080    81           BH   SETPM                   IF PM BRANCH                                         
+                                      82 *                                                                                           
+ 00007C 47F0 C094            00094    83           B     SETAM                  IF AM BRANCH                                         
+                                      84 *                                                                                           
+ 000080 D201 CE25 C70E 00E25 0070E    85 SETPM     MVC  OAPPM(2),PM             MOVE PM TO OAPPM FOR HEADER2                         
+ 000086 5890 C61C            0061C    86           L    9,=X'12000000'         LOAD REG 8 WITH 12000000 HEX                          
+ 00008A 1B69                          87           SR   6,9                     SUBTRACT REG 8 FROM 6                                
+ 00008C 5060 C708            00708    88           ST   6,TIME                  STORE REG 6 INTO TIME                                
+ 000090 47F0 C0B4            000B4    89           B    TIMEEND                 BRANCH                                               
+                                      90 *                                                                                           
+ 000094 D201 CE25 C70C 00E25 0070C    91 SETAM     MVC  OAPPM(2),AM             MOVE AM TO OAPPM IN HEADER2                          
+ 00009A 5960 C620            00620    92           C    6,=X'01000000'          IF TIME IS 12AM                                      
+ 00009E 4740 C0A6            000A6    93           BL   TWELADD                 BRANCH                                               
+                                      94 *                                                                                           
+ 0000A2 47F0 C0B4            000B4    95           B    TIMEEND                 BRANCH                                               
+                                      96 *                                                                                           
+ 0000A6                               97 TWELADD   DS   0H                                                                           
+ 0000A6 5890 C61C            0061C    98           L    9,=X'12000000'          LOAD REG 9 WITH HEX 12000000                         
+ 0000AA 1A69                          99           AR   6,9                     ADD REG 9 INTO 6                                     
+ 0000AC 5060 C708            00708   100           ST   6,TIME                  STORE REG 6 INTO TIME                                
+                                     101 *                                                                                           
+ 0000B0 47F0 C0B4            000B4   102           B    TIMEEND                 BRANCH TO TIMEEND                                    
+                                     103 *                                                                                           
+ 0000B4                              104 TIMEEND   DS   0H                                                                           
+                                     105 *                                                                                           
+ 0000B4 D206 CE1D C660 00E1D 00660   106           MVC  OTIME-2(7),=X'202120207A2020' SET UP FIELD                                   
+ 0000BA DE06 CE1D C707 00E1D 00707   107           ED   OTIME-2(7),TIME-1           MOVE TIME TO OTIME                               
+ 0000C0 9240 CE1E      00E1E         108           MVI  HEADER2,C' '                                                                 
+ 0000C4 D20B C866 C624 00866 00624   109           MVC  HEADER1-1(12),=X'202120206120206120202020'                                   
+ 0000CA DE0B C866 B03B 00866 0103B   110           ED   HEADER1-1(12),DATETIME+7 MOVE DATETIME TO HEADER1                            
+ 0000D0 92F1 C867      00867         111           MVI  HEADER1,C'1'                                                                 
+                                     112 *                                                                                           
+ 0000D4 4D10 C0DC            000DC   113           OPEN (INDCB,(INPUT))         OPEN INPUT FILE                                      
+ 0000DE 12FF                         120           LTR  15,15                   CHECK FOR SUCCESSFUL OPEN                            
+ 0000E0 4780 C0F4            000F4   121           BZ   OPENOK1                 BRANCH IF SUCCESSFUL TO OPENOK1                      
+ 0000E4 4110 00DE            000DE   122           ABEND 222,DUMP              ABEND IF OPEN FAILS & DISPLAY 222                     
+                                     132 *                                                                                           
+ 0000F4 4D10 C0FC            000FC   133 OPENOK1   OPEN  (HSDCB,(OUTPUT))       OPEN OUTPUT FILE                                     
+ 0000FE 12FF                         140           LTR   15,15                  CHECK FOR SUCCESSFUL OPEN                            
+ 000100 4780 C114            00114   141           BZ    OPENOK2                BRANCH IF SUCCESSFUL TO OPENOK1                      
+ 000104 4110 01BC            001BC   142           ABEND 444,DUMP              ABEND IF OPEN FAILS & DISPLAY 444                     
+                                     152 *                                                                                           
+ 000114 4D10 C11C            0011C   153 OPENOK2  OPEN  (RPTDCB,(OUTPUT))       OPEN OUTPUT FILE                                     
+ 00011E 12FF                         160          LTR   15,15                   CHECK FOR SUCCESSFUL OPEN                            
+ 000120 4780 C134            00134   161          BZ    OPENOK3                 BRANCH IF SUCCESSFUL TO OPENOK2                      
+ 000124 4110 014D            0014D   162          ABEND 333,DUMP               ABEND IF OPEN FAILS & DISPLAY 333                     
+                                     172 *                                                                                           
+ 000134 4110 B044            01044   173 OPENOK3  GET   INDCB                   READ THE FIRST RECORD                                
+                  R:9  00000         181          USING $INPUTFR,9              SET DSECT TO INPUTFR IN REG 9                        
+ 000140 1891                         182          LR    9,1                     LOAD REG 1 INTO 9                                    
+                                     183 *                                                                                           
+ 000142 F224 C7BD 9000 007BD 00000   184          PACK  PSHRPRC(3),$ISHRPRC(5)  PACK SHARE PRICE                                     
+ 000148 D222 C898 9005 00898 00005   185          MVC   FUNDNME(35),$IFNDNME    MOVE FUND NAME                                       
+
+                                                                                                                Page    5            
+   Active Usings: $INPUTFR,R9  SALESRPT+X'1000',R11  SALESRPT,R12                                                                    
+
+   Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2021/11/05 01.33            
+
+ 00014E F235 C7C0 9028 007C0 00028   186          PACK  PCOMPCT1(4),$ICOMPT1(6) PACK COM PERCENT 1                                   
+ 000154 F235 C7C4 902E 007C4 0002E   187          PACK  PCOMPCT2(4),$ICOMPT2(6) PACK COM PERCENT 2                                   
+ 00015A F235 C7C8 9034 007C8 00034   188          PACK  PCOMPCT3(4),$ICOMPT3(6) PACK COM PERCENT 3                                   
+                                     189 *                                                                                           
+ 000160 DF06 C931 C7BD 00931 007BD   190          EDMK  OSHRPRC(7),PSHRPRC      MOVE SHARE PRICE TO OSHRPRC                          
+ 000166 0610                         191          BCTR  1,0                     ECREMENT REGISTER 1 BY 1                             
+ 000168 925B 1000      00000         192          MVI   0(1),C'$'               PLACE THE DOLLAR SIGN                                
+                                     193 *                                                                                           
+                                     194          DROP  9                       DROP DSECT                                           
+                                     195 *                                                                                           
+                  R:9  00000         196          USING $INPUTSR,9              USE INPUTSR DSECT IN REG 9                           
+ 00016C 4110 B044            01044   197          GET   INDCB                   GET THE NEXT RECORD                                  
+ 000178 1891                         205          LR    9,1                     LOAD REG 1 INTO REG 9                                
+                                     206 *                                                                                           
+ 00017A 95E8 B0A4      010A4         207 LOOP1    CLI   EOFFLAG,C'Y'            CHECK FOR END OF INPUT DATA                          
+                                     208 *                                                                                           
+ 00017E 4780 C324            00324   209          BE    ENDLOOP1                BRANCH TO ENDLOOP1 IF EOF                            
+                                     210 *                                                                                           
+ 000182 5970 C630            00630   211          C      7,=F'18'               IF REG 7 IS LESS THAN 18                             
+ 000186 4740 C208            00208   212 HDRLOOP  BL    ENDHEADR                BRANCH DONT PRINT HEADERS                            
+                                     213 *                                                                                           
+ 00018A D204 C8E3 C667 008E3 00667   214          MVC   HEADER1+124(5),=C'PAGE:' PUT PAGE IN HEADER1                                 
+ 000190 FA10 C7BB C66C 007BB 0066C   215          AP    PPAGECTR(2),=PL1'1'     INCREASE PAGE COUNT                                  
+ 000196 D203 C8E8 C634 008E8 00634   216          MVC   PAGE(4),=X'40202120'    SET UP OUTPUT FIELD FOR PAGE CNT                     
+ 00019C DE03 C8E8 C7BB 008E8 007BB   217          ED    PAGE(4),PPAGECTR        MOVE PAGE CNT TO OUTPUT                              
+ 0001A2 D229 CE4A C710 00E4A 00710   218          MVC   ORLABLE(42),LABEL1      MOVE REPORT LABEL TO HEADER2                         
+                                     219 *                                                                                           
+ 0001A8 4110 B114            01114   220          PUT   RPTDCB                  PUT HEADER1 TO RPTDCB                                
+ 0001B4 D284 1000 C867 00000 00867   228          MVC   0(133,1),HEADER1                                                             
+ 0001BA 4110 B114            01114   229          PUT   RPTDCB                  PUT HEADER2 TO RPTDCB                                
+ 0001C6 D284 1000 CE1E 00000 00E1E   237          MVC   0(133,1),HEADER2                                                             
+ 0001CC 4110 B114            01114   238          PUT   RPTDCB                  PUT HEADER3 TO RPTDCB                                
+ 0001D8 D284 1000 C8EC 00000 008EC   246          MVC   0(133,1),HEADER3                                                             
+ 0001DE 4110 B114            01114   247          PUT   RPTDCB                  PUT COLUMN1 TO RPTDCB                                
+ 0001EA D284 1000 C9F6 00000 009F6   255          MVC   0(133,1),COLUMN1                                                             
+ 0001F0 4110 B114            01114   256          PUT   RPTDCB                  PUT HYPHEN1 TO RPTDCB                                
+ 0001FC D284 1000 CA7B 00000 00A7B   264          MVC   0(133,1),HYPHEN1                                                             
+                                     265 *                                                                                           
+ 000202 1B77                         266          SR    7,7                     SET REG 7 TO 0 FOR LINE CNT                          
+                                     267 *                                                                                           
+ 000204 47F0 C208            00208   268          B     ENDHEADR                BRANCH TO END OF LOOP                                
+                                     269 *                                                                                           
+ 000208                              270 ENDHEADR DS    0H                                                                           
+                                     271 *                                                                                           
+ 000208 D218 C972 9000 00972 00000   272          MVC   OBRNCNME(25),$IBRNNME   MOVE BRANCH NAME TO OUTPUT                           
+ 00020E D218 C993 9019 00993 00019   273          MVC   OBRKRNME(25),$IBRKNME   MOVE BROKER NAME TO OUTPUT                           
+ 000214 F25A C7D0 9032 007D0 00032   274          PACK  PDEPAMT(6),$IDEPAMT(11) PACK DEPOSIT AMOUNT                                  
+ 00021A FA65 C7D6 C7D0 007D6 007D0   275          AP    PTDEPAMT(7),PDEPAMT(6)  ADD TO TOTAL DEPOSIT AMOUNT                          
+ 000220 F200 C7BA 9040 007BA 00040   276          PACK  PFLAG(1),$ICOMFLG(1)    PACK COMM FLAG                                       
+ 000226 D20E C9B4 C66D 009B4 0066D   277          MVC   ODEPAMT(15),=X'402020206B2020206B2021204B2020'                               
+ 00022C DF0E C9B4 C7D0 009B4 007D0   278          EDMK  ODEPAMT(15),PDEPAMT     MOVE DEPOSIT AOUNT TO OUTPUT                         
+ 000232 0610                         279          BCTR  1,0                     DECREMENT REGISTER 1 BY 1                            
+ 000234 925B 1000      00000         280          MVI   0(1),C'$'               PLACE THE DOLLAR SIGN                                
+                                     281 *                                                                                           
+ 000238 F895 C7DD C7D0 007DD 007D0   282          ZAP   PSHRAMT(10),PDEPAMT(6)  MOVE DEPOSIT AMT INTO SHARE AMT                      
+
+                                                                                                                Page    6            
+   Active Usings: $INPUTSR,R9  SALESRPT+X'1000',R11  SALESRPT,R12                                                                    
+
+   Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2021/11/05 01.33            
+
+ 00023E F090 C7DD 0004 007DD 00004   283          SRP   PSHRAMT(10),4,0         SHIFT RIGHT 4                                        
+ 000244 FD92 C7DD C7BD 007DD 007BD   284          DP    PSHRAMT(10),PSHRPRC(3)  DIVIDE BY SHARE PRICE                                
+ 00024A F065 C7DD 003F 007DD 0003F   285          SRP   PSHRAMT(7),64-1,5       SHIFT FOR ROUNDING                                   
+ 000250 F060 C7DD 0003 007DD 00003   286          SRP   PSHRAMT(7),3,0          SHIFT BACK                                           
+ 000256 D20E C9CF C67C 009CF 0067C   287          MVC   OSHRAMT(15),=X'40206B2020206B2021204B20202020'                               
+ 00025C DE0E C9CF C7DD 009CF 007DD   288          ED    OSHRAMT(15),PSHRAMT     MOVE SHARE AMT                                       
+ 000262 FAC6 C7E7 C7DD 007E7 007DD   289          AP    PTSHRAMT(13),PSHRAMT(7) ADD TO TOTAL SHARE AMOUNT                            
+                                     290 *                                                                                           
+ 000268 F966 C7DD C68B 007DD 0068B   291          CP    PSHRAMT(7),=PL7'150000000000' COMPARE SHARE AMOUNT                           
+ 00026E 4740 C28E            0028E   292          BC    B'0100',COM3                  IF LESS THAN                                   
+                                     293 *                                                                                           
+ 000272 D218 C827 9019 00827 00019   294          MVC   IHSNME(25),$IBRKNME     MOVE BROKER NAME                                     
+ 000278 F876 C840 C7DD 00840 007DD   295          ZAP   IHSHR(8),PSHRAMT(7)     MOVE SHARE AMOUNT                                    
+ 00027E 4110 B0AC            010AC   296          PUT   HSDCB,IHSNME            PUT TWO FIELDS INTO HSDCB                            
+                                     305 *                                                                                           
+ 00028E F900 C7BA C692 007BA 00692   306 COM3     CP    PFLAG(1),=PL1'3'        IF FLAG 3                                            
+ 000294 4770 C2A2            002A2   307          BNE   COM2                    ELSE BRANCH                                          
+                                     308 *                                                                                           
+ 000298 F833 C7CC C7C8 007CC 007C8   309          ZAP   PTCOMPCT(4),PCOMPCT3(4) MOVE COM 3 PERCENT                                   
+                                     310 *                                                                                           
+ 00029E 47F0 C2C0            002C0   311          B     ENDCOM                  BRANCH                                               
+                                     312 *                                                                                           
+ 0002A2 F900 C7BA C693 007BA 00693   313 COM2     CP    PFLAG(1),=PL1'2'        IF FLAG 2                                            
+ 0002A8 4770 C2B6            002B6   314          BNE   COM1                    ELSE BRANCH                                          
+                                     315 *                                                                                           
+ 0002AC F833 C7CC C7C4 007CC 007C4   316          ZAP   PTCOMPCT(4),PCOMPCT2(4) MOVE COM 3 PERCENT                                   
+                                     317 *                                                                                           
+ 0002B2 47F0 C2C0            002C0   318          B     ENDCOM                  BRANCH                                               
+                                     319 *                                                                                           
+ 0002B6                              320 COM1     DS    0H                      IF FLAG 1                                            
+                                     321 *                                                                                           
+ 0002B6 F833 C7CC C7C0 007CC 007C0   322          ZAP   PTCOMPCT(4),PCOMPCT1(4) MOVE COM 1 PERCENT                                   
+                                     323 *                                                                                           
+ 0002BC 47F0 C2C0            002C0   324          B     ENDCOM                  BRANCH                                               
+                                     325 *                                                                                           
+ 0002C0                              326 ENDCOM   DS    0H                                                                           
+                                     327 *                                                                                           
+ 0002C0 F895 C85D C7D0 0085D 007D0   328          ZAP   PCALC(10),PDEPAMT(6)    MOVE DEPOSIT AMT INTO CALC                           
+ 0002C6 FC93 C85D C7CC 0085D 007CC   329          MP    PCALC(10),PTCOMPCT(4)   MULTIPLY CALC BY COM PERCENT                         
+ 0002CC F879 C7F4 C85D 007F4 0085D   330          ZAP   PCOMMANT(8),PCALC(10)   MOVE INTO COMMISION AMT                              
+ 0002D2 F075 C7F4 003D 007F4 0003D   331          SRP   PCOMMANT(8),64-3,5      SHIFT FOR ROUNDING                                   
+ 0002D8 F070 C7F4 0002 007F4 00002   332          SRP   PCOMMANT(8),2,0         SHIFT BACK                                           
+ 0002DE D20E C9E7 C66D 009E7 0066D   333          MVC   OCOMMANT(15),=X'402020206B2020206B2021204B2020'                              
+ 0002E4 DF0E C9E7 C7F4 009E7 007F4   334          EDMK  OCOMMANT(15),PCOMMANT   MOVE TO OUTPUT                                       
+ 0002EA 0610                         335          BCTR  1,0                     DECREMENT REGISTER 1 BY 1                            
+ 0002EC 925B 1000      00000         336          MVI   0(1),C'$'               PLACE THE DOLLAR SIGN                                
+                                     337 *                                                                                           
+ 0002F0 FA97 C7FC C7F4 007FC 007F4   338          AP    PTCOMAMT(10),PCOMMANT(8) ADD TO COMM TOTAL                                   
+ 0002F6 FA10 C7B8 C66C 007B8 0066C   339          AP    PSALECTR(2),=PL1'1'      ADD 1 TO RECORD COUNTER                             
+                                     340 *                                                                                           
+ 0002FC 4170 7001            00001   341          LA    7,1(,7)                 ADD 1 TO LINE COUNTER                                
+                                     342 *                                                                                           
+ 000300 4110 B114            01114   343          PUT   RPTDCB                  PUT RECORD INTO RPTDCB                               
+ 00030C D284 1000 C971 00000 00971   351          MVC   0(133,1),RECORDS        WRITE THE DETAIL LINE                                
+                                     352 *                                                                                           
+
+                                                                                                                Page    7            
+   Active Usings: $INPUTSR,R9  SALESRPT+X'1000',R11  SALESRPT,R12                                                                    
+
+   Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2021/11/05 01.33            
+
+ 000312 4110 B044            01044   353          GET   INDCB                   GET THE NEXT RECORD                                  
+ 00031E 1891                         361          LR    9,1                     LOAD REG 1 INTO REG 9                                
+                                     362 *                                                                                           
+ 000320 47F0 C17A            0017A   363          B     LOOP1                   BRANCH TO TOP OF LOOP1                               
+                                     364 *                                                                                           
+ 000324 DE02 CF5C C7B8 00F5C 007B8   365 ENDLOOP1 ED    OSCTR(3),PSALECTR       EDIT REC COUNTER INTO TOTALS                         
+                                     366 *                                                                                           
+ 00032A D229 CE4A C73A 00E4A 0073A   367          MVC   ORLABLE(42),LABEL2      MOVE REPORT LABEL2 TO HEADER2                        
+ 000330 D204 C8E3 C667 008E3 00667   368          MVC   HEADER1+124(5),=C'PAGE:' MOVE PAGE TO HEADER 1                               
+ 000336 FA10 C7BB C66C 007BB 0066C   369          AP    PPAGECTR(2),=PL1'1'     ADD TO PAGE COUNTER                                  
+ 00033C D203 C8E8 C634 008E8 00634   370          MVC   PAGE(4),=X'40202120'    SET FIELD FOR PAGE                                   
+ 000342 DE03 C8E8 C7BB 008E8 007BB   371          ED    PAGE(4),PPAGECTR        MOVE PAGE COUNTER TO HEADER 1                        
+ 000348 D211 CF68 C64C 00F68 0064C   372          MVC   OTDEPAMT(18),=X'4020206B2020206B2020206B2021204B2020'                        
+ 00034E DF11 CF68 C7D6 00F68 007D6   373          EDMK  OTDEPAMT(18),PTDEPAMT   MOVE TOTAL DEPOSIT AMOUNT                            
+ 000354 0610                         374          BCTR  1,0                     DECREMENT REGISTER 1 BY 1                            
+ 000356 925B 1000      00000         375          MVI   0(1),C'$'               PLACE THE DOLLAR SIGN                                
+ 00035A F0C5 C7E7 0008 007E7 00008   376          SRP   PTSHRAMT(13),8,5        SHIFT RIGHT 8                                        
+                                     377 *                                                                                           
+ 000360 D213 CF81 C638 00F81 00638   378          MVC  OTSHRAMT(20),=X'4020206B2020206B2020206B2021204B20202020'                     
+ 000366 DE13 CF81 C7E7 00F81 007E7   379          ED    OTSHRAMT(20),PTSHRAMT   MOVE TOTAL SHARE AMOUNT                              
+                                     380 *                                                                                           
+ 00036C D211 CF9B C64C 00F9B 0064C   381          MVC   OTCOMAMT(18),=X'4020206B2020206B2020206B2021204B2020'                        
+ 000372 F095 C7FC 0002 007FC 00002   382          SRP   PTCOMAMT(10),2,5        SHIFT RIGHT 2                                        
+ 000378 DF11 CF9B C7FC 00F9B 007FC   383          EDMK  OTCOMAMT(18),PTCOMAMT   MOVE TOTAL COMM AMNT                                 
+ 00037E 0610                         384          BCTR  1,0                     DECREMENT REGISTER 1 BY 1                            
+ 000380 925B 1000      00000         385          MVI   0(1),C'$'               PLACE THE DOLLAR SIGN                                
+                                     386 *                                                                                           
+ 000384 4110 B114            01114   387          PUT   RPTDCB                  MOVE HEADER1 INTO RPTDCB                             
+ 000390 D284 1000 C867 00000 00867   395          MVC   0(133,1),HEADER1                                                             
+ 000396 4110 B114            01114   396          PUT   RPTDCB                  MOVE HEADER2 INTO RPTDCB                             
+ 0003A2 D284 1000 CE1E 00000 00E1E   404          MVC   0(133,1),HEADER2                                                             
+ 0003A8 4110 B114            01114   405          PUT   RPTDCB                  MOVE HEADER3 INTO RPTDCB                             
+ 0003B4 D284 1000 C8EC 00000 008EC   413          MVC   0(133,1),HEADER3                                                             
+ 0003BA 4110 B114            01114   414          PUT   RPTDCB                  MOVE COLUMN2 INTO RPTDCB                             
+ 0003C6 D284 1000 CB00 00000 00B00   422          MVC   0(133,1),COLUMN2                                                             
+ 0003CC 4110 B114            01114   423          PUT   RPTDCB                  MOVE HYPHEN2 INTO RPTDCB                             
+ 0003D8 D284 1000 CC8F 00000 00C8F   431          MVC   0(133,1),HYPHEN2                                                             
+ 0003DE 4110 B114            01114   432          PUT   RPTDCB                  MOVE TOTALS INTO RPTDCB                              
+ 0003EA D284 1000 CF28 00000 00F28   440          MVC   0(133,1),TOTALS                                                              
+                                     441 *                                                                                           
+                                     442          DROP  9                                                                            
+ 0003F0 4D10 C400            00400   443          CLOSE (INDCB,,HSDCB,,RPTDCB)  CLOSE THE THREE DCBs                                 
+                                     454 *                                                                                           
+ 000402 0700                         455          OPEN  (HSDCB,(INPUT))         OPEN INPUT FILE                                      
+ 00040E 12FF                         462          LTR   15,15                   CHECK FOR SUCCESSFUL OPEN                            
+ 000410 4780 C424            00424   463          BZ    OPENOK4                 BRANCH IF SUCCESSFUL TO OPENOK1                      
+ 000414 4110 022B            0022B   464          ABEND 555,DUMP               ABEND IF OPEN FAILS & DISPLAY 555                     
+                                     474 *                                                                                           
+ 000424 4D10 C42C            0042C   475 OPENOK4  OPEN  (HSRDCB,(OUTPUT))       OPEN OUTPUT FILE                                     
+ 00042E 12FF                         482          LTR   15,15                   CHECK FOR SUCCESSFUL OPEN                            
+ 000430 4780 C444            00444   483          BZ    OPENOK5                 BRANCH IF SUCCESSFUL TO OPENOK1                      
+ 000434 4110 029A            0029A   484          ABEND 666,DUMP               ABEND IF OPEN FAILS & DISPLAY 666                     
+                                     494 *                                                                                           
+ 000444                              495 OPENOK5  DS    0H                                                                           
+                                     496 *                                                                                           
+
+                                                                                                                Page    8            
+   Active Usings: $INHSSR,R9  SALESRPT+X'1000',R11  SALESRPT,R12                                                                     
+
+   Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2021/11/05 01.33            
+
+                  R:9  00000         497           USING $INHSSR,9              USING INHSSR DSECT                                   
+ 000444 4110 B0AC            010AC   498           GET  HSDCB,BUFF              GET FIRST RECORD FROM BUFF                           
+ 000454 1891                         507           LR   9,1                     LOAD REG 1 INTO REG 9                                
+                                     508 *                                                                                           
+ 000456 1B77                         509           SR   7,7                     ZERO OUT REG 7                                       
+ 000458 5870 0063            00063   510           L    7,99                    SET VALUE TO 99                                      
+ ** ASMA033I Storage alignment for 99 unfavorable                                                                                    
+ ** ASMA435I Record 281 in KC03BB6.KC03BB6A.JOB04625.D0000101.? on volume:                                                           
+ 00045C F811 C7BB C65E 007BB 0065E   511           ZAP  PPAGECTR(2),=PL2'0'     RESET PAGE COUNTER                                   
+ 000462 FB11 C7B8 C7B8 007B8 007B8   512           SP   PSALECTR(2),PSALECTR(2) RESET SALE CTR                                       
+ 000468 D229 CE4A C764 00E4A 00764   513           MVC  ORLABLE(42),LABEL3      MOVE LABEL 3 TO HEADER2                              
+                                     514 *                                                                                           
+ 00046E 95E8 B10C      0110C         515 LOOP2     CLI  EOFFLAG2,C'Y'           CHECK FOR END OF INPUT DATA                          
+ 000472 4780 C54C            0054C   516           BE   ENDLOOP2                BRANCH TO ENDLOOP2 IF EOF                            
+                                     517 *                                                                                           
+ 000476 5970 C630            00630   518           C    7,=F'18'                IF REG 7 EQUAL LESS THAN 18                          
+ 00047A 4740 C4F6            004F6   519 HDRLOOP2  BL   ENDHEADR2               BRANCH AND DONT PRINT HEADERS                        
+                                     520 *                                                                                           
+ 00047E D204 C8E3 C667 008E3 00667   521           MVC  HEADER1+124(5),=C'PAGE:' MOVE PAGE TO HEADER1                                
+ 000484 FA10 C7BB C66C 007BB 0066C   522           AP   PPAGECTR(2),=PL1'1'     ADD 1 TO PAGE COUNTER                                
+ 00048A D203 C8E8 C634 008E8 00634   523           MVC  PAGE(4),=X'40202120'    SET FIELD                                            
+ 000490 DE03 C8E8 C7BB 008E8 007BB   524           ED   PAGE(4),PPAGECTR        MOVE PAGE TO HEADER1                                 
+                                     525 *                                                                                           
+ 000496 4110 B174            01174   526           PUT  HSRDCB                  MOVE HEADER1 INTO HSRDCB                             
+ 0004A2 D284 1000 C867 00000 00867   534           MVC  0(133,1),HEADER1                                                             
+ 0004A8 4110 B174            01174   535           PUT  HSRDCB                  MOVE HEADER2 INTO HSRDCB                             
+ 0004B4 D284 1000 CE1E 00000 00E1E   543           MVC  0(133,1),HEADER2                                                             
+ 0004BA 4110 B174            01174   544           PUT  HSRDCB                  MOVE HEADER3 INTO HSRDCB                             
+ 0004C6 D284 1000 C8EC 00000 008EC   552           MVC  0(133,1),HEADER3                                                             
+ 0004CC 4110 B174            01174   553           PUT  HSRDCB                  MOVE COLUMN3 INTO HSRDCB                             
+ 0004D8 D284 1000 CB85 00000 00B85   561           MVC  0(133,1),COLUMN3                                                             
+ 0004DE 4110 B174            01174   562           PUT  HSRDCB                  MOVE HYPHEN3 INTO HSRDCB                             
+ 0004EA D284 1000 CD14 00000 00D14   570           MVC  0(133,1),HYPHEN3                                                             
+                                     571 *                                                                                           
+ 0004F0 1B77                         572           SR   7,7                     ZERO OUT REG 7 FOR LINE CNT                          
+                                     573 *                                                                                           
+ 0004F2 47F0 C4F6            004F6   574           B    ENDHEADR2                                                                    
+                                     575 *                                                                                           
+ 0004F6                              576 ENDHEADR2 DS   0H                                                                           
+                                     577 *                                                                                           
+ 0004F6 FA10 C7B8 C66C 007B8 0066C   578           AP   PSALECTR(2),=PL1'1'     ADD 1 TO PAGE COUNTER                                
+ 0004FC D218 CEC9 9000 00EC9 00000   579           MVC  OHBRNME(25),$IHSBKNME   MOVE NAME TO OUTPUT                                  
+ 000502 F877 C848 9019 00848 00019   580           ZAP  HSSHRAMT(8),$IHSSHAR(8) MOVE SHARAMOUNT INTO PACK DEC                        
+ 000508 F075 C848 0002 00848 00002   581           SRP  HSSHRAMT(8),2,5         SHIFT RIGHT 2                                        
+ 00050E D20E CEF4 C67C 00EF4 0067C   582           MVC  OHSHRAMT(15),=X'40206B2020206B2021204B20202020'                              
+ 000514 DE0E CEF4 C848 00EF4 00848   583           ED   OHSHRAMT(15),HSSHRAMT   MOVE SHARE AMOUNT TO OUTPUT                          
+ 00051A FAC7 C850 C848 00850 00848   584           AP   HSTSAMT(13),HSSHRAMT(8) ADD TO TOTAL SHARE AMOUNT                            
+                                     585 *                                                                                           
+ 000520 4110 B174            01174   586           PUT  HSRDCB                  MOVE OUT RECORDS TO OUTPUT                           
+ 00052C D284 1000 CEA3 00000 00EA3   594           MVC  0(133,1),OHSRPT                                                              
+                                     595 *                                                                                           
+ 000532 4170 7001            00001   596           LA   7,1(,7)                 ADD 1 TO LINE COUNTER                                
+                                     597 *                                                                                           
+ 000536 4110 B0AC            010AC   598           GET  HSDCB,BUFF              GET THE NEXT RECORD                                  
+ 000546 1891                         607           LR   9,1                     LOAD REG 9 WITH REG 1                                
+
+                                                                                                                Page    9            
+   Active Usings: $INHSSR,R9  SALESRPT+X'1000',R11  SALESRPT,R12                                                                     
+
+   Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2021/11/05 01.33            
+
+                                     608 *                                                                                           
+ 000548 47F0 C46E            0046E   609           B    LOOP2                   BRANCH BACK TO THE TOP                               
+                                     610 *                                                                                           
+ 00054C                              611 ENDLOOP2 DS   0H                                                                            
+                                     612 *                                                                                           
+ 00054C D229 CE4A C78E 00E4A 0078E   613          MVC   ORLABLE(42),LABEL4      MOVE LABEL4 TO HEADER2                               
+ 000552 FA10 C7BB C66C 007BB 0066C   614          AP    PPAGECTR(2),=PL1'1'     ADD 1 TO PAGE COUNTER                                
+ 000558 D204 C8E3 C667 008E3 00667   615          MVC   HEADER1+124(5),=C'PAGE:' MOVE PAGE TO HEADER1                                
+ 00055E D203 C8E8 C634 008E8 00634   616          MVC   PAGE(4),=X'40202120'                                                         
+ 000564 DE03 C8E8 C7BB 008E8 007BB   617          ED    PAGE(4),PPAGECTR        MOVE PAGE CNT TO HEADER1                             
+                                     618 *                                                                                           
+ 00056A 4110 B174            01174   619          PUT   HSRDCB                  MOVE HEADER1 INTO HSRDCB                             
+ 000576 D284 1000 C867 00000 00867   627          MVC   0(133,1),HEADER1                                                             
+ 00057C 4110 B174            01174   628          PUT   HSRDCB                  MOVE HEADER2 INTO HSRDCB                             
+ 000588 D284 1000 CE1E 00000 00E1E   636          MVC   0(133,1),HEADER2                                                             
+ 00058E 4110 B174            01174   637          PUT   HSRDCB                  MOVE HEADER3 INTO HSRDCB                             
+ 00059A D284 1000 C8EC 00000 008EC   645          MVC   0(133,1),HEADER3                                                             
+                                     646 *                                                                                           
+ 0005A0 D203 CFE8 C634 00FE8 00634   647          MVC   OHSOSCTR(4),=X'40202120'                                                     
+ 0005A6 DE03 CFE8 C7B8 00FE8 007B8   648          ED    OHSOSCTR(4),PSALECTR    MOVE SALE CNT TO OUTPUT                              
+ 0005AC F0C3 C850 0006 00850 00006   649          SRP   HSTSAMT(13),6,3         SHIFT TOTAL SHARE AMOUNT                             
+ 0005B2 D213 CFF9 C638 00FF9 00638   650          MVC  OHSTSHRS(20),=X'4020206B2020206B2020206B2021204B20202020'                     
+ 0005B8 DE13 CFF9 C850 00FF9 00850   651          ED    OHSTSHRS(20),HSTSAMT    MOVE TOTAL SHARE AMOUT TO OUTPUT                     
+                                     652 *                                                                                           
+ 0005BE 4110 B174            01174   653          PUT   HSRDCB                  MOVE COLUMN4 INTO HSRDCB                             
+ 0005CA D284 1000 CC0A 00000 00C0A   661          MVC   0(133,1),COLUMN4                                                             
+ 0005D0 4110 B174            01174   662          PUT   HSRDCB                  MOVE HYPHEN4 INTO HSRDCB                             
+ 0005DC D284 1000 CD99 00000 00D99   670          MVC   0(133,1),HYPHEN4                                                             
+ 0005E2 4110 B174            01174   671          PUT   HSRDCB                  MOVE HSTOTAL INTO HSRDCB                             
+ 0005EE D284 1000 CFAD 00000 00FAD   679          MVC   0(133,1),HSTOTAL                                                             
+                                     680 *                                                                                           
+                                     681          DROP  9                       DROP DSECT                                           
+ 0005F4 4D10 C600            00600   682          CLOSE (HSDCB,,HSRDCB)         CLOSE 2 DCBS                                         
+                                     691 *                                                                                           
+ 000602 1BFF                         692          SR    15,15                   SET RC TO 0                                          
+ 000604 58D0 D004            00004   693          L     13,4(,13)               R13 -> CALLER'S SAVE AREA                            
+ 000608 58E0 D00C            0000C   694          L     14,12(,13)              RESTORE R14                                          
+ 00060C 980C D014            00014   695          LM    0,12,20(13)             RESTORE R0 THROUGH R12                               
+                                     696 *                                                                                           
+ 000610 07FE                         697          BR    14                      RETURN TO CALLER                                     
+                                     698 *                                                                                           
+ 000618                              699          LTORG                         LTORG TO ORGANIZE LITERALS                           
+ 000618 12999999                     700                =X'12999999'                                                                 
+ 00061C 12000000                     701                =X'12000000'                                                                 
+ 000620 01000000                     702                =X'01000000'                                                                 
+ 000624 2021202061202061             703                =X'202120206120206120202020'                                                 
+ 000630 00000012                     704                =F'18'                                                                       
+ 000634 40202120                     705                =X'40202120'                                                                 
+ 000638 4020206B2020206B             706                =X'4020206B2020206B2020206B2021204B20202020'                                 
+ 00064C 4020206B2020206B             707                =X'4020206B2020206B2020206B2021204B2020'                                     
+ 00065E 000C                         708                =PL2'0'                                                                      
+ 000660 202120207A2020               709                =X'202120207A2020'                                                           
+ 000667 D7C1C7C57A                   710                =C'PAGE:'                                                                    
+ 00066C 1C                           711                =PL1'1'                                                                      
+ 00066D 402020206B202020             712                =X'402020206B2020206B2021204B2020'                                           
+
+                                                                                                                Page   10            
+   Active Usings: SALESRPT+X'1000',R11  SALESRPT,R12                                                                                 
+
+   Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2021/11/05 01.33            
+
+ 00067C 40206B2020206B20             713                =X'40206B2020206B2021204B20202020'                                           
+ 00068B 0150000000000C               714                =PL7'150000000000'                                                           
+ 000692 3C                           715                =PL1'3'                                                                      
+ 000693 2C                           716                =PL1'2'                                                                      
+                                     717 *                                                                                           
+ 000694                00694 006A0   718          ORG   SALESRPT+((*-SALESRPT+31)/32)*32                                             
+ 0006A0 C8C5D9C540C9E240             719          DC    C'HERE IS THE STORAGE FOR SALESRPT'                                          
+                                     720 *                                                                                           
+                                     721 *                                                                                           
+                                     722 *                                                                                           
+ 0006C0 0000000000000000             723 REGS      DC    18F'0'                MAINREGS FOR STANDARD LINKAGE                         
+                                     724 *                                                                                           
+ 000708 00000000                     725 TIME      DC    F'0'                   TIME HH:SS                                           
+ 00070C C1D4                         726 AM        DC    C'AM'                  AM LABEL                                             
+ 00070E D7D4                         727 PM        DC    C'PM'                  PM LABEL                                             
+                                     728 *                                                                                           
+                                     729 *REPORT LABELS                                                                              
+ 000710 4040404040C2D9D6             730 LABEL1    DC    C'     BROKER SALES AND COMMISSIONS REPORT  '                               
+ 00073A C2D9D6D2C5D940E2             731 LABEL2    DC    C'BROKER SALES AND COMMISSIONS REPORT TOTALS'                               
+ 000764 4040404040404040             732 LABEL3    DC    C'         BROKER LARGE SALES REPORT        '                               
+ 00078E 4040404040C2D9D6             733 LABEL4    DC    C'     BROKER LARGE SALES REPORT TOTALS     '                               
+                                     734 *                                                                                           
+ 0007B8 000C                         735 PSALECTR  DC    PL2'0'       PAC SALE COUNTER                                               
+ 0007BA 0C                           736 PFLAG     DC    PL1'0'       PAC COMM FLAG                                                  
+ 0007BB 000C                         737 PPAGECTR  DC    PL2'0'       PAC PAGE COUNTER                                               
+ 0007BD 00000C                       738 PSHRPRC   DC    PL3'0'       PAC SHARE PRICE                                                
+ 0007C0 0000000C                     739 PCOMPCT1  DC    PL4'0'       PAC COM PERCENT 1                                              
+ 0007C4 0000000C                     740 PCOMPCT2  DC    PL4'0'       PAC COM PERCENT 2                                              
+ 0007C8 0000000C                     741 PCOMPCT3  DC    PL4'0'       PAC COM PERCENT 3                                              
+ 0007CC 0000000C                     742 PTCOMPCT  DC    PL4'0'       PAC TEMP COM PERCENT                                           
+ 0007D0 00000000000C                 743 PDEPAMT   DC    PL6'0'       PAC DEPOSIT AMOUNT                                             
+ 0007D6 0000000000000C               744 PTDEPAMT  DC    PL7'0'       PAC TOTAL DEPOSIT AMOUNT                                       
+ 0007DD 0000000000000000             745 PSHRAMT   DC    PL10'0'      PAC SHARE AMOUNT                                               
+ 0007E7 0000000000000000             746 PTSHRAMT  DC    PL13'0'      PAC TOTAL SHARE AMOUNT                                         
+ 0007F4 000000000000000C             747 PCOMMANT  DC    PL8'0'       PAC COMMISION AMOUNT                                           
+ 0007FC 0000000000000000             748 PTCOMAMT  DC    PL10'0'      PAC TOTAL COMMISION AMOUNT                                     
+                                     749 *                                                                                           
+ 000806 4040404040404040             750 BUFF      DC    33C' '       BUFFER FOR READING HSRPT                                       
+                                     751 *                                                                                           
+ 000827 4040404040404040             752 IHSNME    DC   CL25' '       INSERTING BROKER NAME INTO TEMPDATA SET                        
+ 000840 000000000000000C             753 IHSHR     DC   PL8'0'        INSERTING SHARE AMOUNT INTO TEMPDATA SET                       
+                                     754 *                                                                                           
+ 000848 000000000000000C             755 HSSHRAMT  DC    PL8'0'       PAC HS SHARE AMOUNT                                            
+ 000850 0000000000000000             756 HSTSAMT   DC    PL13'0'      PAC HS TOTAL SHARE AMOUNT                                      
+                                     757 *                                                                                           
+ 00085D 0000000000000000             758 PCALC     DC    PL10'0'      USED FOR CALCULATING                                           
+                                     759 *                                                                                           
+ 000867 F1                           760 HEADER1   DC    C'1'                                                                        
+ 000868                              761 ODATE     DS    CL10         DATE                                                           
+ 000872 4040404040404040             762           DC    38C' '       SPACE                                                          
+ 000898                              763 FUNDNME   DS    CL35         FUND NAME                                                      
+ 0008BB 4040404040404040             764           DC    45C' '       SPACE                                                          
+ 0008E8                              765 PAGE      DS    CL4          PAGE NUMBER                                                    
+                                     766 *                                                                                           
+ 0008EC F0                           767 HEADER3   DC   C'0'                                                                         
+
+                                                                                                                Page   11            
+   Active Usings: SALESRPT+X'1000',R11  SALESRPT,R12                                                                                 
+
+   Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2021/11/05 01.33            
+
+ 0008ED 4040404040404040             768           DC   55C' '                  SPACE                                                
+ 000924 E2C8C1D9C540D7D9             769           DC   C'SHARE PRICE: '        LABEL                                                
+ 000931 402021204B2020               770 OSHRPRC   DC   X'402021204B2020'       SHARE PRICE FIELD                                    
+ 000938 4040404040404040             771           DC   57C' '                  SPACE                                                
+                                     772 *                                                                                           
+ 000971 F0                           773 RECORDS   DC    C'0'                                                                        
+ 000972                              774 OBRNCNME  DS    CL25         BRANCH NAME                                                    
+ 00098B 4040404040404040             775           DC    8C' '        SPACE                                                          
+ 000993                              776 OBRKRNME  DS    CL25         BROKER NAME                                                    
+ 0009AC 4040404040404040             777           DC    8C' '        SPACE                                                          
+ 0009B4                              778 ODEPAMT   DS    CL15         DEPOSIT AMOUNT                                                 
+ 0009C3 4040404040404040             779           DC    12C' '       SPACE                                                          
+ 0009CF                              780 OSHRAMT   DS    CL15         SHARE AMOUNT                                                   
+ 0009DE 4040404040404040             781           DC    9C' '        SPACE                                                          
+ 0009E7                              782 OCOMMANT  DS    CL15         COMM AMOUNT                                                    
+                                     783 *                                                                                           
+ 0009F6 F0                           784 COLUMN1   DC   C'0'                                                                         
+ 0009F7 C2D9C1D5C3C840D5             785           DC   C'BRANCH NAME'          LABEL                                                
+ 000A02 4040404040404040             786           DC   22C' '                  SPACE                                                
+ 000A18 C2D9D6D2C5D940D5             787           DC   C'BROKER NAME'          LABEL                                                
+ 000A23 4040404040404040             788           DC   25C' '                  SPACE                                                
+ 000A3C E2C1D3C5E240C1D4             789           DC   C'SALES AMOUNT'         LABEL                                                
+ 000A48 4040404040404040             790           DC   15C' '                  SPACE                                                
+ 000A57 E2C8C1D9C540C1D4             791           DC   C'SHARE AMOUNT'         LABEL                                                
+ 000A63 4040404040404040             792           DC   14C' '                  SPACE                                                
+ 000A71 C3D6D4D4C9E2E2C9             793           DC   C'COMMISSION'           LABEL                                                
+                                     794 *                                                                                           
+ 000A7B 40                           795 HYPHEN1   DC   C' '                                                                         
+ 000A7C 6060606060606060             796           DC   25C'-'                  HYPHEN                                               
+ 000A95 4040404040404040             797           DC   8C' '                   SPACE                                                
+ 000A9D 6060606060606060             798           DC   25C'-'                  REPEAT                                               
+ 000AB6 4040404040404040             799           DC   8C' '                                                                        
+ 000ABE 6060606060606060             800           DC   15C'-'                                                                       
+ 000ACD 4040404040404040             801           DC   8C' '                                                                        
+ 000AD5 6060606060606060             802           DC   19C'-'                                                                       
+ 000AE8 4040404040404040             803           DC   9C' '                                                                        
+ 000AF1 6060606060606060             804           DC   15C'-'                                                                       
+                                     805 *                                                                                           
+ 000B00 F0                           806 COLUMN2   DC   C'0'                                                                         
+ 000B01 4040404040404040             807           DC   39C' '                  SPACE                                                
+ 000B28 D5E4D4C2C5D940D6             808           DC   C'NUMBER OF SALES'      LABEL                                                
+ 000B37 4040404040404040             809           DC   9C' '                   SPACE                                                
+ 000B40 E3D6E3C1D340E2C1             810           DC   C'TOTAL SALES AMOUNT'   LABEL                                                
+ 000B52 4040404040404040             811           DC   9C' '                   SPACE                                                
+ 000B5B E3D6E3C1D340E2C8             812           DC   C'TOTAL SHARE AMOUNT'   LABEL                                                
+ 000B6D 4040404040404040             813           DC   8C' '                   SPACE                                                
+ 000B75 E3D6E3C1D340C3D6             814           DC   C'TOTAL COMMISSION'     LABEL                                                
+                                     815 *                                                                                           
+ 000B85 F0                           816 COLUMN3   DC   C'0'                                                                         
+ 000B86 4040404040404040             817           DC   40C' '                            SPACE                                      
+ 000BAE C8C9C7C840E2C1D3             818           DC   C'HIGH SALES BROKER NAME'         LABEL                                      
+ 000BC4 4040404040404040             819           DC   10C' '                            SPACE                                      
+ 000BCE C8C9C7C840E2C1D3             820           DC   C'HIGH SALES SHARE AMOUNT'        LABEL                                      
+ 000BE5 4040404040404040             821           DC   37C' '                            SPACE                                      
+                                     822 *                                                                                           
+
+                                                                                                                Page   12            
+   Active Usings: SALESRPT+X'1000',R11  SALESRPT,R12                                                                                 
+
+   Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2021/11/05 01.33            
+
+ 000C0A F0                           823 COLUMN4   DC   C'0'                                                                         
+ 000C0B 4040404040404040             824           DC   34C' '                            SPACE                                      
+ 000C2D D5E4D4C2C5D940D6             825           DC   C'NUMBER OF HIGH SALES BROKERS'   LABEL                                      
+ 000C49 40404040                     826           DC   4C' '                             SPACE                                      
+ 000C4D E3D6E3C1D340C8C9             827           DC   C'TOTAL HIGH SALES SHARE AMOUNT'  LABEL                                      
+ 000C6A 4040404040404040             828           DC   37C' '                            SPACE                                      
+                                     829 *                                                                                           
+ 000C8F 40                           830 HYPHEN2   DC   C' '                                                                         
+ 000C90 4040404040404040             831           DC   39C' '        SPACE                                                          
+ 000CB7 6060606060606060             832           DC   15C'-'        HYPHEN                                                         
+ 000CC6 4040404040404040             833           DC   9C' '         REPEAT                                                         
+ 000CCF 6060606060606060             834           DC   18C'-'                                                                       
+ 000CE1 4040404040                   835           DC   5C' '                                                                        
+ 000CE6 6060606060606060             836           DC   22C'-'                                                                       
+ 000CFC 404040404040                 837           DC   6C' '                                                                        
+ 000D02 6060606060606060             838           DC   18C'-'                                                                       
+                                     839 *                                                                                           
+ 000D14 40                           840 HYPHEN3   DC   C' '                                                                         
+ 000D15 4040404040404040             841           DC   37C' '        SPACE                                                          
+ 000D3A 6060606060606060             842           DC   25C'-'        HYPHEN                                                         
+ 000D53 4040404040404040             843           DC   10C' '        REPEAT                                                         
+ 000D5D 6060606060606060             844           DC   23C'-'                                                                       
+ 000D74 4040404040404040             845           DC   37C' '                                                                       
+                                     846 *                                                                                           
+ 000D99 40                           847 HYPHEN4   DC   C' '                                                                         
+ 000D9A 4040404040404040             848           DC   34C' '        SPACE                                                          
+ 000DBC 6060606060606060             849           DC   28C'-'        HYPHEN                                                         
+ 000DD8 40404040                     850           DC   4C' '         REPEAT                                                         
+ 000DDC 6060606060606060             851           DC   29C'-'                                                                       
+ 000DF9 4040404040404040             852           DC   37C' '                                                                       
+                                     853 *                                                                                           
+ 000E1E 40                           854 HEADER2   DC   C' '                                                                         
+ 000E1F                              855 OTIME     DS   CL5           TIME                                                           
+ 000E24 40                           856           DC   1C' '         SPACE                                                          
+ 000E25                              857 OAPPM     DS   CL2           PM/AM LABEL                                                    
+ 000E27 4040404040404040             858           DC   35C' '        SPACE                                                          
+ 000E4A                              859 ORLABLE   DS   CL42          REPORT LABEL                                                   
+ 000E74 4040404040404040             860           DC   47C' '        SPACE                                                          
+                                     861 *                                                                                           
+                                     862 *                                                                                           
+ 000EA3 F0                           863 OHSRPT    DC   C'0'                                                                         
+ 000EA4 4040404040404040             864           DC   37C' '        SPACE                                                          
+ 000EC9                              865 OHBRNME   DS   CL25          BROKER NAME                                                    
+ 000EE2 4040404040404040             866           DC   18C' '        SPACE                                                          
+ 000EF4                              867 OHSHRAMT  DS   CL15          SHARE AMOUNT                                                   
+ 000F03 4040404040404040             868           DC   37C' '        SPACE                                                          
+                                     869 *                                                                                           
+ 000F28 F0                           870 TOTALS    DC   C'0'                                                                         
+ 000F29 4040404040404040             871           DC   51C' '        SPACE                                                          
+ 000F5C 202020                       872 OSCTR     DC   X'202020'     SLAE COUNTER                                                   
+ 000F5F 4040404040404040             873           DC   9C' '         SPACE                                                          
+ 000F68                              874 OTDEPAMT  DS   CL18          TOTAL DEPOSIT AMOUNT                                           
+ 000F7A 40404040404040               875           DC   7C' '         SPACE                                                          
+ 000F81                              876 OTSHRAMT  DS   CL20          TOTAL SHARE AMOUNT                                             
+ 000F95 404040404040                 877           DC   6C' '         SPACE                                                          
+
+                                                                                                                Page   13            
+   Active Usings: SALESRPT+X'1000',R11  SALESRPT,R12                                                                                 
+
+   Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2021/11/05 01.33            
+
+ 000F9B                              878 OTCOMAMT  DS   CL18          TOTAL COMMISION AMOUNT                                         
+                                     879 *                                                                                           
+ 000FAD 40                           880 HSTOTAL   DC   C' '                                                                         
+ 000FAE 4040404040404040             881           DC   58C' '        SPACE                                                          
+ 000FE8                              882 OHSOSCTR  DS   CL4           RECORD COUNT                                                   
+ 000FEC 4040404040404040             883           DC   13C' '        SPACE                                                          
+ 000FF9                              884 OHSTSHRS  DS   CL20          TOTAL SHARE AMOUNT                                             
+ 00100D 4040404040404040             885           DC   37C' '        SPACE                                                          
+
+                                     887 *                                                                                           
+ 001032 00                           888          DC    X'00'                                                                        
+ 001034                              889 DATETIME DS    4F            DATE MACRO FULL WORD                                           
+                                     890 *                                                                                           
+                                     891 *                                                                                           
+                                     892 *  INPUT DCB                                                                                
+                                     893 *                                                                                           
+                                     894 INDCB    DCB   DDNAME=SALERPT,                                         X                    
+                                                        DEVD=DA,                                                X                    
+                                                        DSORG=PS,                                               X                    
+                                                        MACRF=GL,                                               X                    
+                                                        RECFM=FB,                                               X                    
+                                                        LRECL=80,                                               X                    
+ 001044 0000000000000000                                EODAD=EOFRTN                                                                 
+                                     936 *                                                                                           
+                                     937 *  INPUT DCB'S EOF FLAG AND EOF ROUTINE                                                     
+                                     938 *                                                                                           
+ 0010A4 D5                           939 EOFFLAG  DC    C'N'                 EOFFLAG FOR INPUT FILE                                  
+                                     940 *                                                                                           
+ 0010A5 00                                                                                                                           
+ 0010A6 92E8 B0A4      010A4         941 EOFRTN   MVI   EOFFLAG,C'Y'          SET EOF FLAG TO Y                                      
+ 0010AA 07FE                         942          BR    14                    BRANCH TO STMT FOLLOWING GET                           
+                                     943 *                                                                                           
+                                     944 *  INPUT DCB                                                                                
+                                     945 *                                                                                           
+                                     946 HSDCB     DCB  DDNAME=HSSALE,                                          X                    
+                                                        DEVD=DA,                                                X                    
+                                                        DSORG=PS,                                               X                    
+                                                        MACRF=(GM,PM),                                          X                    
+                                                        RECFM=FB,                                               X                    
+                                                        LRECL=33,                                               X                    
+ 0010AC 0000000000000000                                EODAD=EOFRTN2                                                                
+                                     988 *                                                                                           
+ 00110C D5                           989 EOFFLAG2 DC    C'N'                 EOFFLAG FOR INPUT FILE                                  
+                                     990 *                                                                                           
+ 00110D 00                                                                                                                           
+ 00110E 92E8 B10C      0110C         991 EOFRTN2  MVI   EOFFLAG2,C'Y'         SET EOF FLAG TO Y                                      
+ 001112 07FE                         992          BR    14                    BRANCH TO STMT FOLLOWING GET                           
+                                     993 *                                                                                           
+                                     994 *  OUTPUT DCB                                                                               
+                                     995 *                                                                                           
+                                     996 RPTDCB   DCB   DDNAME=RPTDATA,                                         X                    
+                                                        DEVD=DA,                                                X                    
+                                                        DSORG=PS,                                               X                    
+                                                        MACRF=PL,                                               X                    
+                                                        RECFM=FBA,                                              X                    
+
+                                                                                                                Page   14            
+   Active Usings: SALESRPT+X'1000',R11  SALESRPT,R12                                                                                 
+
+   Loc  Object Code    Addr1 Addr2  Stmt   Source Statement                                  HLASM R6.0  2021/11/05 01.33            
+
+                                                        LRECL=133,                                              X                    
+ 001114 0000000000000000                                BLKSIZE=2660                                                                 
+                                    1038 *                                                                                           
+                                    1039 *                                                                                           
+                                    1040 *  OUTPUT DCB                                                                               
+                                    1041 *                                                                                           
+                                    1042 HSRDCB   DCB   DDNAME=HSRPT,                                           X                    
+                                                        DEVD=DA,                                                X                    
+                                                        DSORG=PS,                                               X                    
+                                                        MACRF=PL,                                               X                    
+                                                        RECFM=FBA,                                              X                    
+                                                        LRECL=133,                                              X                    
+ 001174 0000000000000000                                BLKSIZE=2660                                                                 
+                                    1084 *                                                                                           
+ 000000                             1085          END   SALESRPT                                                                     
+
+                                                  Relocation Dictionary                                         Page   15            
+
+
+    Pos.Id   Rel.Id   Address  Type    Length  Action                                        HLASM R6.0  2021/11/05 01.33            
+
+   00000001 00000001 000000D9   A         3       +                                                                                  
+   00000001 00000001 000000F9   A         3       +                                                                                  
+   00000001 00000001 00000119   A         3       +                                                                                  
+   00000001 00000001 000003F5   A         3       +                                                                                  
+   00000001 00000001 000003F9   A         3       +                                                                                  
+   00000001 00000001 000003FD   A         3       +                                                                                  
+   00000001 00000001 00000409   A         3       +                                                                                  
+   00000001 00000001 00000429   A         3       +                                                                                  
+   00000001 00000001 000005F9   A         3       +                                                                                  
+   00000001 00000001 000005FD   A         3       +                                                                                  
+   00000001 00000001 00001065   A         3       +                                                                                  
+   00000001 00000001 000010CD   A         3       +                                                                                  
+
+                                Ordinary Symbol and Literal Cross Reference                                     Page   16            
+
+
+ Symbol   Length   Value     Id    R Type Asm  Program   Defn References                     HLASM R6.0  2021/11/05 01.33            
+
+ $IBRKNME     25 00000019 FFFFFFFE     C  C                30  273   294                                                             
+ $IBRNNME     25 00000000 FFFFFFFE     C  C                29  272                                                                   
+ $ICOMFLG      1 00000040 FFFFFFFE     Z  Z                33  276                                                                   
+ $ICOMPT1      6 00000028 FFFFFFFF     Z  Z                24  186                                                                   
+ $ICOMPT2      6 0000002E FFFFFFFF     Z  Z                25  187                                                                   
+ $ICOMPT3      6 00000034 FFFFFFFF     Z  Z                26  188                                                                   
+ $IDEPAMT     11 00000032 FFFFFFFE     Z  Z                31  274                                                                   
+ $IFNDNME     35 00000005 FFFFFFFF     C  C                23  185                                                                   
+ $IHSBKNME                                                                                                                           
+              25 00000000 FFFFFFFD     C  C                36  579                                                                   
+ $IHSSHAR      8 00000019 FFFFFFFD     P  P                37  580                                                                   
+ $INHSSR       1 00000000 FFFFFFFD     J                   35  497U                                                                  
+ $INPUTFR      1 00000000 FFFFFFFF     J                   21  181U                                                                  
+ $INPUTSR      1 00000000 FFFFFFFE     J                   28  196U                                                                  
+ $ISHRPRC      5 00000000 FFFFFFFF     Z  Z                22  184                                                                   
+ AM            2 0000070C 00000001     C  C               726   91                                                                   
+ BUFF          1 00000806 00000001     C  C               750  503   603                                                             
+ COLUMN1       1 000009F6 00000001     C  C               784  255                                                                   
+ COLUMN2       1 00000B00 00000001     C  C               806  422                                                                   
+ COLUMN3       1 00000B85 00000001     C  C               816  561                                                                   
+ COLUMN4       1 00000C0A 00000001     C  C               823  661                                                                   
+ COM1          2 000002B6 00000001     H  H               320  314B                                                                  
+ COM2          6 000002A2 00000001     I                  313  307B                                                                  
+ COM3          6 0000028E 00000001     I                  306  292B                                                                  
+ DATETIME      4 00001034 00000001     F  F               889   74    78   110                                                       
+ ENDCOM        2 000002C0 00000001     H  H               326  311B  318B  324B                                                      
+ ENDHEADR      2 00000208 00000001     H  H               270  212B  268B                                                            
+ ENDHEADR2                                                                                                                           
+               2 000004F6 00000001     H  H               576  519B  574B                                                            
+ ENDLOOP1      6 00000324 00000001     I                  365  209B                                                                  
+ ENDLOOP2      2 0000054C 00000001     H  H               611  516B                                                                  
+ EOFFLAG       1 000010A4 00000001     C  C               939  207   941M                                                            
+ EOFFLAG2      1 0000110C 00000001     C  C               989  515   991M                                                            
+ EOFRTN        4 000010A6 00000001     I                  941  911                                                                   
+ EOFRTN2       4 0000110E 00000001     I                  991  963                                                                   
+ FUNDNME      35 00000898 00000001     C  C               763  185M                                                                  
+ HEADER1       1 00000867 00000001     C  C               760  109M  110M  111M  214M  228   368M  395   521M  534   615M            
+                                                               627                                                                   
+ HEADER2       1 00000E1E 00000001     C  C               854  108M  237   404   543   636                                           
+ HEADER3       1 000008EC 00000001     C  C               767  246   413   552   645                                                 
+ HSDCB         4 000010AC 00000001     F  F               951  138   300   450   460   502   602   687                               
+ HSRDCB        4 00001174 00000001     F  F              1047  480   530   539   548   557   566   590   623   632   641             
+                                                               657   666   675   689                                                 
+ HSSHRAMT      8 00000848 00000001     P  P               755  580M  581M  583   584                                                 
+ HSTOTAL       1 00000FAD 00000001     C  C               880  679                                                                   
+ HSTSAMT      13 00000850 00000001     P  P               756  584M  649M  651                                                       
+ HYPHEN1       1 00000A7B 00000001     C  C               795  264                                                                   
+ HYPHEN2       1 00000C8F 00000001     C  C               830  431                                                                   
+ HYPHEN3       1 00000D14 00000001     C  C               840  570                                                                   
+ HYPHEN4       1 00000D99 00000001     C  C               847  670                                                                   
+ IHB0001D      4 0000002C 00000001     F  F                60   58                                                                   
+ IHB0001W      2 00000048 00000001     H  H                67   59B                                                                  
+ IHSHR         8 00000840 00000001     P  P               753  295M                                                                  
+ IHSNME       25 00000827 00000001     C  C               752  294M  301                                                             
+ INDCB         4 00001044 00000001     F  F               899  118   177   201   357   448                                           
+
+                                Ordinary Symbol and Literal Cross Reference                                     Page   17            
+
+
+ Symbol   Length   Value     Id    R Type Asm  Program   Defn References                     HLASM R6.0  2021/11/05 01.33            
+
+ LABEL1       42 00000710 00000001     C  C               730  218                                                                   
+ LABEL2       42 0000073A 00000001     C  C               731  367                                                                   
+ LABEL3       42 00000764 00000001     C  C               732  513                                                                   
+ LABEL4       42 0000078E 00000001     C  C               733  613                                                                   
+ LOOP1         4 0000017A 00000001     I                  207  363B                                                                  
+ LOOP2         4 0000046E 00000001     I                  515  609B                                                                  
+ OAPPM         2 00000E25 00000001     C  C               857   85M   91M                                                            
+ OBRKRNME     25 00000993 00000001     C  C               776  273M                                                                  
+ OBRNCNME     25 00000972 00000001     C  C               774  272M                                                                  
+ OCOMMANT     15 000009E7 00000001     C  C               782  333M  334M                                                            
+ ODEPAMT      15 000009B4 00000001     C  C               778  277M  278M                                                            
+ OHBRNME      25 00000EC9 00000001     C  C               865  579M                                                                  
+ OHSHRAMT     15 00000EF4 00000001     C  C               867  582M  583M                                                            
+ OHSOSCTR      4 00000FE8 00000001     C  C               882  647M  648M                                                            
+ OHSRPT        1 00000EA3 00000001     C  C               863  594                                                                   
+ OHSTSHRS     20 00000FF9 00000001     C  C               884  650M  651M                                                            
+ OPENOK1       4 000000F4 00000001     I                  136  121B                                                                  
+ OPENOK2       4 00000114 00000001     I                  156  141B                                                                  
+ OPENOK3       4 00000134 00000001     I                  177  161B                                                                  
+ OPENOK4       4 00000424 00000001     I                  478  463B                                                                  
+ OPENOK5       2 00000444 00000001     H  H               495  483B                                                                  
+ ORLABLE      42 00000E4A 00000001     C  C               859  218M  367M  513M  613M                                                
+ OSCTR         3 00000F5C 00000001     X  X               872  365M                                                                  
+ OSHRAMT      15 000009CF 00000001     C  C               780  287M  288M                                                            
+ OSHRPRC       7 00000931 00000001     X  X               770  190M                                                                  
+ OTCOMAMT     18 00000F9B 00000001     C  C               878  381M  383M                                                            
+ OTDEPAMT     18 00000F68 00000001     C  C               874  372M  373M                                                            
+ OTIME         5 00000E1F 00000001     C  C               855  106M  107M                                                            
+ OTSHRAMT     20 00000F81 00000001     C  C               876  378M  379M                                                            
+ PAGE          4 000008E8 00000001     C  C               765  216M  217M  370M  371M  523M  524M  616M  617M                        
+ PCALC        10 0000085D 00000001     P  P               758  328M  329M  330                                                       
+ PCOMMANT      8 000007F4 00000001     P  P               747  330M  331M  332M  334   338                                           
+ PCOMPCT1      4 000007C0 00000001     P  P               739  186M  322                                                             
+ PCOMPCT2      4 000007C4 00000001     P  P               740  187M  316                                                             
+ PCOMPCT3      4 000007C8 00000001     P  P               741  188M  309                                                             
+ PDEPAMT       6 000007D0 00000001     P  P               743  274M  275   278   282   328                                           
+ PFLAG         1 000007BA 00000001     P  P               736  276M  306   313                                                       
+ PM            2 0000070E 00000001     C  C               727   85                                                                   
+ PPAGECTR      2 000007BB 00000001     P  P               737  215M  217   369M  371   511M  522M  524   614M  617                   
+ PSALECTR      2 000007B8 00000001     P  P               735  339M  365   512M  512   578M  648                                     
+ PSHRAMT      10 000007DD 00000001     P  P               745  282M  283M  284M  285M  286M  288   289   291   295                   
+ PSHRPRC       3 000007BD 00000001     P  P               738  184M  190   284                                                       
+ PTCOMAMT     10 000007FC 00000001     P  P               748  338M  382M  383                                                       
+ PTCOMPCT      4 000007CC 00000001     P  P               742  309M  316M  322M  329                                                 
+ PTDEPAMT      7 000007D6 00000001     P  P               744  275M  373                                                             
+ PTSHRAMT     13 000007E7 00000001     P  P               746  289M  376M  379                                                       
+ RECORDS       1 00000971 00000001     C  C               773  351                                                                   
+ REGS          4 000006C0 00000001     F  F               723   44                                                                   
+ RPTDCB        4 00001114 00000001     F  F              1001  158   224   233   242   251   260   347   391   400   409             
+                                                               418   427   436   452                                                 
+ SALESRPT      1 00000000 00000001     J                   39   43U   51U  718   718  1085                                           
+ SETAM         6 00000094 00000001     I                   91   83B                                                                  
+ SETPM         6 00000080 00000001     I                   85   81B                                                                  
+ TIME          4 00000708 00000001     F  F               725   78M   79    88M  100M  107                                           
+ TIMEEND       2 000000B4 00000001     H  H               104   89B   95B  102B                                                      
+
+                                Ordinary Symbol and Literal Cross Reference                                     Page   18            
+
+
+ Symbol   Length   Value     Id    R Type Asm  Program   Defn References                     HLASM R6.0  2021/11/05 01.33            
+
+ TOTALS        1 00000F28 00000001     C  C               870  440                                                                   
+ TWELADD       2 000000A6 00000001     H  H                97   93B                                                                  
+ =C'PAGE:'                                                                                                                           
+               5 00000667 00000001     C                  710  214   368   521   615                                                 
+ =F'18'        4 00000630 00000001     F                  704  211   518                                                             
+ =PL1'1'       1 0000066C 00000001     P                  711  215   339   369   522   578   614                                     
+ =PL1'2'       1 00000693 00000001     P                  716  313                                                                   
+ =PL1'3'       1 00000692 00000001     P                  715  306                                                                   
+ =PL2'0'       2 0000065E 00000001     P                  708  511                                                                   
+ =PL7'150000000000'                                                                                                                  
+               7 0000068B 00000001     P                  714  291                                                                   
+ =X'01000000'                                                                                                                        
+               4 00000620 00000001     X                  702   92                                                                   
+ =X'12000000'                                                                                                                        
+               4 0000061C 00000001     X                  701   86    98                                                             
+ =X'12999999'                                                                                                                        
+               4 00000618 00000001     X                  700   80                                                                   
+ =X'202120206120206120202020'                                                                                                        
+              12 00000624 00000001     X                  703  109                                                                   
+ =X'202120207A2020'                                                                                                                  
+               7 00000660 00000001     X                  709  106                                                                   
+ =X'402020206B2020206B2021204B2020'                                                                                                  
+              15 0000066D 00000001     X                  712  277   333                                                             
+ =X'4020206B2020206B2020206B2021204B2020'                                                                                            
+              18 0000064C 00000001     X                  707  372   381                                                             
+ =X'4020206B2020206B2020206B2021204B20202020'                                                                                        
+              20 00000638 00000001     X                  706  378   650                                                             
+ =X'40202120'                                                                                                                        
+               4 00000634 00000001     X                  705  216   370   523   616   647                                           
+ =X'40206B2020206B2021204B20202020'                                                                                                  
+              15 0000067C 00000001     X                  713  287   582                                                             
+
+                                   Unreferenced Symbols Defined in CSECTs                                       Page   19            
+
+
+   Defn  Symbol                                                                              HLASM R6.0  2021/11/05 01.33            
+
+    212  HDRLOOP                                                                                                                     
+    519  HDRLOOP2                                                                                                                    
+    761  ODATE                                                                                                                       
+
+                                           Macro and Copy Code Source Summary                                   Page   20            
+
+
+  Con Source                                        Volume    Members                        HLASM R6.0  2021/11/05 01.33            
+
+   L1 SYS1.MACLIB                                   VTMVSC    ABEND    CLOSE    DCB      GET      IHBINNRA IHBINNRR                  
+                                                              IHB01    OPEN     PUT      SYSSTATE TIME                               
+
+                                                 Dsect Cross Reference                                          Page   21            
+
+
+ Dsect     Length      Id       Defn                                                         HLASM R6.0  2021/11/05 01.33            
+
+ $INHSSR  00000021  FFFFFFFD      35                                                                                                 
+ $INPUTFR 0000003A  FFFFFFFF      21                                                                                                 
+ $INPUTSR 00000041  FFFFFFFE      28                                                                                                 
+
+                                                       Using Map                                                Page   22            
+
+
+                                                                                             HLASM R6.0  2021/11/05 01.33            
+   Stmt  -----Location----- Action ----------------Using----------------- Reg Max     Last Label and Using Text                      
+           Count      Id           Type          Value    Range     Id        Disp    Stmt                                           
+
+     43  00000006  00000001 USING  ORDINARY    00000000 00001000 00000001  12 00FF9    685 SALESRPT,12                               
+     51  0000001E  00000001 USING  ORDINARY    00001000 00001000 00000001  11 00174    991 SALESRPT+4096,11                          
+    181  00000140  00000001 USING  ORDINARY    00000000 00001000 FFFFFFFF   9 00034    188 $INPUTFR,9                                
+    194  0000016C  00000001 DROP                                            9              9                                         
+    196  0000016C  00000001 USING  ORDINARY    00000000 00001000 FFFFFFFE   9 00040    294 $INPUTSR,9                                
+    442  000003F0  00000001 DROP                                            9              9                                         
+    497  00000444  00000001 USING  ORDINARY    00000000 00001000 FFFFFFFD   9 00019    580 $INHSSR,9                                 
+    681  000005F4  00000001 DROP                                            9              9                                         
+
+                                    General Purpose Register Cross Reference                                    Page   23            
+
+
+  Register  References (M=modified, B=branch, U=USING, D=DROP, N=index)                      HLASM R6.0  2021/11/05 01.33            
+
+     0(0)      41   128M  129M  130   148M  149M  150   168M  169M  170   301M  470M  471M  472   490M  491M  492   503M             
+              603M  695M                                                                                                             
+     1(1)      41    57M   58M   68    69    75   116M  127M  130M  136M  147M  150M  156M  167M  170M  177M  179   182              
+              190M  191M  192   201M  203   205   224M  226   228   233M  235   237   242M  244   246   251M  253   255              
+              260M  262   264   278M  279M  280   300M  303   334M  335M  336   347M  349   351   357M  359   361   373M             
+              374M  375   383M  384M  385   391M  393   395   400M  402   404   409M  411   413   418M  420   422   427M             
+              429   431   436M  438   440   446M  458M  469M  472M  478M  489M  492M  502M  505   507   530M  532   534              
+              539M  541   543   548M  550   552   557M  559   561   566M  568   570   590M  592   594   602M  605   607              
+              623M  625   627   632M  634   636   641M  643   645   657M  659   661   666M  668   670   675M  677   679              
+              685M  695M                                                                                                             
+     2(2)      41   695M                                                                                                             
+     3(3)      41    73M  695M                                                                                                       
+     4(4)      41    73M  695M                                                                                                       
+     5(5)      41   695M                                                                                                             
+     6(6)      41    79M   80    87M   88    92    99M  100   695M                                                                   
+     7(7)      41    48M   48   211   266M  266   341M  341   509M  509   510M  518   572M  572   596M  596   695M                   
+     8(8)      41   695M                                                                                                             
+     9(9)      41    86M   87    98M   99   181U  182M  194D  196U  205M  361M  442D  497U  507M  607M  681D  695M                   
+    10(A)      41   695M                                                                                                             
+    11(B)      41    49M   50M   50    51U  695M                                                                                     
+    12(C)      41    42M   43U   49   695M                                                                                           
+    13(D)      41    45    47M  693M  693   694   695                                                                                
+    14(E)      41    44M   45    46    46    47    70M   71M   71N   72M   72N   73    73M   74M   75   180M  204M  227M             
+              236M  245M  254M  263M  304M  350M  360M  394M  403M  412M  421M  430M  439M  506M  533M  542M  551M  560M             
+              569M  593M  606M  626M  635M  644M  660M  669M  678M  694M  697B  942B  992B                                           
+    15(F)      41    42   120M  120   140M  140   160M  160   178M  178   179M  180B  202M  202   203M  204B  225M  225              
+              226M  227B  234M  234   235M  236B  243M  243   244M  245B  252M  252   253M  254B  261M  261   262M  263B             
+              302M  302   303M  304B  348M  348   349M  350B  358M  358   359M  360B  392M  392   393M  394B  401M  401              
+              402M  403B  410M  410   411M  412B  419M  419   420M  421B  428M  428   429M  430B  437M  437   438M  439B             
+              462M  462   482M  482   504M  504   505M  506B  531M  531   532M  533B  540M  540   541M  542B  549M  549              
+              550M  551B  558M  558   559M  560B  567M  567   568M  569B  591M  591   592M  593B  604M  604   605M  606B             
+              624M  624   625M  626B  633M  633   634M  635B  642M  642   643M  644B  658M  658   659M  660B  667M  667              
+              668M  669B  676M  676   677M  678B  692M  692                                                                          
+
+                                   Diagnostic Cross Reference and Assembler Summary                             Page   24            
+
+
+                                                                                             HLASM R6.0  2021/11/05 01.33            
+
+ Statements Flagged                                                                                                                  
+
+     510(P1,281)                                                                                                                     
+                                                                                                                                     
+       1 Statement  Flagged in this Assembly        0 was Highest Severity Code                                                      
+
+ HIGH LEVEL ASSEMBLER, 5696-234, RELEASE 6.0, PTF UI68060                                                                            
+
+ SYSTEM: z/OS 02.04.00              JOBNAME: KC03BB6A    STEPNAME: JSTEP01    PROCSTEP: (NOPROC)                                     
+
+ Unicode Module:   ASMA047C   From Page     1148   To Page    17584           ECECP: International 1                                 
+ Data Sets Allocated for this Assembly                                                                                               
+  Con DDname   Data Set Name                                Volume  Member                                                           
+   P1 SYSIN    KC03BB6.KC03BB6A.JOB04625.D0000101.?                                                                                  
+   L1 SYSLIB   SYS1.MACLIB                                  VTMVSC                                                                   
+      SYSLIN   SYS21309.T013350.RA000.KC03BB6A.OBJECT.H01   TEMP00                                                                   
+      SYSPRINT KC03BB6.KC03BB6A.JOB04625.D0000102.?                                                                                  
+                                                                                                                                     
+   26744K allocated to Buffer Pool       Storage required     640K                                                                   
+     599 Primary Input Records Read         4269 Library Records Read                  0 Work File Reads                             
+       0 ASMAOPT Records Read                957 Primary Print Records Written         0 Work File Writes                            
+      93 Object Records Written                0 ADATA Records Written                                                               
+
+ Assembly Start Time: 01.33.51 Stop Time: 01.33.51 Processor Time: 00.00.00.0078                                                     
+ Return Code 000                                                                                                                     
+ !! END OF JES SPOOL FILE !!
+
+ z/OS V2 R4 BINDER     01:33:50 FRIDAY NOVEMBER  5, 2021                                                                 
+ BATCH EMULATOR  JOB(KC03BB6A) STEP(JSTEP02 ) PGM= HEWL                                                                  
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+                                 *** O P E R A T I O N   S U M M A R Y   R E P O R T ***                                 
+                                                                                                                         
+
+ PROCESSING OPTIONS:                                                                                                     
+                                                                                                                         
+    ALIASES             NO                                                                                               
+    ALIGN2              NO                                                                                               
+    AMODE               UNSPECIFIED                                                                                      
+    CALL                YES                                                                                              
+    CASE                UPPER                                                                                            
+    COMPAT              UNSPECIFIED                                                                                      
+    COMPRESS            AUTO                                                                                             
+    DCBS                NO                                                                                               
+    DYNAM               NO                                                                                               
+    EXTATTR             UNSPECIFIED                                                                                      
+    EXITS:              NONE                                                                                             
+    FILL                NONE                                                                                             
+    GID                 UNSPECIFIED                                                                                      
+    HOBSET              NO                                                                                               
+    INFO                NO                                                                                               
+    LET                 04                                                                                               
+    LINECT              060                                                                                              
+    LIST                SUMMARY                                                                                          
+    LISTPRIV            NO                                                                                               
+    LONGPARM            NO                                                                                               
+    MAP                 NO                                                                                               
+    MAXBLK              032760                                                                                           
+    MODMAP              NO                                                                                               
+    MSGLEVEL            00                                                                                               
+    OVLY                NO                                                                                               
+    PRINT               YES                                                                                              
+    RES                 NO                                                                                               
+    REUSABILITY         UNSPECIFIED                                                                                      
+    RMODE               UNSPECIFIED                                                                                      
+    RMODEX              NO                                                                                               
+    SIGN                NO                                                                                               
+    STORENX             NOREPLACE                                                                                        
+    STRIPCL             NO                                                                                               
+    STRIPSEC            NO                                                                                               
+    SYMTRACE                                                                                                             
+    TERM                NO                                                                                               
+    TRAP                ON                                                                                               
+    UID                 UNSPECIFIED                                                                                      
+    UPCASE              NO                                                                                               
+    WKSPACE             000000K,000000K                                                                                  
+    XCAL                NO                                                                                               
+    XREF                NO                                                                                               
+    ***END OF OPTIONS***                                                                                                 
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+
+ SAVE OPERATION SUMMARY:                                                                                                 
+                                                                                                                         
+    MEMBER NAME         SALESRPT                                                                                         
+    LOAD LIBRARY        KC03BB6.CSCI465.LOADLIB                                                                          
+    PROGRAM TYPE        PROGRAM OBJECT(FORMAT 2)                                                                         
+    VOLUME SERIAL       KCTR36                                                                                           
+    DISPOSITION         REPLACED                                                                                         
+    TIME OF SAVE        01.33.51  NOV  5, 2021                                                                           
+                                                                                                                         
+                                                                                                                         
+
+ SAVE MODULE ATTRIBUTES:                                                                                                 
+                                                                                                                         
+    AC                  000                                                                                              
+    AMODE                24                                                                                              
+    COMPRESSION         NONE                                                                                             
+    DC                  NO                                                                                               
+    EDITABLE            YES                                                                                              
+    EXCEEDS 16MB        NO                                                                                               
+    EXECUTABLE          YES                                                                                              
+    LONGPARM            NO                                                                                               
+    MIGRATABLE          YES                                                                                              
+    OL                  NO                                                                                               
+    OVLY                NO                                                                                               
+    PACK,PRIME          NO,NO                                                                                            
+    PAGE ALIGN          NO                                                                                               
+    REFR                NO                                                                                               
+    RENT                NO                                                                                               
+    REUS                NO                                                                                               
+    RMODE                24                                                                                              
+    SCTR                NO                                                                                               
+    SIGN                NO                                                                                               
+    SSI                                                                                                                  
+    SYM GENERATED       NO                                                                                               
+    TEST                NO                                                                                               
+    XPLINK              NO                                                                                               
+    MODULE SIZE (HEX)   000011D8                                                                                         
+    DASD SIZE (HEX)     00002000                                                                                         
+                                                                                                                         
+                                                                                                                         
+
+  ENTRY POINT AND ALIAS SUMMARY:                                                                                         
+                                                                                                                         
+  NAME:            ENTRY TYPE AMODE C_OFFSET CLASS NAME        STATUS                                                    
+                                                                                                                         
+  SALESRPT          MAIN_EP      24 00000000 B_TEXT                                                                      
+                                                                                                                         
+                          *** E N D   O F   O P E R A T I O N   S U M M A R Y   R E P O R T ***                          
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+
+ z/OS V2 R4 BINDER     01:33:50 FRIDAY NOVEMBER  5, 2021                                                                 
+ BATCH EMULATOR  JOB(KC03BB6A) STEP(JSTEP02 ) PGM= HEWL                                                                  
+ IEW2008I 0F03 PROCESSING COMPLETED.  RETURN CODE =  0.                                                                  
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+
+ ----------------------                                                                                                  
+ MESSAGE SUMMARY REPORT                                                                                                  
+ ----------------------                                                                                                  
+  TERMINAL MESSAGES      (SEVERITY = 16)                                                                                 
+  NONE                                                                                                                   
+                                                                                                                         
+  SEVERE MESSAGES        (SEVERITY = 12)                                                                                 
+  NONE                                                                                                                   
+                                                                                                                         
+  ERROR MESSAGES         (SEVERITY = 08)                                                                                 
+  NONE                                                                                                                   
+                                                                                                                         
+  WARNING MESSAGES       (SEVERITY = 04)                                                                                 
+  NONE                                                                                                                   
+                                                                                                                         
+  INFORMATIONAL MESSAGES (SEVERITY = 00)                                                                                 
+  2008                                                                                                                   
+                                                                                                                         
+                                                                                                                         
+  **** END OF MESSAGE SUMMARY REPORT ****                                                                                
+                                                                                                                         
+ !! END OF JES SPOOL FILE !!
+
+ 11/05/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   1
+ 01:33 AM                                        BROKER SALES AND COMMISSIONS REPORT                                                 
+
+                                                        SHARE PRICE:  $12.93                                                         
+
+ BRANCH NAME                      BROKER NAME                         SALES AMOUNT               SHARE AMOUNT              COMMISSION
+ -------------------------        -------------------------        ---------------        -------------------         ---------------
+
+ Athens, Greece                   George Schipodokas                   $$11,247.10                   869.8450                    9.11
+
+ Athens, Greece                   Boodra Makedonas                      $37,047.10                 2,865.2050                  $48.90
+
+ Athens, Greece                   Aristotle Onassis                    $141,731.30                10,961.4310                 $114.80
+
+ Athens, Greece                   Maria Callas                         $154,015.20                11,911.4620                 $124.75
+
+ Athens, Greece                   Kostas Dalaras                        $77,406.80                 5,986.6050                  $62.69
+
+ Athens, Greece                   Peter Bogdonas                        $23,347.20                 1,805.6610                  $30.81
+
+ Berlin, Germany                  Erich Kleiber                        $936,184.80                72,404.0840                 $758.30
+
+ Berlin, Germany                  Wilhelm Furtwaengler               $7,166,149.40               554,226.5580               $5,804.58
+
+ Berlin, Germany                  Adolph Dege                          $808,213.50                62,506.8450               $1,066.84
+
+ Berlin, Germany                  Johannes Klopp                     $4,008,702.00               310,031.0900               $3,247.04
+
+ Berlin, Germany                  Eugen Jochum                      $99,999,999.90             7,733,952.0420              $51,999.99
+
+ Bonn, Germany                    Ludwig van Beethoven                  $40,612.10                 3,140.9200                  $53.60
+
+ Bonn, Germany                    Uwe Schmidt                        $2,074,303.90               160,425.6690               $2,738.08
+
+ Bonn, Germany                    Helga Dernesch                         $8,415.20                   650.8280                  $11.10
+
+ Bonn, Germany                    Richard Strauss                    $3,108,140.21               240,382.0730               $4,102.74
+
+ Chicago, U.S.                    Maurizio Damilano                 $40,000,810.27             3,093,643.4860              $20,800.42
+
+ Chicago, U.S.                    Chi Yen Weh                        $4,310,810.06               333,395.9830               $3,491.75
+
+ Chicago, U.S.                    Steve Peplowski                    $2,410,012.15               186,389.1840               $3,181.21
+
+ 11/05/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   2
+ 01:33 AM                                        BROKER SALES AND COMMISSIONS REPORT                                                 
+
+                                                        SHARE PRICE:  $12.93                                                         
+
+ BRANCH NAME                      BROKER NAME                         SALES AMOUNT               SHARE AMOUNT              COMMISSION
+ -------------------------        -------------------------        ---------------        -------------------         ---------------
+
+ Chicago, U.S.                    Michael Smith                      $3,140,812.24               242,908.9130               $2,544.05
+
+ Chicago, U.S.                    Charles Medley                     $3,104,812.33               240,124.6970               $2,514.89
+
+ Chicago, U.S.                    Risa Rogan                         $3,108,412.42               240,403.1260               $4,103.10
+
+ Chicago, U.S.                    Theodore Thomas                    $3,108,142.56               240,382.2550               $2,517.59
+
+ Chicago, U.S.                    Frederick Stock                    $3,108,124.67               240,380.8720               $2,517.58
+
+ Dublin, Ireland                  Billy O'Leary                      $3,108,214.26               240,387.8000               $4,102.84
+
+ Dublin, Ireland                  Anna Owen                          $3,310,831.45               256,058.1170               $4,370.29
+
+ Belfast, N. Ireland              Chet Manassas                        $512,234.10                39,615.9400                 $676.14
+
+ Belfast, N. Ireland              Shelley Mann                       $3,300,005.24               255,220.8230               $4,356.00
+
+ Belfast, N. Ireland              Philip Battenberg                     $31,116.05                 2,406.5000                  $41.07
+
+ Edinburgh, U.K.                  Billy Connolly                     $3,103,817.26               240,047.7390               $4,097.03
+
+ Edinburgh, U.K.                  Omar Sharif                        $3,108,311.27               240,395.3030               $4,102.97
+
+ Edinburgh, U.K.                  Julie Christie                     $3,108,131.24               240,381.3800               $4,102.73
+
+ Edinburgh, U.K.                  James Oxfordshire                  $3,108,113.23               240,379.9870               $4,102.70
+
+ Frankfurt, Germany               Johannes Dundor                    $4,606,410.52               356,257.5810               $6,080.46
+
+ Frankfurt, Germany               Gretel Decker                      $1,807,640.81               139,802.0730               $2,386.08
+
+ Frankfurt, Germany               Adam Dieffenbach                   $6,068,254.17               469,315.8680               $4,915.28
+
+ Hong Kong, China                 Mao Zedong                         $6,086,271.26               470,709.3010               $4,929.87
+
+ 11/05/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   3
+ 01:33 AM                                        BROKER SALES AND COMMISSIONS REPORT                                                 
+
+                                                        SHARE PRICE:  $12.93                                                         
+
+ BRANCH NAME                      BROKER NAME                         SALES AMOUNT               SHARE AMOUNT              COMMISSION
+ -------------------------        -------------------------        ---------------        -------------------         ---------------
+
+ Hong Kong, China                 Zhou Enlai                         $6,082,661.25               470,430.1040               $4,926.95
+
+ Hong Kong, China                 Zhau Ziyang                        $6,982,761.24               540,043.4060               $9,217.24
+
+ Hong Kong, China                 Chiang Kai-shek                   $26,182,816.24             2,024,966.4530              $21,208.08
+
+ Hong Kong, China                 Gau-Yin Lau                          $608,291.23                47,044.9520                 $802.94
+
+ Hong Kong, China                 Stephanie Buckingham               $4,608,212.33               356,396.9320               $3,732.65
+
+ Hong Kong, China                 Simon Draper                       $6,408,212.32               495,608.0680               $8,458.84
+
+ Kansas City, U.S.                Geoffrey Decker                    $6,048,214.21               467,765.9870               $4,899.05
+
+ London, U.K.                     Elizabeth Windsor                  $7,144,923.58               552,584.9640               $9,431.29
+
+ London, U.K.                     Charles Windsor                    $2,179,162.07               168,535.3500               $1,765.12
+
+ London, U.K.                     Andrew Windsor                     $6,611,022.46               511,293.3070               $5,354.92
+
+ London, U.K.                     Michael Windsor                   $10,663,622.50               824,719.4510               $8,637.53
+
+ London, U.K.                     Phillip Windsor                    $1,166,416.19                90,210.0690               $1,539.66
+
+ London, U.K.                     William Windsor                    $2,216,617.29               171,432.1180               $2,925.93
+
+ Los Angeles, U.S.                William Mills                      $1,119,667.89                86,594.5780               $1,477.96
+
+ Los Angeles, U.S.                Catherine Monteiro                $99,999,999.95             7,733,952.0460             $131,999.99
+
+ Los Angeles, U.S.                Jason Landau                       $5,000,007.84               386,698.2090               $6,600.01
+
+ Los Angeles, U.S.                Trevor Pinnicle                    $1,500,000.03               116,009.2830               $1,980.00
+
+ Moscow, Russia                   Ivan Grozny                        $1,351,917.82               104,556.6760               $1,784.53
+
+ 11/05/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   4
+ 01:33 AM                                        BROKER SALES AND COMMISSIONS REPORT                                                 
+
+                                                        SHARE PRICE:  $12.93                                                         
+
+ BRANCH NAME                      BROKER NAME                         SALES AMOUNT               SHARE AMOUNT              COMMISSION
+ -------------------------        -------------------------        ---------------        -------------------         ---------------
+
+ Moscow, Russia                   Vladimir Ashkenazy                 $1,115,917.81                86,304.5480                 $903.89
+
+ Moscow, Russia                   Serge Rachmaninov                    $119,517.82                 9,243.4510                 $157.76
+
+ Moscow, Russia                   Vladimir Putin                     $1,019,157.72                78,821.1690               $1,345.28
+
+ Moscow, Russia                   Leonid Breshnev                      $113,336.34                 8,765.3780                  $91.80
+
+ Moscow, Russia                   Dmitri Shostakovich                $1,811,947.45               140,135.1470               $1,467.67
+
+ New York, U.S.                   Gary Graffman                      $1,181,917.86                91,408.9610                 $957.35
+
+ New York, U.S.                   Andre Previn                       $2,328,217.87               180,063.2540               $1,885.85
+
+ New York, U.S.                   Samuel Jefferson                     $999,899.98                77,331.7850               $1,319.86
+
+ New York, U.S.                   John Adams                         $1,119,787.84                86,603.8550                 $582.28
+
+ New York, U.S.                   Cheryl Studer                      $3,014,917.83               233,172.2990               $3,979.69
+
+ New York, U.S.                   Renee Fleming                      $3,311,217.86               256,088.0020               $2,682.08
+
+ New York, U.S.                   Birgit Nilsson                       $331,944.85                25,672.4560                 $438.16
+
+ New York, U.S.                   Christa Ludwig                     $1,133,917.44                87,696.6310                 $589.63
+
+ New York, U.S.                   James Conlon                         $999,399.98                77,293.1150               $1,319.20
+
+ New York, U.S.                   Leonard Bernstein                  $1,119,137.87                86,553.5860                 $906.50
+
+ Paris, France                    Napoleon Bonaparte                $10,073,093.06               779,048.1870              $13,296.48
+
+ Paris, France                    Claude Monet                      $30,012,518.65             2,321,153.8010              $39,616.52
+
+ Paris, France                    Olivier Messiaen                   $3,001,416.04               232,128.0770               $1,560.73
+
+ 11/05/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   5
+ 01:33 AM                                        BROKER SALES AND COMMISSIONS REPORT                                                 
+
+                                                        SHARE PRICE:  $12.93                                                         
+
+ BRANCH NAME                      BROKER NAME                         SALES AMOUNT               SHARE AMOUNT              COMMISSION
+ -------------------------        -------------------------        ---------------        -------------------         ---------------
+
+ Paris, France                    Claude Debussy                     $9,307,815.53               719,861.9900               $4,840.06
+
+ Paris, France                    Maurice Ravel                     $10,030,122.23               775,724.8440               $8,124.39
+
+ Paris, France                    Edith Piaf                         $2,633,403.34               203,666.1520               $2,133.05
+
+ Paris, France                    Coco Chanel                        $2,261,305.43               174,888.2780               $2,984.92
+
+ Rio de Janiero, Brazil           Joao Castagneto                       $31,035.55                 2,400.2750                  $40.96
+
+ Rio de Janiero, Brazil           Lasar Segall                          $61,053.74                 4,721.8670                  $31.74
+
+ Rio de Janiero, Brazil           Tarsila do Amaral                  $3,000,105.83               232,026.7460               $3,960.13
+
+ Rio de Janiero, Brazil           Eliseu Visconti                      $322,305.42                24,926.9470                 $261.06
+
+ Rome, Italy                      Julius Caesar                      $2,034,106.51               157,316.8220               $2,685.02
+
+ Rome, Italy                      Franco Sinatra                        $43,105.53                 3,333.7610                  $56.89
+
+ Rome, Italy                      Giacomo Puccini                      $304,604.55                23,557.9700                 $402.07
+
+ Rome, Italy                      Enrico Caruso                        $884,133.55                68,378.4650               $1,167.05
+
+ Rome, Italy                      Sofia Loren                        $9,004,152.56               696,376.8410              $11,885.48
+
+ Sydney, Australia                Milton Sheppard                      $904,606.57                69,961.8380                 $732.73
+
+ Sydney, Australia                Shelley Boughton                      $98,105.88                 7,587.4620                  $79.46
+
+ Sydney, Australia                Joan Sutherland                       $29,105.59                 2,251.0120                  $38.41
+
+ Sydney, Australia                Barry Tuckwell                        $91,905.40                 7,107.9200                  $74.44
+
+ Sydney, Australia                Cayla Smithe                          $21,095.90                 1,631.5470                  $10.96
+
+ 11/05/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   6
+ 01:33 AM                                        BROKER SALES AND COMMISSIONS REPORT                                                 
+
+                                                        SHARE PRICE:  $12.93                                                         
+
+ BRANCH NAME                      BROKER NAME                         SALES AMOUNT               SHARE AMOUNT              COMMISSION
+ -------------------------        -------------------------        ---------------        -------------------         ---------------
+
+ Sydney, Australia                Benjamin Britten                      $41,059.40                 3,175.5140                  $54.19
+
+ Sydney, Australia                Peter Pears                           $49,305.60                 3,813.2710                  $25.63
+
+ Sydney, Australia                Paul Gray                            $903,104.55                69,845.6730               $1,192.09
+
+ Vienna, Austria                  Herbert von Karajan                   $95,802.84                 7,409.3460                  $77.60
+
+ Vienna, Austria                  Franz Joseph Haydn                    $58,903.03                 4,555.5320                  $47.71
+
+ Vienna, Austria                  Josef Strauss                        $158,094.83                12,226.9780                 $128.05
+
+ Vienna, Austria                  Karl Boehm                         $5,058,089.64               391,190.2270               $4,097.05
+
+ Vienna, Austria                  Elisa Schwarzkopf                    $124,802.95                 9,652.2000                 $101.09
+
+ Vienna, Austria                  Franz Peter Schubert                  $98,310.56                 7,603.2920                  $79.63
+
+ Zurich, Switzerland              Earl Grey                          $4,000,580.17               309,402.9520               $5,280.76
+
+ Zurich, Switzerland              Diana Kensington                     $870,575.50                67,329.8920               $1,149.15
+
+ Zurich, Switzerland              Axel Vondenberg                      $307,590.19                23,788.8780                 $159.94
+
+ Zurich, Switzerland              Ute Schweitzer                     $1,470,580.08               113,733.9580               $1,941.16
+
+ Zurich, Switzerland              Rene Jacobs                          $725,580.07                56,116.0150                 $587.71
+
+ Zurich, Switzerland              Anton Bruckner                       $999,999.96                77,339.5170                 $520.00
+
+ 11/05/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   7
+ 01:33 AM                                   BROKER SALES AND COMMISSIONS REPORT TOTALS                                               
+
+                                                        SHARE PRICE:  $12.93                                                         
+
+                                        NUMBER OF SALES         TOTAL SALES AMOUNT         TOTAL SHARE AMOUNT        TOTAL COMMISSION
+                                        ---------------         ------------------     ----------------------      ------------------
+
+                                                    105            $536,853,042.46            41,519,956.8830             $514,901.93
+ !! END OF JES SPOOL FILE !!
+
+ 11/05/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   1
+ 01:33 AM                                            BROKER LARGE SALES REPORT                                                       
+
+                                                        SHARE PRICE:  $12.93                                                         
+
+                                         HIGH SALES BROKER NAME          HIGH SALES SHARE AMOUNT                                     
+                                      -------------------------          -----------------------                                     
+
+                                      Wilhelm Furtwaengler                          554,226.5580                                     
+
+                                      Johannes Klopp                                310,031.0900                                     
+
+                                      Eugen Jochum                                7,733,952.0420                                     
+
+                                      Uwe Schmidt                                   160,425.6690                                     
+
+                                      Richard Strauss                               240,382.0730                                     
+
+                                      Maurizio Damilano                           3,093,643.4860                                     
+
+                                      Chi Yen Weh                                   333,395.9830                                     
+
+                                      Steve Peplowski                               186,389.1840                                     
+
+                                      Michael Smith                                 242,908.9130                                     
+
+                                      Charles Medley                                240,124.6970                                     
+
+                                      Risa Rogan                                    240,403.1260                                     
+
+                                      Theodore Thomas                               240,382.2550                                     
+
+                                      Frederick Stock                               240,380.8720                                     
+
+                                      Billy O'Leary                                 240,387.8000                                     
+
+                                      Anna Owen                                     256,058.1170                                     
+
+                                      Shelley Mann                                  255,220.8230                                     
+
+                                      Billy Connolly                                240,047.7390                                     
+
+                                      Omar Sharif                                   240,395.3030                                     
+
+ 11/05/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   2
+ 01:33 AM                                            BROKER LARGE SALES REPORT                                                       
+
+                                                        SHARE PRICE:  $12.93                                                         
+
+                                         HIGH SALES BROKER NAME          HIGH SALES SHARE AMOUNT                                     
+                                      -------------------------          -----------------------                                     
+
+                                      Julie Christie                                240,381.3800                                     
+
+                                      James Oxfordshire                             240,379.9870                                     
+
+                                      Johannes Dundor                               356,257.5810                                     
+
+                                      Adam Dieffenbach                              469,315.8680                                     
+
+                                      Mao Zedong                                    470,709.3010                                     
+
+                                      Zhou Enlai                                    470,430.1040                                     
+
+                                      Zhau Ziyang                                   540,043.4060                                     
+
+                                      Chiang Kai-shek                             2,024,966.4530                                     
+
+                                      Stephanie Buckingham                          356,396.9320                                     
+
+                                      Simon Draper                                  495,608.0680                                     
+
+                                      Geoffrey Decker                               467,765.9870                                     
+
+                                      Elizabeth Windsor                             552,584.9640                                     
+
+                                      Charles Windsor                               168,535.3500                                     
+
+                                      Andrew Windsor                                511,293.3070                                     
+
+                                      Michael Windsor                               824,719.4510                                     
+
+                                      William Windsor                               171,432.1180                                     
+
+                                      Catherine Monteiro                          7,733,952.0460                                     
+
+                                      Jason Landau                                  386,698.2090                                     
+
+ 11/05/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   3
+ 01:33 AM                                            BROKER LARGE SALES REPORT                                                       
+
+                                                        SHARE PRICE:  $12.93                                                         
+
+                                         HIGH SALES BROKER NAME          HIGH SALES SHARE AMOUNT                                     
+                                      -------------------------          -----------------------                                     
+
+                                      Andre Previn                                  180,063.2540                                     
+
+                                      Cheryl Studer                                 233,172.2990                                     
+
+                                      Renee Fleming                                 256,088.0020                                     
+
+                                      Napoleon Bonaparte                            779,048.1870                                     
+
+                                      Claude Monet                                2,321,153.8010                                     
+
+                                      Olivier Messiaen                              232,128.0770                                     
+
+                                      Claude Debussy                                719,861.9900                                     
+
+                                      Maurice Ravel                                 775,724.8440                                     
+
+                                      Edith Piaf                                    203,666.1520                                     
+
+                                      Coco Chanel                                   174,888.2780                                     
+
+                                      Tarsila do Amaral                             232,026.7460                                     
+
+                                      Julius Caesar                                 157,316.8220                                     
+
+                                      Sofia Loren                                   696,376.8410                                     
+
+                                      Karl Boehm                                    391,190.2270                                     
+
+                                      Earl Grey                                     309,402.9520                                     
+
+ 11/05/2021                                        INTERNATIONAL INVESTMENTS FUND                                           PAGE:   4
+ 01:33 AM                                        BROKER LARGE SALES REPORT TOTALS                                                    
+
+                                                        SHARE PRICE:  $12.93                                                         
+
+                                   NUMBER OF HIGH SALES BROKERS    TOTAL HIGH SALES SHARE AMOUNT                                     
+                                   ----------------------------    -----------------------------                                    
+                                                             51                  39,192,334.7140                                     
+ !! END OF JES SPOOL FILE !!
