@@ -1,3 +1,3 @@
 # CSCI-465 Enterprise Application Environments
 
-COBOL & IBM 370 Assembler 
+JCL, COBOL, and IBM 370 Assembler 
